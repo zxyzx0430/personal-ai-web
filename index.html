@@ -97,6 +97,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
   var options=Array.from(document.querySelectorAll('[data-view]'));
   var current='study';
   var closeTimer=null;
+  var replayAfterSwitch=false;
   var modes={
     study:{url:'./study/',name:'在学中扩展｜学生版',number:'01'},
     adult:{url:'./adult/',name:'在做中扩展｜成人版',number:'02'}
@@ -104,7 +105,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
   function setMode(mode,push){
     if(!modes[mode])mode='study';
     var info=modes[mode];
+    var changed=mode!==current || frame.getAttribute('src')!==info.url;
     current=mode;
+    if(push && mode==='study')replayAfterSwitch=true;
     options.forEach(function(button){
       var selected=button.dataset.view===mode;
       button.classList.toggle('selected',selected);
@@ -124,6 +127,24 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
       history.pushState({view:mode},'',url.pathname+url.search+url.hash);
     }
   }
+  // Inner presentations live in a same-origin iframe. Keep keyboard focus in
+  // that presentation, not on the small outer switcher button.
+  function focusPresentation(){
+    try {frame.contentWindow.focus();frame.focus({preventScroll:true});}
+    catch(e) {try {frame.focus();}catch(_) {}}
+  }
+  function replayVisibleStudent(){
+    if(!replayAfterSwitch || current!=='study' || drawer.open)return;
+    try {
+      var doc=frame.contentDocument;
+      if(!doc || doc.readyState!=='complete')return;
+      var replay=doc.getElementById('replay-motion');
+      if(replay){replayAfterSwitch=false;replay.click();}
+    }catch(e){}
+  }
+  frame.addEventListener('load',function(){
+    if(!drawer.open){focusPresentation();replayVisibleStudent();}
+  });
   function openDrawer(){
     if(closeTimer){clearTimeout(closeTimer);closeTimer=null;drawer.classList.remove('closing');}
     if(!drawer.open){drawer.showModal();}
@@ -135,7 +156,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
     drawer.classList.remove('closing');
     if(drawer.open)drawer.close();
     opener.setAttribute('aria-expanded','false');
-    opener.focus({preventScroll:true});
+    focusPresentation();
+    replayVisibleStudent();
     closeTimer=null;
   }
   function closeDrawer(){
@@ -155,6 +177,23 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
   });
   drawer.addEventListener('cancel',function(e){e.preventDefault();closeDrawer();});
   drawer.addEventListener('close',function(){opener.setAttribute('aria-expanded','false');});
+  // The outer document can still receive keys after closing a modal or
+  // when the user clicks outside the embedded presentation. Forward to
+  // the child BODY (not document: student handlers expect target.closest()).
+  document.addEventListener('keydown',function(e){
+    if(drawer.open || e.defaultPrevented || e.ctrlKey || e.altKey || e.metaKey)return;
+    if(e.target && e.target.closest && e.target.closest('input,textarea,select,[contenteditable="true"]'))return;
+    var keys=['ArrowLeft','ArrowRight','PageUp','PageDown','Home','End'];
+    if(!keys.includes(e.key))return;
+    try{
+      var win=frame.contentWindow;
+      var doc=win.document;
+      if(!doc || !doc.body)return;
+      var keyEvent=new win.KeyboardEvent('keydown',{key:e.key,code:e.code || e.key,bubbles:true,cancelable:true});
+      doc.body.dispatchEvent(keyEvent);
+      e.preventDefault();
+    }catch(err){focusPresentation();}
+  });
   window.addEventListener('popstate',function(){
     var view=new URLSearchParams(location.search).get('view');
     if(!modes[view])view='study';
