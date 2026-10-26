@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fafaf8">
+<meta name="description" content="Personal AI System｜在学中扩展与在做中扩展。选择学生版或成人版，探索属于自己的 AI 学习与工作系统。">
+<title>Personal AI System｜在学中扩展 · 在做中扩展</title>
+<style>
+:root{--paper:#fafaf8;--ink:#0a0a0a;--blue:#002fa7;--grey:#737373;--line:#dadad7;--mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace;--sans:Inter,"Helvetica Neue",Arial,"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+button,a{font:inherit}a{color:inherit}a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+header{height:72px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding:0 clamp(20px,4.5vw,72px);gap:16px;background:var(--paper)}
+.brand{font-weight:650;text-decoration:none;letter-spacing:-.04em;font-size:17px;white-space:nowrap}.brand i{display:inline-block;width:10px;height:10px;background:var(--blue);margin-right:11px}.brand small{font-family:var(--mono);font-weight:500;letter-spacing:0;font-size:10px;color:var(--grey);margin-left:9px}
+nav{display:flex;align-items:center;gap:6px}nav button{border:1px solid transparent;color:#5a5a5a;background:transparent;padding:11px 16px;cursor:pointer;font-size:13px;transition:color .2s,border-color .2s,background .2s}nav button:hover{color:var(--blue)}nav button.active{border-color:var(--line);color:var(--blue);background:white}
+header .external{font-family:var(--mono);font-size:11px;color:#555;text-decoration:none;white-space:nowrap}.external:hover{color:var(--blue)}
+main{min-height:calc(100dvh - 72px)}.home{max-width:1450px;margin:0 auto;padding:clamp(38px,6.5vh,94px) clamp(20px,5vw,80px) 42px}
+.eyebrow{font:500 11px/1.4 var(--mono);letter-spacing:.13em;color:var(--blue)}
+h1{font-size:clamp(44px,6vw,93px);font-weight:540;line-height:1.13;letter-spacing:-.08em;margin:24px 0 23px;max-width:1050px}h1 em{font-style:normal;color:var(--blue)}
+.intro{max-width:760px;color:#545454;line-height:1.85;font-size:clamp(15px,1.35vw,18px);margin:0 0 48px}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.choice{border:1px solid var(--line);background:white;min-height:345px;text-align:left;cursor:pointer;padding:clamp(24px,3vw,45px);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;transition:border-color .18s,transform .18s;box-shadow:none}
+.choice:hover{border-color:var(--blue);transform:translateY(-3px)}.choice:after{content:"";position:absolute;right:-15px;top:-35px;width:230px;height:230px;opacity:.045;border:1px solid var(--blue);border-radius:50%;box-shadow:0 0 0 35px var(--blue),0 0 0 67px var(--paper)}
+.chip{font:500 11px var(--mono);color:var(--blue);letter-spacing:.08em}.choice h2{font-weight:540;font-size:clamp(36px,4vw,58px);line-height:1.15;letter-spacing:-.08em;margin:24px 0 14px}
+.choice p{color:#666;max-width:410px;line-height:1.8;font-size:15px;margin:0}.bottomline{display:flex;justify-content:space-between;align-items:end;margin-top:45px;padding-top:18px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;color:#666}
+.arrow{font-size:23px;font-family:var(--sans);font-weight:300;color:var(--blue)}
+.foot{font:12px/1.7 var(--mono);color:#858585;margin-top:28px;display:flex;justify-content:space-between;gap:12px}
+.viewer{display:none;height:calc(100dvh - 72px);min-height:430px;position:relative;background:white}.viewer iframe{border:0;width:100%;height:100%;display:block}.viewer .hint{display:none}
+body.presenting .home{display:none}body.presenting .viewer{display:block}body.presenting .external{display:inline}
+@media(min-width:901px){.home{padding-bottom:60px}}@media(max-width:900px){header{padding:0 16px;height:60px}.brand{font-size:14px}.brand small{display:none}nav button{padding:9px 8px;font-size:12px}.external{display:none!important}main{min-height:calc(100dvh - 60px)}.viewer{height:calc(100dvh - 60px)}.home{padding:46px 20px}.choices{gap:12px}.choice{padding:24px;min-height:310px}.choice h2{font-size:35px}}
+@media(max-width:650px){header{flex-wrap:wrap;justify-content:center;align-content:center;gap:5px;height:94px;padding:9px 10px}.brand{width:100%;text-align:center;font-size:13px}.brand i{width:8px;height:8px;margin-right:6px}nav button{padding:6px 15px}main{min-height:calc(100dvh - 94px)}.viewer{height:calc(100dvh - 94px);min-height:360px}.home{padding:35px 20px 25px}h1{font-size:clamp(42px,11.5vw,68px)}.intro{margin-bottom:28px}.choices{grid-template-columns:1fr}.choice{min-height:222px;padding:21px}.choice h2{font-size:38px;margin:10px 0}.choice p{font-size:13px;line-height:1.65}.bottomline{margin-top:16px}.foot{display:block;font-size:10px}}
+@media(prefers-reduced-motion:reduce){.choice,nav button{transition:none}.choice:hover{transform:none}}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="./" id="brand"><i aria-hidden="true"></i>PERSONAL AI SYSTEM<small>OPEN MARGIN / 2026</small></a>
+  <nav aria-label="切换版本">
+    <button type="button" data-mode="home" class="active" aria-pressed="true">总览</button>
+    <button type="button" data-mode="study" aria-pressed="false">学生版 <span aria-hidden="true">·</span> 10</button>
+    <button type="button" data-mode="adult" aria-pressed="false">成人版 <span aria-hidden="true">·</span> 11</button>
+  </nav>
+  <a class="external" id="direct" href="./" target="_blank" rel="noopener" hidden>独立全屏打开 ↗</a>
+</header>
+<main>
+  <section class="home" id="home">
+    <div class="eyebrow">PERSONAL AI SYSTEM / TWO PATHS / ONE PHILOSOPHY</div>
+    <h1>不只是使用 AI。<br><em>而是扩展自己的能力。</em></h1>
+    <p class="intro">从真实问题出发，让 AI 帮助我们理解、执行与积累。面向学生，我们讨论怎样真正学会；面向成年人，我们讨论怎样把事情做得更好，让今天的经验成为明天的起点。</p>
+    <div class="choices">
+      <button class="choice" type="button" data-mode="study">
+        <span class="chip">01 / PERSONAL AI STUDY SYSTEM · 10 PAGES</span>
+        <div><h2>在学中扩展</h2><p>为什么找到答案，不等于真正学会？从理解、反馈、知识联系到长期的个人学习系统。</p></div>
+        <div class="bottomline"><span>面向初高中学生与家长</span><span class="arrow">↗</span></div>
+      </button>
+      <button class="choice" type="button" data-mode="adult">
+        <span class="chip">02 / PERSONAL AI SYSTEM · 11 PAGES</span>
+        <div><h2>在做中扩展</h2><p>从生活与工作中的真实问题出发，重新理解问题解决、经验积累与 AI 生产力。</p></div>
+        <div class="bottomline"><span>面向个人、职场与经营者</span><span class="arrow">↗</span></div>
+      </button>
+    </div>
+    <div class="foot"><span>CODEX × OBSIDIAN · PRACTICE → LEARNING → REUSE</span><span>选择任一版本开始体验</span></div>
+  </section>
+  <section class="viewer" id="viewer" aria-label="演示页面" >
+    <iframe id="presentation" title="个人 AI 系统演示" allow="fullscreen" allowfullscreen></iframe>
+  </section>
+</main>
+<script>
+(function(){
+  var tabs=Array.prototype.slice.call(document.querySelectorAll('[data-mode]'));
+  var iframe=document.getElementById('presentation'), direct=document.getElementById('direct');
+  var urls={study:'./study/',adult:'./adult/'}, titles={study:'在学中扩展｜学生版',adult:'在做中扩展｜成人版'};
+  function select(mode,push){
+    if(mode!=='study'&&mode!=='adult')mode='home';
+    tabs.forEach(function(b){var active=b.getAttribute('data-mode')===mode;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
+    document.body.classList.toggle('presenting',mode!=='home');
+    direct.hidden=(mode==='home');
+    if(mode==='home'){iframe.removeAttribute('src');iframe.title='个人 AI 系统演示';document.title='Personal AI System｜在学中扩展 · 在做中扩展';}
+    else{var url=urls[mode];if(iframe.getAttribute('src')!==url)iframe.src=url;iframe.title=titles[mode];direct.href=url;document.title=titles[mode]+'｜Personal AI System';}
+    if(push){var next=mode==='home'?location.pathname:location.pathname+'?view='+mode;history.pushState({view:mode},'',next);}
+  }
+  tabs.forEach(function(b){b.addEventListener('click',function(){select(b.getAttribute('data-mode'),true);});});
+  document.getElementById('brand').addEventListener('click',function(e){e.preventDefault();select('home',true);});
+  window.addEventListener('popstate',function(){select(new URLSearchParams(location.search).get('view'),false);});
+  select(new URLSearchParams(location.search).get('view'),false);
+})();
+</script>
+</body>
+</html>
