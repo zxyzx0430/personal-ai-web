@@ -16,6 +16,13 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
 /* A single folded tab: no permanent top navigation or large chooser page. */
 .side-tab{position:fixed;z-index:20;left:0;top:48%;transform:translateY(-50%);width:38px;min-height:98px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:12px 0;border:1px solid #d7d7d4;border-left:0;border-radius:0 5px 5px 0;background:rgba(250,250,248,.97);color:var(--blue);box-shadow:0 3px 16px rgba(0,0,0,.075);transition:width .2s ease,background .2s ease}
 .side-tab:hover{width:44px;background:#fff}
+
+/* After a version has been selected the launcher retracts completely.
+   The transparent left-edge hit area remains touchable; hovering/focusing
+   brings the control back temporarily. */
+.side-tab.is-tucked{opacity:0;transform:translate(-15px,-50%);box-shadow:none;border-color:transparent;transition:opacity .18s ease,transform .18s ease}
+.side-tab.is-tucked:hover,.side-tab.is-tucked:focus-visible{opacity:1;transform:translate(0,-50%);box-shadow:0 3px 16px rgba(0,0,0,.075);border-color:#d7d7d4}
+@media(hover:none){.side-tab.is-tucked:hover:not(:focus-visible){opacity:0;transform:translate(-15px,-50%)}}
 .side-tab .symbol{display:grid;grid-template-columns:repeat(2,4px);gap:4px}
 .side-tab .symbol i{width:4px;height:4px;background:currentColor}
 .side-tab .vertical{font:600 11px/1.1 var(--sans);letter-spacing:.15em;writing-mode:vertical-rl}
@@ -56,7 +63,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
 </head>
 <body>
 <iframe id="presentation" title="在学中扩展｜学生版" src="./study/" allow="fullscreen" allowfullscreen></iframe>
-<button type="button" class="side-tab" id="openSwitch" aria-label="展开版本切换侧栏" aria-haspopup="dialog" aria-controls="switchDrawer" aria-expanded="false" title="切换学生版 / 成人版">
+<button type="button" class="side-tab is-tucked" id="openSwitch" aria-label="展开版本切换侧栏" aria-haspopup="dialog" aria-controls="switchDrawer" aria-expanded="false" title="切换学生版 / 成人版">
   <span class="symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
   <span class="vertical" aria-hidden="true">切换版本</span>
   <span class="tiny" id="tabNumber" aria-hidden="true">01</span>
@@ -97,6 +104,11 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
   var options=Array.from(document.querySelectorAll('[data-view]'));
   var current='study';
   var closeTimer=null;
+  function hideLauncher(){
+    opener.classList.add('is-tucked');
+    try{localStorage.setItem('personal-ai-switcher-used','1')}catch(e){}
+  }
+
   var replayAfterSwitch=false;
   var modes={
     study:{url:'./study/',name:'在学中扩展｜学生版',number:'01'},
@@ -105,7 +117,6 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
   function setMode(mode,push){
     if(!modes[mode])mode='study';
     var info=modes[mode];
-    var changed=mode!==current || frame.getAttribute('src')!==info.url;
     current=mode;
     if(push && mode==='study')replayAfterSwitch=true;
     options.forEach(function(button){
@@ -122,6 +133,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
     standalone.href=info.url;
     try{sessionStorage.setItem('personal-ai-view',mode)}catch(e){}
     if(push){
+      hideLauncher();
       var url=new URL(location.href);
       url.searchParams.set('view',mode);
       history.pushState({view:mode},'',url.pathname+url.search+url.hash);
@@ -203,6 +215,9 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
   var fromUrl=new URLSearchParams(location.search).get('view');
   var remembered=null;
   try{remembered=sessionStorage.getItem('personal-ai-view')}catch(e){}
+  var wasUsed=false;
+  try{wasUsed=localStorage.getItem('personal-ai-switcher-used')==='1'}catch(e){}
+  if(!modes[fromUrl] && !modes[remembered] && !wasUsed)opener.classList.remove('is-tucked');
   setMode(modes[fromUrl]?fromUrl:(modes[remembered]?remembered:'study'),false);
 })();
 </script>
