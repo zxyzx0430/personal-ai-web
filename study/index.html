@@ -1399,38 +1399,6 @@ body.low-power *,body.low-power *::before,body.low-power *::after{animation:none
 @media(min-width:1800px){.recording-stage video{max-height:440px}.recording-label{font-size:18px}.recording-heading>span:last-child{font-size:13px}.recording-chapters button strong{font-size:20px}.recording-chapters button>span:first-child{font-size:13px}.demo-recording figcaption{font-size:20px}.recording-actions{font-size:16px}.recording-actions button{font-size:17px}}
 @media(max-width:800px){.demo-recording{gap:13px}.recording-stage video{max-height:none}.recording-chapters{gap:8px}.recording-chapters button{flex-wrap:wrap;justify-content:flex-start;padding:9px 5px;gap:5px;min-height:66px}.recording-chapters button>span:first-child{flex-basis:100%}.recording-chapters button strong{font-size:16px}.recording-chapters button>span:last-child{display:none}.demo-recording figcaption{font-size:16px}.demo-copy>p.demo-reproduce{font-size:16px}.recording-actions{font-size:13px}.recording-label{font-size:14px}}
 @media print{html,body{height:auto;overflow:visible}.masthead,.bottom-bar,.progress-track,.toast,.skip-link,dialog,.cover-actions,.demo-buttons,.shot-caption button,.recording-chapters,.recording-actions{display:none!important}#deck{position:static;height:auto}.slide,body.canvas-mode .slide{display:block!important;position:relative;inset:auto;height:190mm;page-break-after:always;width:277mm;overflow:hidden}.slide .canvas-card{height:100%;padding:12mm;print-color-adjust:exact;-webkit-print-color-adjust:exact}*{animation:none!important;transition:none!important}.day-progress{transform:scaleX(1)}}
-
-/* === 00 / Project introduction: same Swiss grid, Klein blue, and deck logic === */
-#deck{width:11000vw}
-.project-intro{overflow-y:auto;scrollbar-width:thin}
-.project-intro .canvas-card{display:flex;flex-direction:column;height:100%;min-height:0;overflow:visible}
-.project-intro .pi-main{display:grid;grid-template-columns:56% minmax(0,44%);gap:3.7vw;flex:1;min-height:0;align-items:center;padding:3vh 0 3vh}
-.project-intro .pi-copy{min-width:0;display:flex;flex-direction:column;align-items:flex-start}
-.project-intro .pi-tag{color:var(--accent);font:600 11px/1.5 var(--mono);letter-spacing:.13em}
-.project-intro h1{font-weight:750;font-size:clamp(39px,5.05vw,94px);line-height:1.19;letter-spacing:-.075em;margin:17px 0 22px}
-.project-intro h1 em{color:var(--accent);font-style:normal}
-.project-intro .pi-desc{max-width:700px;color:var(--text-secondary);font-size:clamp(14px,1.23vw,19px);line-height:1.86}
-.project-intro .pi-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:clamp(20px,3.4vh,38px)}
-.project-intro .pi-start{border:1px solid var(--accent);background:var(--accent);color:white;padding:13px 20px;min-height:48px;display:inline-flex;align-items:center;gap:24px;font-size:13px;font-weight:750}
-.project-intro .pi-start:hover{background:#001d73}
-.project-intro .pi-next{font:700 11px/1.6 var(--mono);color:var(--accent);border:0;border-bottom:1px solid var(--accent);background:transparent;align-self:center;padding:6px 0}
-.project-intro .pi-right{display:flex;flex-direction:column;justify-content:center;gap:12px;padding:2vh 0 2vh 2.8vw;border-left:1px solid var(--border-subtle);min-width:0}
-.project-intro .pi-card{background:#fff;border:1px solid var(--border-subtle);box-shadow:6px 6px 0 rgba(0,47,167,.065);padding:14px 17px;display:grid;grid-template-columns:33px 1fr;gap:13px;align-items:center}
-.project-intro .pi-card b{font:700 11px var(--mono);color:var(--accent)}
-.project-intro .pi-card strong{font-size:clamp(16px,1.65vw,24px);font-weight:700;letter-spacing:-.055em}
-.project-intro .pi-card small{display:block;color:var(--text-helper);line-height:1.65;font-size:11px;margin-top:5px}
-.project-intro .pi-mini{color:var(--text-helper);font:700 10px var(--mono);letter-spacing:.1em}
-.project-intro .pi-resources{display:grid;grid-template-columns:160px 1fr 1fr;align-items:start;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);padding:15px 0;gap:18px}
-.project-intro .pi-rtitle{color:var(--accent);font:700 11px var(--mono);letter-spacing:.06em}
-.project-intro .pi-resource strong{font-size:13px;font-weight:700}
-.project-intro .pi-resource p{font-size:11px;line-height:1.65;color:var(--text-helper);margin-top:5px}
-.project-intro .pi-footer{padding-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;font-size:11px;line-height:1.75}
-.project-intro .pi-footer strong{font-weight:750;color:var(--accent)}
-.project-intro .pi-footer a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
-.project-intro .pi-attribution{color:var(--text-helper);text-align:right}
-@media(min-width:801px) and (max-height:740px){.project-intro .pi-main{padding:1vh 0}.project-intro h1{font-size:clamp(39px,4.25vw,69px);margin:9px 0 13px}.project-intro .pi-actions{margin-top:14px}.project-intro .pi-card{padding:10px 13px}.project-intro .pi-right{gap:8px}.project-intro .pi-resources{padding:11px 0}}
-@media(max-width:800px){.project-intro{overflow-y:auto}.project-intro .canvas-card{height:auto;min-height:100%;padding-bottom:65px}.project-intro .pi-main{grid-template-columns:1fr;gap:28px;padding:28px 0}.project-intro h1{font-size:clamp(40px,10.2vw,64px)}.project-intro .pi-desc{font-size:16px}.project-intro .pi-right{border-left:0;border-top:1px solid var(--border-subtle);padding:20px 0 0}.project-intro .pi-card{padding:13px}.project-intro .pi-resources{grid-template-columns:1fr;gap:13px}.project-intro .pi-footer{grid-template-columns:1fr}.project-intro .pi-attribution{text-align:left}.project-intro .pi-actions{margin-top:22px}}
-@media(prefers-reduced-motion:reduce){.project-intro .pi-start{transition:none}}
 </style>
 </head>
 <body class="canvas-mode">
@@ -1441,50 +1409,13 @@ body.low-power *,body.low-power *::before,body.low-power *::after{animation:none
     <span class="brand-name">在学中扩展</span>
     <span class="brand-sub">PERSONAL AI<br>LEARNING SYSTEM</span>
   </a>
-  <div class="top-right-meta"><span class="edition">学习方法提案 &nbsp; / &nbsp; VOL. 01</span><button class="menu-toggle" id="open-overview" aria-haspopup="dialog" aria-controls="overview"><span class="menu-glyph" aria-hidden="true"><i></i><i></i><i></i><i></i></span>十一页导览</button></div>
+  <div class="top-right-meta"><span class="edition">学习方法提案 &nbsp; / &nbsp; VOL. 01</span><button class="menu-toggle" id="open-overview" aria-haspopup="dialog" aria-controls="overview"><span class="menu-glyph" aria-hidden="true"><i></i><i></i><i></i><i></i></span>十页导览</button></div>
 </header>
 
-<main id="deck" tabindex="-1" aria-label="个人 AI 学习系统，十一页交互展示">
-
-
-<!-- 00 / Project introduction, inserted before the ten original slides. -->
-<section class="slide light project-intro is-active" data-layout="SWISS-PROJECT-INTRO" data-title="项目介绍" data-theme="light" aria-labelledby="title-intro">
-  <div class="canvas-card">
-    <div class="eyebrow" data-reveal>00 / PROJECT OVERVIEW <span class="cn">个人 AI 学习系统 · 免费介绍</span></div>
-    <div class="pi-main">
-      <div class="pi-copy">
-        <span class="pi-tag" data-reveal>PERSONAL AI STUDY SYSTEM / 2026</span>
-        <h1 id="title-intro"><span data-reveal>从真实问题出发，</span><br><em data-reveal>在学中扩展。</em></h1>
-        <p class="pi-desc" data-reveal>不是让 AI 替学生完成答案，而是帮助学生发现自己真正不会的地方，理解知识、独立验证，再把有价值的学习经验留给下一次。</p>
-        <div class="pi-actions" data-reveal>
-          <button class="pi-start" type="button" data-go="1">进入十页学习系统 <span aria-hidden="true">↗</span></button>
-          <button class="pi-next" type="button" data-go="1">继续观看 01—10 →</button>
-        </div>
-      </div>
-      <div class="pi-right" aria-label="项目定位与学习步骤">
-        <div class="pi-mini">ONE PERSON / ONE LEARNING LOOP</div>
-        <div class="pi-card" data-reveal><b>01</b><div><strong>面向初高中学生与家长</strong><small>关注听懂却做不出、重复错题、知识理解等真实困难</small></div></div>
-        <div class="pi-card" data-reveal><b>02</b><div><strong>发现问题 → 针对性理解</strong><small>先记录自己已会什么，再让 AI 提供提示和解释</small></div></div>
-        <div class="pi-card" data-reveal><b>03</b><div><strong>独立验证 → 长期复用</strong><small>学生自己完成新题，经过核对后归档学习经验</small></div></div>
-      </div>
-    </div>
-    <div class="pi-resources" data-reveal>
-      <div class="pi-rtitle">FREE MATERIALS<br>免费公开内容</div>
-      <div class="pi-resource"><strong>家长教育研究导读 / PDF</strong><p>公开教育指南、清华 AIGE 与学校实践研究 · 阅读链接待发布</p></div>
-      <div class="pi-resource"><strong>深度讲解视频 / 抖音</strong><p>抖音账号「忠心于中心」 · 视频直达链接待补充</p></div>
-    </div>
-    <div class="pi-footer" data-reveal>
-      <div><span class="pi-mini">CREATED BY / 作者</span><br><strong>忠心于中心</strong><span>　｜　微信与联系电话：18043054632</span><br><span>抖音账号：忠心于中心</span></div>
-      <div class="pi-attribution">
-        公开研究参考：<a href="https://aige.cs.tsinghua.edu.cn/redbook/" target="_blank" rel="noopener noreferrer">清华 AIGE《人工智能通识教育》</a> · <a href="https://www.cse.edu.cn/index/detail.html?category=31&amp;id=4242" target="_blank" rel="noopener noreferrer">《中小学生成式人工智能使用指南（2025）》</a><br>
-        本项目由作者独立设计，与引用学校及机构无合作或授权关系；实际学习成效尚待验证。
-      </div>
-    </div>
-  </div>
-</section>
+<main id="deck" tabindex="-1" aria-label="个人 AI 学习系统，十页交互展示">
 
 <!-- 01: The approved learning narrative starts here. -->
-<section class="slide hero light cover" data-layout="SWISS-COVER-ASCII" data-title="真正学会" data-theme="light" aria-labelledby="title-01">
+<section class="slide hero light cover is-active" data-layout="SWISS-COVER-ASCII" data-title="真正学会" data-theme="light" aria-labelledby="title-01">
   <div class="canvas-card">
     <canvas class="ascii-bg" aria-hidden="true"></canvas>
     <div class="eyebrow" data-reveal>LEARN. UNDERSTAND. CONNECT. <span class="cn">/ 个人 AI 学习系统</span></div>
@@ -1492,7 +1423,7 @@ body.low-power *,body.low-power *::before,body.low-power *::after{animation:none
       <div class="cover-copy">
         <h1 id="title-01"><span data-reveal>不只找到答案。</span><br><em data-reveal>真正学会。</em></h1>
         <p class="cover-lead" data-reveal>让每个学生拥有一个持续了解自己的 AI 学习助手。<br>从今天的一个卡点，到属于自己的长期知识体系。</p>
-        <div class="cover-actions" data-reveal><button class="solid-button white" data-go="2">进入学习系统 <span class="arrow" aria-hidden="true">↗</span></button><span class="fine">为学科掌握而设计<br>为自主学习而积累</span></div>
+        <div class="cover-actions" data-reveal><button class="solid-button white" data-go="1">进入学习系统 <span class="arrow" aria-hidden="true">↗</span></button><span class="fine">为学科掌握而设计<br>为自主学习而积累</span></div>
       </div>
       <div class="cover-art" aria-label="学生主动思考，ChatGPT 提供讲解反馈，Obsidian 积累长期记忆，三者形成循环" data-reveal>
         <svg viewBox="0 0 500 500" aria-hidden="true">
@@ -1755,12 +1686,12 @@ body.low-power *,body.low-power *::before,body.low-power *::after{animation:none
 </main>
 
 <footer class="bottom-bar" aria-label="演示导航">
-  <div class="page-indicator" aria-live="polite" aria-atomic="true"><span class="current-number" id="current-number">01</span><span class="pages-total">/ 11</span><span class="page-label" id="page-label">项目介绍</span></div>
+  <div class="page-indicator" aria-live="polite" aria-atomic="true"><span class="current-number" id="current-number">01</span><span class="pages-total">/ 10</span><span class="page-label" id="page-label">真正学会</span></div>
   <nav class="nav-center" id="page-nav" aria-label="选择页面"></nav>
   <div class="nav-tools"><button class="mode-button" id="motion-mode" aria-pressed="false" title="B：切换静态模式"><span class="key">B</span><span class="mode-label">静态</span></button><button class="icon-button" id="pause-motion" aria-label="暂停动画" title="暂停 / 继续动画">Ⅱ</button><button class="icon-button replay-button" id="replay-motion" aria-label="重播当前页动画" title="R：重播当前页">↺</button><button class="icon-button fullscreen-button" id="fullscreen" aria-label="进入全屏" title="F：进入全屏">⛶</button><button class="icon-button" id="prev-page" aria-label="上一页" title="← 上一页" disabled>←</button><button class="icon-button" id="next-page" aria-label="下一页" title="→ 下一页">→</button></div>
 </footer>
 <div class="progress-track" aria-hidden="true"><div class="progress-fill" id="progress-fill"></div></div>
-<dialog class="overview" id="overview" aria-labelledby="overview-title"><div class="overview-header"><h2 id="overview-title">十一页，了解项目与学习方法。</h2><button class="icon-button" id="close-overview" aria-label="关闭导览">×</button></div><div class="overview-grid" id="overview-grid"></div><p class="overview-foot">方向键翻页 · R 重播 · B 静态模式 · F 全屏 · Esc 导览</p></dialog>
+<dialog class="overview" id="overview" aria-labelledby="overview-title"><div class="overview-header"><h2 id="overview-title">十页，认识一种学习方法。</h2><button class="icon-button" id="close-overview" aria-label="关闭导览">×</button></div><div class="overview-grid" id="overview-grid"></div><p class="overview-foot">方向键翻页 · R 重播 · B 静态模式 · F 全屏 · Esc 导览</p></dialog>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <noscript><style>#deck{position:static}html,body{overflow:auto}.slide,body.canvas-mode .slide{display:block;position:relative;height:auto}.slide .canvas-card{height:auto;min-height:700px}.bottom-bar{display:none}.masthead{position:sticky}section[hidden]{display:block!important}</style><p>启用 JavaScript 可体验翻页和动画。</p></noscript>
 
@@ -1772,7 +1703,7 @@ body.low-power *,body.low-power *::before,body.low-power *::after{animation:none
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const overview = $('overview');
   const names = slides.map(slide => slide.dataset.title);
-  const categories = ['PROJECT INTRODUCTION','THE LEARNING SYSTEM','THE LEARNING GAP','PERSONALIZED TEACHING','MAKE KNOWLEDGE VISIBLE','LONG-TERM MEMORY','CONNECTED KNOWLEDGE','YOUR EVERYDAY LEARNING','LEARNING THAT STAYS','THE COMPLETE PICTURE','WHY THE SYSTEM IS ADVANCED'];
+  const categories = ['THE LEARNING SYSTEM','THE LEARNING GAP','PERSONALIZED TEACHING','MAKE KNOWLEDGE VISIBLE','LONG-TERM MEMORY','CONNECTED KNOWLEDGE','YOUR EVERYDAY LEARNING','LEARNING THAT STAYS','THE COMPLETE PICTURE','WHY THE SYSTEM IS ADVANCED'];
   document.querySelector('.pages-total').textContent = `/ ${String(slides.length).padStart(2,'0')}`;
   let current = -1;
   let animations = [];
@@ -1807,25 +1738,25 @@ body.low-power *,body.low-power *::before,body.low-power *::after{animation:none
     if(!s || staticMode) return;
     const elements = [...s.querySelectorAll('[data-reveal]')];
     elements.forEach((el,i) => animate(el,[{opacity:0,transform:'translateY(23px)'},{opacity:1,transform:'translateY(0)'}],{delay:Math.min(i*85,650),duration:750}));
-    if(current === 1) {
+    if(current === 0) {
       const triangle = s.querySelector('.path');
       animate(triangle,[{strokeDasharray:'1',strokeDashoffset:1},{strokeDasharray:'1',strokeDashoffset:0}],{duration:2000,delay:350});
       animate(s.querySelector('.travel-points'),[{transform:'translate(0px,0px)'},{transform:'translate(-160px,265px)'},{transform:'translate(160px,265px)'},{transform:'translate(0px,0px)'}],{duration:9000,iterations:Infinity,easing:'linear'});
     }
-    if(current === 3) {
+    if(current === 2) {
       s.querySelectorAll('[data-route]').forEach((route,r) => route.querySelectorAll('[data-route-step]').forEach((el,i) => animate(el,[{opacity:.05,transform:'translateX(-22px)'},{opacity:1,transform:'translateX(0)'}],{delay:650+r*160+i*340,duration:700})));
     }
-    if(current === 5) {
+    if(current === 4) {
       s.querySelectorAll('[data-archive-step]').forEach((el,i) => animate(el,[{opacity:0,transform:'translateX(-25px)'},{opacity:1,transform:'translateX(0)'}],{delay:250+i*170}));
       animate(s.querySelector('[data-archive-note]'),[{opacity:0,transform:'translate(35px,25px) rotate(2deg)'},{opacity:1,transform:'translate(0,0) rotate(0)'}],{delay:600,duration:1100});
       s.querySelectorAll('.note-rows > *').forEach((el,i) => animate(el,[{opacity:0,transform:'translateX(14px)'},{opacity:1,transform:'translateX(0)'}],{delay:1000+Math.floor(i/2)*170,duration:550}));
       s.querySelectorAll('.archive-links span').forEach((el,i) => animate(el,[{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{delay:1650+i*120}));
     }
-    if(current === 6) {
+    if(current === 5) {
       s.querySelectorAll('.graph-links path').forEach((el,i) => animate(el,[{strokeDasharray:'1',strokeDashoffset:1},{strokeDasharray:'1',strokeDashoffset:0}],{duration:2200,delay:450+i*300}));
       s.querySelectorAll('[data-node]').forEach((el,i) => animate(el,[{opacity:0,transform:'translate(-50%,-50%) scale(.8)'},{opacity:1,transform:'translate(-50%,-50%) scale(1)'}],{delay:300+i*160,duration:850}));
     }
-    if(current === 7) {
+    if(current === 6) {
       s.querySelectorAll('[data-day] .day-label').forEach((el,i) => animate(el,[{opacity:0,transform:`translateY(${i%2 ? 20 : -20}px)`},{opacity:1,transform:'translateY(0)'}],{delay:350+i*210,duration:850}));
     }
     if(s.classList.contains('summary')) {

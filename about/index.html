@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fafaf8">
+<meta name="description" content="Personal AI System｜在学中扩展：从真实问题出发，让学生借助 AI 理解、验证并积累自己的学习经验。项目作者：忠心于中心。">
+<title>项目介绍｜Personal AI System · 在学中扩展</title>
+<style>
+:root{--paper:#fafaf8;--paper2:#f0f1ef;--ink:#0a0a0a;--blue:#002fa7;--muted:#727779;--line:#dcdfde;--sans:Inter,"Helvetica Neue",Arial,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;--mono:"IBM Plex Mono",Consolas,monospace}
+*,*:before,*:after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit}button{font:inherit;cursor:pointer}a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px}::selection{background:var(--blue);color:#fff}
+.site-top{position:sticky;top:0;z-index:5;height:63px;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:0 clamp(20px,5vw,78px);border-bottom:1px solid var(--line);background:rgba(250,250,248,.96);backdrop-filter:blur(12px)}
+.mark{display:flex;align-items:center;gap:12px;text-decoration:none;font-size:14px;font-weight:850;letter-spacing:-.04em}.mark-icon{width:21px;height:24px;display:flex;align-items:end;gap:2px}.mark-icon i{display:block;width:3px;background:var(--blue)}.mark-icon i:nth-child(1){height:8px}.mark-icon i:nth-child(2){height:15px}.mark-icon i:nth-child(3){height:23px}.mark-icon i:nth-child(4){height:16px}.mark-icon i:nth-child(5){height:10px}
+.mono{font:700 10px/1.5 var(--mono);letter-spacing:.11em}.muted{color:var(--muted)}.top-links{display:flex;gap:22px;align-items:center}.top-links a{text-decoration:none;font-size:12px;font-weight:650}.top-links a:hover{color:var(--blue)}
+.wrap{max-width:1550px;margin:0 auto;padding:0 clamp(20px,5vw,78px)}.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);min-height:min(740px,calc(100svh - 63px));border-bottom:1px solid var(--line)}
+.hero-copy{padding:clamp(54px,8vh,100px) 5vw 60px 0;display:flex;flex-direction:column;align-items:start;justify-content:space-between;gap:48px}.eyebrow{color:var(--blue);display:flex;gap:12px;align-items:center}.eyebrow:before{content:"";width:25px;height:2px;background:var(--blue)}.hero h1{margin:29px 0 30px;font-size:clamp(46px,5.8vw,103px);letter-spacing:-.082em;line-height:1.14;font-weight:870}.hero h1 em{font-style:normal;color:var(--blue)}.hero-intro{font-size:clamp(15px,1.25vw,19px);line-height:1.94;max-width:620px;color:#454b4c}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:38px}.btn{display:inline-flex;min-height:47px;align-items:center;justify-content:space-between;gap:28px;padding:12px 18px;border:1px solid var(--ink);text-decoration:none;font-weight:760;font-size:12px;transition:background .22s,color .22s,border-color .22s}.btn.primary{background:var(--blue);color:white;border-color:var(--blue)}.btn.primary:hover{background:#001f75}.btn.outline{border-color:#c9cecd}.btn.outline:hover{color:var(--blue);border-color:var(--blue)}.btn.disabled{opacity:.48;cursor:default;pointer-events:none;border-color:var(--line);background:transparent;color:#52595c}.hero-foot{display:flex;justify-content:space-between;gap:15px;width:100%;padding-top:16px;border-top:1px solid var(--line)}
+.hero-visual{border-left:1px solid var(--line);min-height:540px;position:relative;background:radial-gradient(#cfd5de 1px,transparent 1px) 0 0/21px 21px;display:flex;flex-direction:column;justify-content:center;padding:clamp(28px,4vw,68px)}.visual-label{position:absolute;top:27px;left:31px;color:#687383}.flow-step{position:relative;display:grid;grid-template-columns:44px 1fr 22px;gap:12px;align-items:center;background:#fff;border:1px solid #cfd4dd;padding:21px 19px;margin-bottom:13px;box-shadow:7px 7px 0 rgba(0,47,167,.08);transform:translateX(var(--shift,0));animation:rise .65s ease both;animation-delay:var(--delay,0s)}.flow-step:nth-of-type(2){--shift:20px;--delay:.08s}.flow-step:nth-of-type(3){--shift:8px;--delay:.16s}.flow-step:nth-of-type(4){--shift:29px;--delay:.24s}.flow-step:nth-of-type(5){--shift:12px;--delay:.32s}.flow-step b{color:var(--blue);font:800 12px var(--mono)}.flow-step strong{font-size:clamp(16px,1.6vw,23px);letter-spacing:-.05em}.flow-step small{display:block;color:var(--muted);font-size:11px;margin-top:7px;line-height:1.5}.flow-step i{color:var(--blue);font-size:23px;font-style:normal}.visual-foot{position:absolute;bottom:23px;right:30px;color:#667184}
+.section{padding:clamp(70px,8.4vw,132px) 0;border-bottom:1px solid var(--line)}.sec-head{display:grid;grid-template-columns:minmax(170px,28%) 1fr;gap:3vw;margin-bottom:44px}.sec-num{color:var(--blue)}.sec-head h2{margin:0;font-size:clamp(31px,4vw,67px);line-height:1.16;letter-spacing:-.065em}.sec-head p{margin:18px 0 0;font-size:14px;line-height:1.9;color:#596163;max-width:650px}
+.problem-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}.problem{padding:32px 28px 38px;min-height:165px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}.problem b{color:var(--blue)}.problem h3{font-size:clamp(18px,2vw,29px);letter-spacing:-.055em;margin:15px 0 10px}.problem p{line-height:1.75;color:#596163;font-size:13px;margin:0}
+.method{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.method-card{border:1px solid var(--line);background:white;padding:27px;min-height:195px}.method-card b{color:var(--blue)}.method-card h3{font-size:clamp(19px,2.2vw,29px);line-height:1.35;letter-spacing:-.06em;margin:28px 0 12px}.method-card p{font-size:13px;color:#596163;line-height:1.85;margin:0}
+.asset-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.asset{border:1px solid var(--line);padding:24px 24px 29px;background:white;display:flex;min-height:250px;flex-direction:column;align-items:start}.asset .status{font:700 10px var(--mono);letter-spacing:.1em;color:var(--blue)}.asset h3{font-size:clamp(21px,2vw,28px);letter-spacing:-.06em;margin:35px 0 13px}.asset p{font-size:13px;line-height:1.85;color:#586166;margin:0 0 27px}.asset .btn{margin-top:auto}.asset .extra{color:#657078;font-size:11px;line-height:1.65;margin-top:12px}.thin-rule{height:1px;background:var(--line);margin:32px 0}.sources{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:35px}.sources a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:3px}.sources ul{margin:0;padding-left:18px}.sources li{padding:7px 0;line-height:1.7;font-size:13px}.sources p{line-height:1.8;color:#5b6265;font-size:13px}
+.contact{display:grid;grid-template-columns:1fr 1fr;align-items:start;gap:35px;padding:50px 0}.contact h2{font-size:clamp(33px,4.5vw,68px);line-height:1.15;letter-spacing:-.07em;margin:15px 0}.contact p{line-height:1.9;color:#5c6365;font-size:13px}.contact-panel{border-top:2px solid var(--blue);padding:18px 0;display:grid;grid-template-columns:1fr auto;gap:15px}.contact-panel + .contact-panel{border-top:1px solid var(--line)}.contact-panel strong{font-size:clamp(17px,2vw,26px);letter-spacing:-.04em;overflow-wrap:anywhere}.contact-panel button{border:1px solid var(--line);background:transparent;color:var(--blue);padding:9px 13px;font-size:12px;align-self:center}.contact-panel button:hover{border-color:var(--blue)}.footer{padding:22px 0 42px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;color:#777f80;font:500 10px/1.7 var(--mono);letter-spacing:.04em}
+@keyframes rise{from{opacity:0;transform:translate(calc(var(--shift,0px) - 10px),12px)}to{opacity:1;transform:translateX(var(--shift,0px))}}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.hero-copy{padding-right:0;min-height:450px}.hero-visual{min-height:470px;border-left:0;border-top:1px solid var(--line)}.sec-head{grid-template-columns:1fr;gap:16px}.method,.asset-grid{grid-template-columns:1fr 1fr}.sources{grid-template-columns:1fr}.contact{grid-template-columns:1fr}.top-links a:nth-child(2){display:none}}
+@media(max-width:560px){.site-top{height:58px}.mark{font-size:12px}.top-links{gap:10px}.top-links a{font-size:11px}.hero h1{font-size:clamp(43px,11vw,65px)}.hero-copy{gap:25px;padding:46px 0 36px;min-height:auto}.hero-foot{flex-wrap:wrap}.hero-visual{padding:48px 18px 36px;min-height:370px}.visual-label{top:14px;left:16px}.visual-foot{right:16px;bottom:12px}.flow-step{grid-template-columns:28px 1fr 15px;padding:13px 10px;margin-bottom:10px}.flow-step strong{font-size:17px}.flow-step small{font-size:10px}.flow-step:nth-of-type(n){--shift:0px}.problem-grid,.method,.asset-grid{grid-template-columns:1fr}.problem{min-height:0}.method-card,.asset{min-height:0}.sec-head h2{font-size:36px}.section{padding:66px 0}.contact{padding:35px 0}.actions .btn{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.flow-step{animation:none}.btn{transition:none}}
+</style>
+</head>
+<body>
+<header class="site-top">
+  <a class="mark" href="../?view=about" target="_top" aria-label="Personal AI System 项目介绍"><span class="mark-icon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span>PERSONAL AI SYSTEM</span></a>
+  <nav class="top-links" aria-label="页面导航"><a href="#resources">免费资源</a><a href="../?view=study" target="_top">学生版演示 ↗</a><a href="#contact">联系作者</a></nav>
+</header>
+<main>
+<section class="wrap hero" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <div>
+      <div class="eyebrow mono">PROJECT OVERVIEW / 2026</div>
+      <h1 id="hero-title">在学中<em>扩展。</em><br>让学习留下<br>真正的积累。</h1>
+      <p class="hero-intro">不是让 AI 替学生完成答案，而是从真实的学习困难出发，帮助学生理解知识、独立验证，把有价值的学习经验留给下一次学习。</p>
+      <div class="actions"><a class="btn primary" href="../?view=study" target="_top">探索十页学生版演示 <span>↗</span></a><a class="btn outline" href="#resources">查看免费资源 <span>↓</span></a></div>
+    </div>
+    <div class="hero-foot mono muted"><span>在学中扩展 / PERSONAL AI STUDY SYSTEM</span><span>作者：忠心于中心</span></div>
+  </div>
+  <div class="hero-visual" aria-label="个人 AI 学习系统的五步学习流程">
+    <div class="visual-label mono">LEARNING LOOP / 五步闭环</div>
+    <div class="flow-step"><b>01</b><div><strong>发现真实问题</strong><small>学生先留下自己的思考与卡点</small></div><i>↘</i></div>
+    <div class="flow-step"><b>02</b><div><strong>针对性理解</strong><small>AI 辅助解释、追问与交互演示</small></div><i>↘</i></div>
+    <div class="flow-step"><b>03</b><div><strong>独立验证</strong><small>离开 AI，完成新的练习与解释</small></div><i>↘</i></div>
+    <div class="flow-step"><b>04</b><div><strong>整理学习经验</strong><small>经学生确认后，保存错因与联系</small></div><i>↘</i></div>
+    <div class="flow-step"><b>05</b><div><strong>下一次继续使用</strong><small>旧经验参与新一次学习与复习</small></div><i>↻</i></div>
+    <div class="visual-foot mono">STUDENT × AI / CODEX × OBSIDIAN</div>
+  </div>
+</section>
+<section class="section" id="problems">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-num mono">01 / WHY</div><div><h2>为什么需要一种<br><span style="color:var(--blue)">更贴近个人</span>的学习方式？</h2><p>同一堂课、同一道题，学生真实遇到的障碍可能完全不同。我们关注的不是增加一套软件操作，而是找到没有解决的那一步。</p></div></div>
+    <div class="problem-grid">
+      <article class="problem"><b class="mono">01</b><h3>听懂了，却做不出来</h3><p>先区分具体的知识障碍，再提供不同的讲解。</p></article>
+      <article class="problem"><b class="mono">02</b><h3>记住公式，却缺少直觉</h3><p>通过预测、观察和解释，把抽象关系变成可以验证的过程。</p></article>
+      <article class="problem"><b class="mono">03</b><h3>订正过的错题，又犯错</h3><p>保留错误原因、掌握证据与后续复习线索。</p></article>
+      <article class="problem"><b class="mono">04</b><h3>出现疑问，反馈却要等</h3><p>在思路尚清晰时获得提示，减少反复恢复思考的成本。</p></article>
+    </div>
+  </div>
+</section>
+<section class="section" id="method">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-num mono">02 / METHOD</div><div><h2>围绕实际问题，<br>逐步建立自己的系统。</h2><p>适合愿意主动思考、希望改进学习方法的初高中学生与家长。课程仍在通过真实实践完善，具体内容会根据实际需求与使用条件调整。</p></div></div>
+    <div class="method">
+      <article class="method-card"><b class="mono">STEP 01</b><h3>从真实问题出发</h3><p>确认目前会什么、不会什么、问题发生在哪里。</p></article>
+      <article class="method-card"><b class="mono">STEP 02</b><h3>学会人与 AI 协作</h3><p>明确目标、提出有效疑问、比较解释、核验输出，不直接复制答案。</p></article>
+      <article class="method-card"><b class="mono">STEP 03</b><h3>让经验可以继续使用</h3><p>学习结束后保留有价值的记录，在新的任务中调用和修正。</p></article>
+    </div>
+    <p style="font-size:12px;line-height:1.85;color:#596163;margin:21px 0 0">使用方式：以电脑端操作为主，拟采用 Codex 与 Obsidian 组织学习流程；具体账号、年龄适用条件、家长指导和设备要求以实际教学方案及各平台规则为准。</p>
+  </div>
+</section>
+<section class="section" id="resources">
+  <div class="wrap">
+    <div class="sec-head"><div class="sec-num mono">03 / RESOURCES</div><div><h2>免费了解，<br><span style="color:var(--blue)">从这里开始。</span></h2><p>研究导读与深度视频是免费分享内容。以下链接中尚未完成的部分会在发布后更新；不设置假链接或强制领取门槛。</p></div></div>
+    <div class="asset-grid">
+      <article class="asset"><span class="status">FREE / PREPARING</span><h3>AI 时代｜家长教育研究导读</h3><p>梳理公开政策、清华 AIGE 研究与学校实践，帮助家长建立 AI 通识教育的基本判断。</p><span class="btn disabled" aria-disabled="true">PDF 阅读版 · 待发布</span><span class="extra">原始 DOCX 正在完善，正式 PDF 入口后续补充。</span></article>
+      <article class="asset"><span class="status">FREE / DOUYIN</span><h3>《在学中扩展》深度讲解</h3><p>围绕四个学习困境，介绍个性化诊断、交互理解、长期记录与学习闭环。</p><span class="btn disabled" aria-disabled="true">视频直达链接 · 待补充</span><span class="extra">发布平台：抖音　账号：忠心于中心。可先按账号名称查找。</span></article>
+      <article class="asset"><span class="status">OPEN / INTERACTIVE</span><h3>十页学生版系统演示</h3><p>查看 Personal AI Study System 现有设计与动画，进一步了解学习闭环如何组织。</p><a class="btn primary" href="../?view=study" target="_top">打开学生版 <span>↗</span></a><span class="extra">本站内查看，不跳转到其他网站。</span></article>
+    </div>
+    <div class="thin-rule"></div>
+    <div class="sources">
+      <div>
+        <div class="eyebrow mono">SOURCE & ATTRIBUTION</div>
+        <h3 style="font-size:clamp(26px,2.5vw,42px);letter-spacing:-.06em;margin:22px 0 14px">资料来源与说明</h3>
+        <p>项目设计、文字阐释与系统演示由<strong style="color:var(--ink)">忠心于中心</strong>独立整理或创作。关于学校实践与教育方向的研究引用公开材料，并非学校授权课程、官方合作或对项目效果的背书。</p>
+      </div>
+      <div>
+        <ul>
+          <li><a href="https://aige.cs.tsinghua.edu.cn/redbook/" target="_blank" rel="noopener noreferrer">清华大学计算机系 AIGE 研究中心：《人工智能通识教育》红皮书（2026） ↗</a></li>
+          <li><a href="https://www.cse.edu.cn/index/detail.html?category=31&amp;id=4240" target="_blank" rel="noopener noreferrer">教育部基础教育教学指导委员会：《中小学人工智能通识教育指南（2025年版）》 ↗</a></li>
+          <li><a href="https://www.cse.edu.cn/index/detail.html?category=31&amp;id=4242" target="_blank" rel="noopener noreferrer">《中小学生成式人工智能使用指南（2025年版）》 ↗</a></li>
+          <li><a href="https://jw.beijing.gov.cn/xxgk/2024zcwj/2024qtwj/202506/t20250626_4127392.html" target="_blank" rel="noopener noreferrer">北京市教委：《中小学人工智能教育地方课程纲要（试行）》 ↗</a></li>
+        </ul>
+        <p>具体学校实践案例及完整出处将随免费研究 PDF 一并提供。本项目的方法仍在实践验证中，不承诺特定分数或成绩提升。</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="wrap contact" id="contact">
+  <div><span class="eyebrow mono">04 / CONTACT</span><h2>联系作者。<br><span style="color:var(--blue)">讨论真实问题。</span></h2><p>欢迎对学习方法、研究资料与系统演示提出反馈。交流时请尽量不提交学生姓名、成绩单或其他敏感信息。</p></div>
+  <div>
+    <div class="contact-panel"><div><div class="mono muted" style="margin-bottom:10px">AUTHOR / 作者</div><strong>忠心于中心</strong></div></div>
+    <div class="contact-panel"><div><div class="mono muted" style="margin-bottom:10px">WECHAT / 微信</div><strong>18043054632</strong></div><button type="button" data-copy="18043054632" aria-label="复制微信号">复制</button></div>
+    <div class="contact-panel"><div><div class="mono muted" style="margin-bottom:10px">PHONE / 联系电话</div><strong><a href="tel:18043054632" style="text-decoration:none">18043054632</a></strong></div></div>
+    <div class="contact-panel"><div><div class="mono muted" style="margin-bottom:10px">DOUYIN / 抖音</div><strong>忠心于中心</strong></div></div>
+  </div>
+</section>
+</main>
+<footer class="wrap footer"><span>© 2026 忠心于中心 / PERSONAL AI SYSTEM</span><span>免费研究与独立项目展示 · 非学校官方课程</span><span>在学中扩展 / 在做中扩展</span></footer>
+<script>
+document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',async function(){var v=b.getAttribute('data-copy');try{await navigator.clipboard.writeText(v);var previous=b.textContent;b.textContent='已复制';setTimeout(function(){b.textContent=previous},1800)}catch(e){prompt('复制微信号：',v)}})});
+</script>
+</body>
+</html>
