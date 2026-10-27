@@ -1399,6 +1399,30 @@ body.low-power *,body.low-power *::before,body.low-power *::after{animation:none
 @media(min-width:1800px){.recording-stage video{max-height:440px}.recording-label{font-size:18px}.recording-heading>span:last-child{font-size:13px}.recording-chapters button strong{font-size:20px}.recording-chapters button>span:first-child{font-size:13px}.demo-recording figcaption{font-size:20px}.recording-actions{font-size:16px}.recording-actions button{font-size:17px}}
 @media(max-width:800px){.demo-recording{gap:13px}.recording-stage video{max-height:none}.recording-chapters{gap:8px}.recording-chapters button{flex-wrap:wrap;justify-content:flex-start;padding:9px 5px;gap:5px;min-height:66px}.recording-chapters button>span:first-child{flex-basis:100%}.recording-chapters button strong{font-size:16px}.recording-chapters button>span:last-child{display:none}.demo-recording figcaption{font-size:16px}.demo-copy>p.demo-reproduce{font-size:16px}.recording-actions{font-size:13px}.recording-label{font-size:14px}}
 @media print{html,body{height:auto;overflow:visible}.masthead,.bottom-bar,.progress-track,.toast,.skip-link,dialog,.cover-actions,.demo-buttons,.shot-caption button,.recording-chapters,.recording-actions{display:none!important}#deck{position:static;height:auto}.slide,body.canvas-mode .slide{display:block!important;position:relative;inset:auto;height:190mm;page-break-after:always;width:277mm;overflow:hidden}.slide .canvas-card{height:100%;padding:12mm;print-color-adjust:exact;-webkit-print-color-adjust:exact}*{animation:none!important;transition:none!important}.day-progress{transform:scaleX(1)}}
+
+/* Mobile pagination: keep the existing deck, animations, and 10 slides intact. */
+@media (max-width:800px){
+  .slide.is-active{touch-action:pan-y;overscroll-behavior-x:contain}
+  .bottom-bar{gap:10px;padding-left:16px;padding-right:16px}
+  .bottom-bar .page-label{display:none}
+  .bottom-bar .page-indicator{flex:0 0 auto;gap:7px}
+  .bottom-bar .current-number{font-size:22px}
+  .bottom-bar .pages-total{font-size:12px}
+  .bottom-bar .nav-tools{margin-left:auto;gap:8px}
+  .bottom-bar .nav-tools .mode-button,
+  .bottom-bar .nav-tools #pause-motion{display:none}
+  .bottom-bar #prev-page,.bottom-bar #next-page{
+    width:auto;min-width:94px;min-height:46px;padding:0 10px;
+    display:inline-flex;align-items:center;justify-content:center;gap:7px;
+    border:1px solid var(--border-strong);border-radius:2px;
+    font-size:21px;font-weight:600;white-space:nowrap;
+    background:var(--paper);color:var(--ink)
+  }
+  .bottom-bar #next-page{background:var(--accent);border-color:var(--accent);color:var(--accent-on)}
+  .bottom-bar #prev-page::after{content:"上一页";font:600 12px var(--sans-zh)}
+  .bottom-bar #next-page::before{content:"下一页";font:600 12px var(--sans-zh)}
+  .bottom-bar #prev-page:disabled,.bottom-bar #next-page:disabled{opacity:.35}
+}
 </style>
 </head>
 <body class="canvas-mode">
