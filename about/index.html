@@ -24,6 +24,9 @@
 @media(max-width:900px){.hero{grid-template-columns:1fr}.hero-copy{padding-right:0;min-height:450px}.hero-visual{min-height:470px;border-left:0;border-top:1px solid var(--line)}.sec-head{grid-template-columns:1fr;gap:16px}.method,.asset-grid{grid-template-columns:1fr 1fr}.sources{grid-template-columns:1fr}.contact{grid-template-columns:1fr}.top-links a:nth-child(2){display:none}}
 @media(max-width:560px){.site-top{height:58px}.mark{font-size:12px}.top-links{gap:10px}.top-links a{font-size:11px}.hero h1{font-size:clamp(43px,11vw,65px)}.hero-copy{gap:25px;padding:46px 0 36px;min-height:auto}.hero-foot{flex-wrap:wrap}.hero-visual{padding:48px 18px 36px;min-height:370px}.visual-label{top:14px;left:16px}.visual-foot{right:16px;bottom:12px}.flow-step{grid-template-columns:28px 1fr 15px;padding:13px 10px;margin-bottom:10px}.flow-step strong{font-size:17px}.flow-step small{font-size:10px}.flow-step:nth-of-type(n){--shift:0px}.problem-grid,.method,.asset-grid{grid-template-columns:1fr}.problem{min-height:0}.method-card,.asset{min-height:0}.sec-head h2{font-size:36px}.section{padding:66px 0}.contact{padding:35px 0}.actions .btn{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.flow-step{animation:none}.btn{transition:none}}
+.asset-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.asset .extra[href]{display:inline-block;margin-top:13px;color:var(--blue);text-underline-offset:3px}
+@media(max-width:560px){.asset-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -76,9 +79,10 @@
 </section>
 <section class="section" id="resources">
   <div class="wrap">
-    <div class="sec-head"><div class="sec-num mono">03 / RESOURCES</div><div><h2>免费了解，<br><span style="color:var(--blue)">从这里开始。</span></h2><p>研究导读与深度视频是免费分享内容。以下链接中尚未完成的部分会在发布后更新；不设置假链接或强制领取门槛。</p></div></div>
+    <div class="sec-head"><div class="sec-num mono">03 / RESOURCES</div><div><h2>免费了解，<br><span style="color:var(--blue)">从这里开始。</span></h2><p>两份 PDF 已公开，可直接在线阅读或保存。十页学生版演示保留原有交互；深度视频链接将在发布后补充。</p></div></div>
     <div class="asset-grid">
-      <article class="asset"><span class="status">FREE / PREPARING</span><h3>AI 时代｜家长教育研究导读</h3><p>梳理公开政策、清华 AIGE 研究与学校实践，帮助家长建立 AI 通识教育的基本判断。</p><span class="btn disabled" aria-disabled="true">PDF 阅读版 · 待发布</span><span class="extra">原始 DOCX 正在完善，正式 PDF 入口后续补充。</span></article>
+      <article class="asset"><span class="status">FREE PDF / 15 PAGES</span><h3>AI 时代｜家长教育研究导读</h3><p>梳理公开政策、清华 AIGE 通识教育研究与代表性学校实践，帮助家长形成独立判断。</p><a class="btn primary" href="../resources/ai-parent-research-guide-2026.pdf" target="_blank" rel="noopener noreferrer">在线阅读 PDF <span>↗</span></a><a class="extra" href="../resources/ai-parent-research-guide-2026.pdf" download>下载研究导读 ↓</a></article>
+      <article class="asset"><span class="status">FREE PDF / 11 PAGES</span><h3>《在学中扩展》学生与家长介绍册</h3><p>了解适用人群、学习诊断、首次体验、课程阶段与家长可观察的学习证据。</p><a class="btn primary" href="../resources/personal-ai-study-introduction-2026.pdf" target="_blank" rel="noopener noreferrer">在线阅读 PDF <span>↗</span></a><a class="extra" href="../resources/personal-ai-study-introduction-2026.pdf" download>下载项目介绍册 ↓</a></article>
       <article class="asset"><span class="status">FREE / DOUYIN</span><h3>《在学中扩展》深度讲解</h3><p>围绕四个学习困境，介绍个性化诊断、交互理解、长期记录与学习闭环。</p><span class="btn disabled" aria-disabled="true">视频直达链接 · 待补充</span><span class="extra">发布平台：抖音　账号：忠心于中心。可先按账号名称查找。</span></article>
       <article class="asset"><span class="status">OPEN / INTERACTIVE</span><h3>十页学生版系统演示</h3><p>查看 Personal AI Study System 现有设计与动画，进一步了解学习闭环如何组织。</p><a class="btn primary" href="../?view=study" target="_top">打开学生版 <span>↗</span></a><span class="extra">本站内查看，不跳转到其他网站。</span></article>
     </div>
@@ -96,7 +100,7 @@
           <li><a href="https://www.cse.edu.cn/index/detail.html?category=31&amp;id=4242" target="_blank" rel="noopener noreferrer">《中小学生成式人工智能使用指南（2025年版）》 ↗</a></li>
           <li><a href="https://jw.beijing.gov.cn/xxgk/2024zcwj/2024qtwj/202506/t20250626_4127392.html" target="_blank" rel="noopener noreferrer">北京市教委：《中小学人工智能教育地方课程纲要（试行）》 ↗</a></li>
         </ul>
-        <p>具体学校实践案例及完整出处将随免费研究 PDF 一并提供。本项目的方法仍在实践验证中，不承诺特定分数或成绩提升。</p>
+        <p>具体学校实践案例与出处详见上方免费研究 PDF；课程安排与使用说明详见学生与家长介绍册。本项目的方法仍在实践验证中，不承诺特定分数或成绩提升。</p>
       </div>
     </div>
   </div>
