@@ -23,7 +23,7 @@
 @keyframes rise{from{opacity:0;filter:blur(5px);transform:translate(calc(var(--shift,0px) - 10px),14px)}to{opacity:1;filter:blur(0);transform:translateX(var(--shift,0px))}}
 @media(max-width:900px){.hero{grid-template-columns:1fr}.hero-copy{padding-right:0;min-height:450px}.hero-visual{min-height:470px;border-left:0;border-top:1px solid var(--line)}.sec-head{grid-template-columns:1fr;gap:16px}.method,.asset-grid{grid-template-columns:1fr 1fr}.sources{grid-template-columns:1fr}.contact{grid-template-columns:1fr}.top-links a:nth-child(2){display:none}}
 @media(max-width:560px){.site-top{height:58px}.mark{font-size:12px}.top-links{gap:10px}.top-links a{font-size:11px}.hero h1{font-size:clamp(43px,11vw,65px)}.hero-copy{gap:25px;padding:46px 0 36px;min-height:auto}.hero-foot{flex-wrap:wrap}.hero-visual{padding:48px 18px 36px;min-height:370px}.visual-label{top:14px;left:16px}.visual-foot{right:16px;bottom:12px}.flow-step{grid-template-columns:28px 1fr 15px;padding:13px 10px;margin-bottom:10px}.flow-step strong{font-size:17px}.flow-step small{font-size:10px}.flow-step:nth-of-type(n){--shift:0px}.problem-grid,.method,.asset-grid{grid-template-columns:1fr}.problem{min-height:0}.method-card,.asset{min-height:0}.sec-head h2{font-size:36px}.section{padding:66px 0}.contact{padding:35px clamp(20px,5vw,78px)}.actions .btn{width:100%}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.flow-step{animation:none}.btn{transition:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.flow-step{animation:reduced-fade-in .32s ease both;animation-delay:var(--delay,0s);filter:none}.visual-label,.visual-foot{animation:none}.btn{transition:none}}
 .asset-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .asset .extra[href]{display:inline-block;margin-top:13px;color:var(--blue);text-underline-offset:3px}
 @media(max-width:560px){.asset-grid{grid-template-columns:1fr}}
@@ -36,7 +36,7 @@
 .visual-foot{animation:label-in .7s cubic-bezier(.2,.7,.2,1) .42s both}
 .hero-visual .flow-step:nth-of-type(6){--delay:.4s}
 @media(prefers-reduced-motion:no-preference){body.motion-ready [data-motion-reveal]{opacity:0;transform:translateY(16px);transition:opacity .52s ease-out,transform .52s cubic-bezier(.2,.7,.2,1);transition-delay:var(--motion-delay,0ms)}body.motion-ready [data-motion-reveal].is-visible{opacity:1;transform:translateY(0)}.problem:nth-child(2n),.method-card:nth-child(2),.growth-card:nth-child(3n+2),.asset:nth-child(2n){--motion-delay:75ms}.growth-card:nth-child(3n){--motion-delay:140ms}}
-@media(prefers-reduced-motion:reduce){.visual-label,.visual-foot{animation:none}.flow-step{filter:none}}
+@keyframes reduced-fade-in{from{opacity:.28}to{opacity:1}}
 </style>
 </head>
 <body>
