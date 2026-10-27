@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#fafaf8">
-<meta name="description" content="Personal AI System · 在学中扩展 / 在做中扩展。使用左侧折叠菜单切换学生版与成人版。">
+<meta name="description" content="Personal AI System · 项目介绍 / 在学中扩展 / 在做中扩展。了解免费教育研究、学生学习系统与成人版演示。">
 <title>Personal AI System｜在学中扩展 · 在做中扩展</title>
 <style>
 :root{--paper:#fafaf8;--ink:#0a0a0a;--blue:#002fa7;--gray:#707070;--line:#dededb;--sans:Inter,"Helvetica Neue",Arial,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;--mono:"IBM Plex Mono","SFMono-Regular",Consolas,monospace}
@@ -80,7 +80,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
 </head>
 <body>
 <iframe id="presentation" title="在学中扩展｜学生版" src="./study/" allow="fullscreen" allowfullscreen></iframe>
-<button type="button" class="side-tab is-tucked" id="openSwitch" aria-label="展开版本切换侧栏" aria-haspopup="dialog" aria-controls="switchDrawer" aria-expanded="false" title="切换学生版 / 成人版">
+<button type="button" class="side-tab is-tucked" id="openSwitch" aria-label="展开版本切换侧栏" aria-haspopup="dialog" aria-controls="switchDrawer" aria-expanded="false" title="切换项目介绍 / 学生版 / 成人版">
   <span class="symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
   <span class="vertical" aria-hidden="true">切换版本</span>
   <span class="tiny" id="tabNumber" aria-hidden="true">01</span>
@@ -91,9 +91,13 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
       <span class="drawer-overline">PERSONAL AI SYSTEM<br>ONE SYSTEM / TWO PATHS</span>
       <button class="drawer-close" id="closeSwitch" type="button" aria-label="折叠侧栏">×</button>
     </div>
-    <h1 class="drawer-title" id="drawerTitle">选择你的方向。</h1>
-    <p class="drawer-subtitle">按你的需要切换演示。<br>选中后自动收起，不遮挡正文。</p>
-    <div class="options" role="group" aria-label="版本选项">
+    <h1 class="drawer-title" id="drawerTitle">选择内容。</h1>
+    <p class="drawer-subtitle">项目介绍、学生版与成人版。<br>选中后自动收起，不遮挡正文。</p>
+    <div class="options" role="group" aria-label="页面选项">
+      <button class="mode-option" type="button" data-view="about" aria-pressed="false">
+        <span><span class="option-meta">00 / PROJECT · OVERVIEW</span><strong class="option-name">项目介绍</strong><span class="option-desc">免费资源 · 学习方法 · 作者与联系方式</span></span>
+        <span class="option-arrow" aria-hidden="true">↗</span>
+      </button>
       <button class="mode-option selected" type="button" data-view="study" aria-pressed="true">
         <span><span class="option-meta">01 / STUDY · 10 PAGES</span><strong class="option-name">在学中扩展</strong><span class="option-desc">学生版 · 让每次学习成为下次进步的起点</span></span>
         <span class="option-arrow" aria-hidden="true">✓</span>
@@ -119,7 +123,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
   var tabNumber=document.getElementById('tabNumber');
   var standalone=document.getElementById('openStandalone');
   var options=Array.from(document.querySelectorAll('[data-view]'));
-  var current='study';
+  var current='about';
   var closeTimer=null;
   function hideLauncher(){
     opener.classList.add('is-tucked');
@@ -128,11 +132,12 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
 
   var replayAfterSwitch=false;
   var modes={
+    about:{url:'./about/',name:'项目介绍｜个人 AI 系统',number:'00'},
     study:{url:'./study/',name:'在学中扩展｜学生版',number:'01'},
     adult:{url:'./adult/',name:'在做中扩展｜成人版',number:'02'}
   };
   function setMode(mode,push){
-    if(!modes[mode])mode='study';
+    if(!modes[mode])mode='about';
     var info=modes[mode];
     current=mode;
     if(push && mode==='study')replayAfterSwitch=true;
@@ -246,7 +251,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
   });
   window.addEventListener('popstate',function(){
     var view=new URLSearchParams(location.search).get('view');
-    if(!modes[view])view='study';
+    if(!modes[view])view='about';
     setMode(view,false);
     closeDrawer();
   });
@@ -256,7 +261,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
   var wasUsed=false;
   try{wasUsed=localStorage.getItem('personal-ai-switcher-used')==='1'}catch(e){}
   if(!modes[fromUrl] && !modes[remembered] && !wasUsed)opener.classList.remove('is-tucked');
-  setMode(modes[fromUrl]?fromUrl:(modes[remembered]?remembered:'study'),false);
+  setMode(modes[fromUrl]?fromUrl:(modes[remembered]?remembered:'about'),false);
 })();
 </script>
 </body>
