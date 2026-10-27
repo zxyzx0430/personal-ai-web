@@ -20,7 +20,7 @@
 .method{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.method-card{border:1px solid var(--line);background:white;padding:27px;min-height:195px}.method-card b{color:var(--blue)}.method-card h3{font-size:clamp(19px,2.2vw,29px);line-height:1.35;letter-spacing:-.06em;margin:28px 0 12px}.method-card p{font-size:13px;color:#596163;line-height:1.85;margin:0}
 .asset-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.asset{border:1px solid var(--line);padding:24px 24px 29px;background:white;display:flex;min-height:250px;flex-direction:column;align-items:start}.asset .status{font:700 10px var(--mono);letter-spacing:.1em;color:var(--blue)}.asset h3{font-size:clamp(21px,2vw,28px);letter-spacing:-.06em;margin:35px 0 13px}.asset p{font-size:13px;line-height:1.85;color:#586166;margin:0 0 27px}.asset .btn{margin-top:auto}.asset .extra{color:#657078;font-size:11px;line-height:1.65;margin-top:12px}.thin-rule{height:1px;background:var(--line);margin:32px 0}.sources{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:35px}.sources a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:3px}.sources ul{margin:0;padding-left:18px}.sources li{padding:7px 0;line-height:1.7;font-size:13px}.sources p{line-height:1.8;color:#5b6265;font-size:13px}
 .contact{display:grid;grid-template-columns:1fr 1fr;align-items:start;gap:35px;padding:50px clamp(20px,5vw,78px)}.contact h2{font-size:clamp(33px,4.5vw,68px);line-height:1.15;letter-spacing:-.07em;margin:15px 0}.contact p{line-height:1.9;color:#5c6365;font-size:13px}.contact-panel{border-top:2px solid var(--blue);padding:18px 0;display:grid;grid-template-columns:1fr auto;gap:15px}.contact-panel + .contact-panel{border-top:1px solid var(--line)}.contact-panel strong{font-size:clamp(17px,2vw,26px);letter-spacing:-.04em;overflow-wrap:anywhere}.contact-panel button{border:1px solid var(--line);background:transparent;color:var(--blue);padding:9px 13px;font-size:12px;align-self:center}.contact-panel button:hover{border-color:var(--blue)}.footer{padding:22px 0 42px;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;color:#777f80;font:500 10px/1.7 var(--mono);letter-spacing:.04em}
-@keyframes rise{from{opacity:0;transform:translate(calc(var(--shift,0px) - 10px),12px)}to{opacity:1;transform:translateX(var(--shift,0px))}}
+@keyframes rise{from{opacity:0;filter:blur(5px);transform:translate(calc(var(--shift,0px) - 10px),14px)}to{opacity:1;filter:blur(0);transform:translateX(var(--shift,0px))}}
 @media(max-width:900px){.hero{grid-template-columns:1fr}.hero-copy{padding-right:0;min-height:450px}.hero-visual{min-height:470px;border-left:0;border-top:1px solid var(--line)}.sec-head{grid-template-columns:1fr;gap:16px}.method,.asset-grid{grid-template-columns:1fr 1fr}.sources{grid-template-columns:1fr}.contact{grid-template-columns:1fr}.top-links a:nth-child(2){display:none}}
 @media(max-width:560px){.site-top{height:58px}.mark{font-size:12px}.top-links{gap:10px}.top-links a{font-size:11px}.hero h1{font-size:clamp(43px,11vw,65px)}.hero-copy{gap:25px;padding:46px 0 36px;min-height:auto}.hero-foot{flex-wrap:wrap}.hero-visual{padding:48px 18px 36px;min-height:370px}.visual-label{top:14px;left:16px}.visual-foot{right:16px;bottom:12px}.flow-step{grid-template-columns:28px 1fr 15px;padding:13px 10px;margin-bottom:10px}.flow-step strong{font-size:17px}.flow-step small{font-size:10px}.flow-step:nth-of-type(n){--shift:0px}.problem-grid,.method,.asset-grid{grid-template-columns:1fr}.problem{min-height:0}.method-card,.asset{min-height:0}.sec-head h2{font-size:36px}.section{padding:66px 0}.contact{padding:35px clamp(20px,5vw,78px)}.actions .btn{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.flow-step{animation:none}.btn{transition:none}}
@@ -29,6 +29,14 @@
 @media(max-width:560px){.asset-grid{grid-template-columns:1fr}}
 
 .growth-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.growth-card{background:white;border:1px solid var(--line);padding:25px 23px;min-height:215px}.growth-card>.mono{color:var(--blue)}.growth-card h3{font-size:clamp(18px,1.8vw,24px);letter-spacing:-.045em;margin:22px 0 10px;line-height:1.4}.growth-card p{margin:0;font-size:12px;line-height:1.8;color:#586166}.growth-card .growth-need{font-size:13px;color:#1b2429;margin-bottom:13px}.growth-foot{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:24px}.growth-foot p{font-size:13px;color:#586166;max-width:460px}.asset.featured{background:#f1f4fd;border-color:#c7d3ef}.asset .copy-video{margin-top:9px;width:100%;justify-content:space-between}.asset .copy-video span{font-size:16px}.asset .extra{line-height:1.7}@media(max-width:920px){.growth-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.growth-foot{align-items:start;flex-direction:column}}@media(max-width:560px){.growth-grid{grid-template-columns:1fr}.growth-card{min-height:0}.growth-foot .btn{width:100%}.asset .copy-video{min-height:47px}}
+
+/* Motion is added to the original elements; content and layout stay in place. */
+@keyframes label-in{from{opacity:0;filter:blur(6px);transform:translateY(5px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+.visual-label{animation:label-in .7s cubic-bezier(.2,.7,.2,1) both}
+.visual-foot{animation:label-in .7s cubic-bezier(.2,.7,.2,1) .42s both}
+.hero-visual .flow-step:nth-of-type(6){--delay:.4s}
+@media(prefers-reduced-motion:no-preference){body.motion-ready [data-motion-reveal]{opacity:0;transform:translateY(16px);transition:opacity .52s ease-out,transform .52s cubic-bezier(.2,.7,.2,1);transition-delay:var(--motion-delay,0ms)}body.motion-ready [data-motion-reveal].is-visible{opacity:1;transform:translateY(0)}.problem:nth-child(2n),.method-card:nth-child(2),.growth-card:nth-child(3n+2),.asset:nth-child(2n){--motion-delay:75ms}.growth-card:nth-child(3n){--motion-delay:140ms}}
+@media(prefers-reduced-motion:reduce){.visual-label,.visual-foot{animation:none}.flow-step{filter:none}}
 </style>
 </head>
 <body>
@@ -61,10 +69,10 @@
   <div class="wrap">
     <div class="sec-head"><div class="sec-num mono">01 / WHY</div><div><h2>为什么需要一种<br><span style="color:var(--blue)">更贴近个人</span>的学习方式？</h2><p>同样的学习问题，背后可能有不同原因。先通过真实行为区分知识卡点、学习方法和生活习惯；也看见孩子已经做得好的部分，不预设每个孩子都需要额外课程。</p></div></div>
     <div class="problem-grid">
-      <article class="problem"><b class="mono">01</b><h3>听懂了，却做不出来</h3><p>先区分具体的知识障碍，再提供不同的讲解。</p></article>
-      <article class="problem"><b class="mono">02</b><h3>记住公式，却缺少直觉</h3><p>通过预测、观察和解释，把抽象关系变成可以验证的过程。</p></article>
-      <article class="problem"><b class="mono">03</b><h3>订正过的错题，又犯错</h3><p>保留错误原因、掌握证据与后续复习线索。</p></article>
-      <article class="problem"><b class="mono">04</b><h3>出现疑问，反馈却要等</h3><p>在思路尚清晰时获得提示，减少反复恢复思考的成本。</p></article>
+      <article class="problem" data-motion-reveal><b class="mono">01</b><h3>听懂了，却做不出来</h3><p>先区分具体的知识障碍，再提供不同的讲解。</p></article>
+      <article class="problem" data-motion-reveal><b class="mono">02</b><h3>记住公式，却缺少直觉</h3><p>通过预测、观察和解释，把抽象关系变成可以验证的过程。</p></article>
+      <article class="problem" data-motion-reveal><b class="mono">03</b><h3>订正过的错题，又犯错</h3><p>保留错误原因、掌握证据与后续复习线索。</p></article>
+      <article class="problem" data-motion-reveal><b class="mono">04</b><h3>出现疑问，反馈却要等</h3><p>在思路尚清晰时获得提示，减少反复恢复思考的成本。</p></article>
     </div>
   </div>
 </section>
@@ -72,30 +80,30 @@
   <div class="wrap">
     <div class="sec-head"><div class="sec-num mono">02 / METHOD</div><div><h2>确认需要支持，<br>再选择适合的方法。</h2><p>有的孩子需要针对性学科训练，有的需要建立复习和独立验证习惯，有的则希望探索更广阔的成长能力。并不是每个问题都必须使用 AI。</p></div></div>
     <div class="method">
-      <article class="method-card"><b class="mono">STEP 01</b><h3>发现实际需要</h3><p>结合最近的真实例子，判断孩子在哪里遇到困难、希望怎样改变，以及已有哪些优势。</p></article>
-      <article class="method-card"><b class="mono">STEP 02</b><h3>设计适合的练习</h3><p>若 AI 确实有帮助，再借助即时反馈、针对性讲解、任务拆解和情境模拟进行训练。</p></article>
-      <article class="method-card"><b class="mono">STEP 03</b><h3>独立验证并积累</h3><p>让孩子离开 AI 完成真实任务，记录成功和不足；有效的方法留下来，下次继续使用。</p></article>
+      <article class="method-card" data-motion-reveal><b class="mono">STEP 01</b><h3>发现实际需要</h3><p>结合最近的真实例子，判断孩子在哪里遇到困难、希望怎样改变，以及已有哪些优势。</p></article>
+      <article class="method-card" data-motion-reveal><b class="mono">STEP 02</b><h3>设计适合的练习</h3><p>若 AI 确实有帮助，再借助即时反馈、针对性讲解、任务拆解和情境模拟进行训练。</p></article>
+      <article class="method-card" data-motion-reveal><b class="mono">STEP 03</b><h3>独立验证并积累</h3><p>让孩子离开 AI 完成真实任务，记录成功和不足；有效的方法留下来，下次继续使用。</p></article>
     </div>
     <p style="font-size:12px;line-height:1.85;color:#596163;margin:21px 0 0">使用方式：以电脑端操作为主，拟采用 Codex 与 Obsidian 组织学习流程；具体账号、年龄适用条件、家长指导和设备要求以实际教学方案及各平台规则为准。</p>
   </div>
 </section>
 <section class="section" id="needs"><div class="wrap"><div class="sec-head"><div class="sec-num mono">03 / GROWTH</div><div><h2>不只学科成绩。<br><span style="color:var(--blue)">也看孩子如何成长。</span></h2><p>围绕六个方向思考真实需求：如果孩子需要这些支持，我可以在基础学习方法上协助设计适龄、可检验的小任务。它们是可按需定制的拓展，不等于已全部开设的六门固定课。</p></div></div><div class="growth-grid">
-<article class="growth-card"><span class="mono">01 / SUPPORT</span><h3>财商与经济思维</h3><p class="growth-need">预算与消费选择、机会成本与风险辨别</p><p><strong>可提供的支持：</strong>预算比较、独立决策卡与复盘</p></article>
-<article class="growth-card"><span class="mono">02 / SUPPORT</span><h3>人际沟通与合作</h3><p class="growth-need">表达诉求、倾听、协商与建立边界</p><p><strong>可提供的支持：</strong>AI 情境模拟、现实小练习与复盘</p></article>
-<article class="growth-card"><span class="mono">03 / SUPPORT</span><h3>批判性思维</h3><p class="growth-need">识别误导信息、核查 AI 回答</p><p><strong>可提供的支持：</strong>来源核对、证据分析与反方验证</p></article>
-<article class="growth-card"><span class="mono">04 / SUPPORT</span><h3>自我与时间管理</h3><p class="growth-need">小目标执行、计划调整和复盘</p><p><strong>可提供的支持：</strong>一周计划、执行记录与策略修订</p></article>
-<article class="growth-card"><span class="mono">05 / SUPPORT</span><h3>商业与项目实践</h3><p class="growth-need">从创意走向需求、成本与真实反馈</p><p><strong>可提供的支持：</strong>适龄低风险小项目、访谈与复盘</p></article>
-<article class="growth-card"><span class="mono">06 / SUPPORT</span><h3>兴趣与长期发展</h3><p class="growth-need">辨别兴趣、优势与外部期待</p><p><strong>可提供的支持：</strong>主题研究、体验记录与探索建议</p></article>
+<article class="growth-card" data-motion-reveal><span class="mono">01 / SUPPORT</span><h3>财商与经济思维</h3><p class="growth-need">预算与消费选择、机会成本与风险辨别</p><p><strong>可提供的支持：</strong>预算比较、独立决策卡与复盘</p></article>
+<article class="growth-card" data-motion-reveal><span class="mono">02 / SUPPORT</span><h3>人际沟通与合作</h3><p class="growth-need">表达诉求、倾听、协商与建立边界</p><p><strong>可提供的支持：</strong>AI 情境模拟、现实小练习与复盘</p></article>
+<article class="growth-card" data-motion-reveal><span class="mono">03 / SUPPORT</span><h3>批判性思维</h3><p class="growth-need">识别误导信息、核查 AI 回答</p><p><strong>可提供的支持：</strong>来源核对、证据分析与反方验证</p></article>
+<article class="growth-card" data-motion-reveal><span class="mono">04 / SUPPORT</span><h3>自我与时间管理</h3><p class="growth-need">小目标执行、计划调整和复盘</p><p><strong>可提供的支持：</strong>一周计划、执行记录与策略修订</p></article>
+<article class="growth-card" data-motion-reveal><span class="mono">05 / SUPPORT</span><h3>商业与项目实践</h3><p class="growth-need">从创意走向需求、成本与真实反馈</p><p><strong>可提供的支持：</strong>适龄低风险小项目、访谈与复盘</p></article>
+<article class="growth-card" data-motion-reveal><span class="mono">06 / SUPPORT</span><h3>兴趣与长期发展</h3><p class="growth-need">辨别兴趣、优势与外部期待</p><p><strong>可提供的支持：</strong>主题研究、体验记录与探索建议</p></article>
 </div><div class="growth-foot"><p>您不需要提前判断孩子“缺少哪项能力”。先从一个真实的学习或生活情境出发即可。</p><a class="btn primary" href="../needs/" target="_top">查看家长需求问题与完整支持方案 <span>↗</span></a></div></div></section>
 <section class="section" id="resources">
   <div class="wrap">
     <div class="sec-head"><div class="sec-num mono">04 / RESOURCES</div><div><h2>免费了解，<br><span style="color:var(--blue)">按自己的需要阅读。</span></h2><p>推荐顺序：先阅读 9 页家长需求发现方案，再了解 12 页学生与家长介绍册，最后按需阅读 16 页 AI 教育研究导读。原有在线交互需求指南继续保留。所有 PDF 均可免费阅读及下载，无需添加微信。</p></div></div>
     <div class="asset-grid">
-      <article class="asset featured"><span class="status">01 / FREE PDF · 9 PAGES</span><h3>家长需求发现与六大成长支持方案</h3><p>先识别孩子真实的学习与成长需求，再判断哪些支持适合他。六个成长方向属于按需设计的个性化支持，并非已经验证的六门成熟课程。</p><a class="btn primary" href="../resources/parent-needs-and-growth-guide-2026.pdf" target="_blank" rel="noopener noreferrer">在线阅读 9 页 PDF <span>↗</span></a><a class="extra" href="../resources/parent-needs-and-growth-guide-2026.pdf" download>下载 9 页 PDF ↓</a><a class="extra" href="../needs/" target="_top">打开原有在线交互需求指南 ↗</a></article>
-<article class="asset"><span class="status">02 / FREE PDF · 12 PAGES</span><h3>《在学中扩展》学生与家长介绍册</h3><p>了解从学习诊断、针对性理解、独立验证到长期记忆和知识复用的具体支持方式。长期能力复利是训练目标，不是提分承诺。</p><a class="btn primary" href="../resources/personal-ai-study-introduction-2026.pdf" target="_blank" rel="noopener noreferrer">在线阅读 12 页 PDF <span>↗</span></a><a class="extra" href="../resources/personal-ai-study-introduction-2026.pdf" download>下载 12 页 PDF ↓</a></article>
-<article class="asset"><span class="status">03 / FREE PDF · 16 PAGES</span><h3>AI 时代｜家长教育研究导读</h3><p>按照现实问题、公开研究和代表性教育实践，帮助家长独立判断 AI 教育的价值与局限；建议按需阅读。</p><a class="btn primary" href="../resources/ai-parent-research-guide-2026.pdf" target="_blank" rel="noopener noreferrer">在线阅读 16 页 PDF <span>↗</span></a><a class="extra" href="../resources/ai-parent-research-guide-2026.pdf" download>下载 16 页 PDF ↓</a></article>
-      <article class="asset"><span class="status">VIDEO / DOUYIN · PUBLISHED</span><h3>AI 时代，教学与学习方式可能怎样被重构？</h3><p>由作者讲解四个常见学习困境、个性化诊断、交互理解、长期学习记忆及课程与个人支持方式。</p><a class="btn primary" href="https://v.douyin.com/rtKle9ly734/" target="_blank" rel="noopener noreferrer">尝试直接打开视频 <span>↗</span></a><button type="button" class="btn outline copy-video" data-copy="2.35 复制打开抖音，看看【忠心于中心的作品】AI时代，教学与学习方式可能怎样被重构？我们怎么做... https://v.douyin.com/rtKle9ly734/ :9pm zGI:/ 07/12 l@p.DU" data-success="已复制口令" data-prompt="请复制下方抖音分享口令：">复制抖音口令 <span>⧉</span></button><span class="extra">无法从微信直接跳转？点击「复制抖音口令」→ 打开抖音 App，通常会识别并提示打开视频；若没有弹窗，可粘贴到抖音搜索框。</span></article>
-      <article class="asset"><span class="status">OPEN / INTERACTIVE · 10 PAGES</span><h3>十页学生版系统演示</h3><p>通过交互、动画与学习实例，了解发现问题、理解、独立验证、长期积累的方法。</p><a class="btn primary" href="../?view=study" target="_top">打开学生版 <span>↗</span></a><span class="extra">本站内浏览，手机和电脑均可使用。</span></article>
+      <article class="asset featured" data-motion-reveal><span class="status">01 / FREE PDF · 9 PAGES</span><h3>家长需求发现与六大成长支持方案</h3><p>先识别孩子真实的学习与成长需求，再判断哪些支持适合他。六个成长方向属于按需设计的个性化支持，并非已经验证的六门成熟课程。</p><a class="btn primary" href="../resources/parent-needs-and-growth-guide-2026.pdf" target="_blank" rel="noopener noreferrer">在线阅读 9 页 PDF <span>↗</span></a><a class="extra" href="../resources/parent-needs-and-growth-guide-2026.pdf" download>下载 9 页 PDF ↓</a><a class="extra" href="../needs/" target="_top">打开原有在线交互需求指南 ↗</a></article>
+<article class="asset" data-motion-reveal><span class="status">02 / FREE PDF · 12 PAGES</span><h3>《在学中扩展》学生与家长介绍册</h3><p>了解从学习诊断、针对性理解、独立验证到长期记忆和知识复用的具体支持方式。长期能力复利是训练目标，不是提分承诺。</p><a class="btn primary" href="../resources/personal-ai-study-introduction-2026.pdf" target="_blank" rel="noopener noreferrer">在线阅读 12 页 PDF <span>↗</span></a><a class="extra" href="../resources/personal-ai-study-introduction-2026.pdf" download>下载 12 页 PDF ↓</a></article>
+<article class="asset" data-motion-reveal><span class="status">03 / FREE PDF · 16 PAGES</span><h3>AI 时代｜家长教育研究导读</h3><p>按照现实问题、公开研究和代表性教育实践，帮助家长独立判断 AI 教育的价值与局限；建议按需阅读。</p><a class="btn primary" href="../resources/ai-parent-research-guide-2026.pdf" target="_blank" rel="noopener noreferrer">在线阅读 16 页 PDF <span>↗</span></a><a class="extra" href="../resources/ai-parent-research-guide-2026.pdf" download>下载 16 页 PDF ↓</a></article>
+      <article class="asset" data-motion-reveal><span class="status">VIDEO / DOUYIN · PUBLISHED</span><h3>AI 时代，教学与学习方式可能怎样被重构？</h3><p>由作者讲解四个常见学习困境、个性化诊断、交互理解、长期学习记忆及课程与个人支持方式。</p><a class="btn primary" href="https://v.douyin.com/rtKle9ly734/" target="_blank" rel="noopener noreferrer">尝试直接打开视频 <span>↗</span></a><button type="button" class="btn outline copy-video" data-copy="2.35 复制打开抖音，看看【忠心于中心的作品】AI时代，教学与学习方式可能怎样被重构？我们怎么做... https://v.douyin.com/rtKle9ly734/ :9pm zGI:/ 07/12 l@p.DU" data-success="已复制口令" data-prompt="请复制下方抖音分享口令：">复制抖音口令 <span>⧉</span></button><span class="extra">无法从微信直接跳转？点击「复制抖音口令」→ 打开抖音 App，通常会识别并提示打开视频；若没有弹窗，可粘贴到抖音搜索框。</span></article>
+      <article class="asset" data-motion-reveal><span class="status">OPEN / INTERACTIVE · 10 PAGES</span><h3>十页学生版系统演示</h3><p>通过交互、动画与学习实例，了解发现问题、理解、独立验证、长期积累的方法。</p><a class="btn primary" href="../?view=study" target="_top">打开学生版 <span>↗</span></a><span class="extra">本站内浏览，手机和电脑均可使用。</span></article>
     </div>
     <div class="thin-rule"></div>
     <div class="sources">
@@ -129,6 +137,6 @@
 <footer class="wrap footer"><span>© 2026 忠心于中心 / PERSONAL AI SYSTEM</span><span>免费研究与独立项目展示 · 非学校官方课程</span><span>在学中扩展 / 在做中扩展</span></footer>
 <script>
 (function(){function feedback(b,ok){var prev=b.innerHTML;b.textContent=ok?(b.dataset.success||'已复制'):'请手动复制';setTimeout(function(){b.innerHTML=prev},2100)}function fallback(b,v){var el=document.createElement('textarea');el.value=v;el.style.position='fixed';el.style.left='-9999px';document.body.appendChild(el);el.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}el.remove();if(ok)feedback(b,true);else{window.prompt(b.dataset.prompt||'请复制以下内容：',v);feedback(b,false)}}document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var v=b.getAttribute('data-copy');if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(v).then(function(){feedback(b,true)}).catch(function(){fallback(b,v)})}else fallback(b,v)})})})();
-</script>
+(function(){var nodes=document.querySelectorAll('[data-motion-reveal]');var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduced||!('IntersectionObserver' in window)||!nodes.length)return;document.body.classList.add('motion-ready');var observer=new IntersectionObserver(function(entries,observer){entries.forEach(function(entry){if(!entry.isIntersecting)return;entry.target.classList.add('is-visible');observer.unobserve(entry.target)})},{threshold:.12,rootMargin:'0px 0px -7% 0px'});nodes.forEach(function(node){observer.observe(node)})})();</script>
 </body>
 </html>
