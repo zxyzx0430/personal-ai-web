@@ -27,21 +27,23 @@
 .asset-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .asset .extra[href]{display:inline-block;margin-top:13px;color:var(--blue);text-underline-offset:3px}
 @media(max-width:560px){.asset-grid{grid-template-columns:1fr}}
+
+.growth-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.growth-card{background:white;border:1px solid var(--line);padding:25px 23px;min-height:215px}.growth-card>.mono{color:var(--blue)}.growth-card h3{font-size:clamp(18px,1.8vw,24px);letter-spacing:-.045em;margin:22px 0 10px;line-height:1.4}.growth-card p{margin:0;font-size:12px;line-height:1.8;color:#586166}.growth-card .growth-need{font-size:13px;color:#1b2429;margin-bottom:13px}.growth-foot{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:24px}.growth-foot p{font-size:13px;color:#586166;max-width:460px}.asset.featured{background:#f1f4fd;border-color:#c7d3ef}.asset .copy-video{margin-top:9px;width:100%;justify-content:space-between}.asset .copy-video span{font-size:16px}.asset .extra{line-height:1.7}@media(max-width:920px){.growth-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.growth-foot{align-items:start;flex-direction:column}}@media(max-width:560px){.growth-grid{grid-template-columns:1fr}.growth-card{min-height:0}.growth-foot .btn{width:100%}.asset .copy-video{min-height:47px}}
 </style>
 </head>
 <body>
 <header class="site-top">
   <a class="mark" href="../?view=about" target="_top" aria-label="Personal AI System 项目介绍"><span class="mark-icon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span>PERSONAL AI SYSTEM</span></a>
-  <nav class="top-links" aria-label="页面导航"><a href="#resources">免费资源</a><a href="../?view=study" target="_top">学生版演示 ↗</a><a href="#contact">联系作者</a></nav>
+  <nav class="top-links" aria-label="页面导航"><a href="#needs">家长需求</a><a href="#resources">免费资源</a><a href="#contact">联系作者</a></nav>
 </header>
 <main>
 <section class="wrap hero" aria-labelledby="hero-title">
   <div class="hero-copy">
     <div>
       <div class="eyebrow mono">PROJECT OVERVIEW / 2026</div>
-      <h1 id="hero-title">在学中<em>扩展。</em><br>让学习留下<br>真正的积累。</h1>
-      <p class="hero-intro">不是让 AI 替学生完成答案，而是从真实的学习困难出发，帮助学生理解知识、独立验证，把有价值的学习经验留给下一次学习。</p>
-      <div class="actions"><a class="btn primary" href="../?view=study" target="_top">探索十页学生版演示 <span>↗</span></a><a class="btn outline" href="#resources">查看免费资源 <span>↓</span></a></div>
+      <h1 id="hero-title">先看见<em>需要。</em><br>再讨论如何<br>支持成长。</h1>
+      <p class="hero-intro">孩子是否真的需要额外的 AI 学习支持？先从他真实遇到的问题、已有优势和未来想培养的能力出发，再讨论什么样的方法适合他。让今天解决的问题，成为明天可以复用的经验。</p>
+      <div class="actions"><a class="btn primary" href="../needs/" target="_top">先了解孩子的真实需求 <span>↗</span></a><a class="btn outline" href="../?view=study" target="_top">查看十页学生版演示 <span>↗</span></a></div>
     </div>
     <div class="hero-foot mono muted"><span>在学中扩展 / PERSONAL AI STUDY SYSTEM</span><span>作者：忠心于中心</span></div>
   </div>
@@ -57,7 +59,7 @@
 </section>
 <section class="section" id="problems">
   <div class="wrap">
-    <div class="sec-head"><div class="sec-num mono">01 / WHY</div><div><h2>为什么需要一种<br><span style="color:var(--blue)">更贴近个人</span>的学习方式？</h2><p>同一堂课、同一道题，学生真实遇到的障碍可能完全不同。我们关注的不是增加一套软件操作，而是找到没有解决的那一步。</p></div></div>
+    <div class="sec-head"><div class="sec-num mono">01 / WHY</div><div><h2>为什么需要一种<br><span style="color:var(--blue)">更贴近个人</span>的学习方式？</h2><p>同样的学习问题，背后可能有不同原因。先通过真实行为区分知识卡点、学习方法和生活习惯；也看见孩子已经做得好的部分，不预设每个孩子都需要额外课程。</p></div></div>
     <div class="problem-grid">
       <article class="problem"><b class="mono">01</b><h3>听懂了，却做不出来</h3><p>先区分具体的知识障碍，再提供不同的讲解。</p></article>
       <article class="problem"><b class="mono">02</b><h3>记住公式，却缺少直觉</h3><p>通过预测、观察和解释，把抽象关系变成可以验证的过程。</p></article>
@@ -68,23 +70,32 @@
 </section>
 <section class="section" id="method">
   <div class="wrap">
-    <div class="sec-head"><div class="sec-num mono">02 / METHOD</div><div><h2>围绕实际问题，<br>逐步建立自己的系统。</h2><p>适合愿意主动思考、希望改进学习方法的初高中学生与家长。课程仍在通过真实实践完善，具体内容会根据实际需求与使用条件调整。</p></div></div>
+    <div class="sec-head"><div class="sec-num mono">02 / METHOD</div><div><h2>确认需要支持，<br>再选择适合的方法。</h2><p>有的孩子需要针对性学科训练，有的需要建立复习和独立验证习惯，有的则希望探索更广阔的成长能力。并不是每个问题都必须使用 AI。</p></div></div>
     <div class="method">
-      <article class="method-card"><b class="mono">STEP 01</b><h3>从真实问题出发</h3><p>确认目前会什么、不会什么、问题发生在哪里。</p></article>
-      <article class="method-card"><b class="mono">STEP 02</b><h3>学会人与 AI 协作</h3><p>明确目标、提出有效疑问、比较解释、核验输出，不直接复制答案。</p></article>
-      <article class="method-card"><b class="mono">STEP 03</b><h3>让经验可以继续使用</h3><p>学习结束后保留有价值的记录，在新的任务中调用和修正。</p></article>
+      <article class="method-card"><b class="mono">STEP 01</b><h3>发现实际需要</h3><p>结合最近的真实例子，判断孩子在哪里遇到困难、希望怎样改变，以及已有哪些优势。</p></article>
+      <article class="method-card"><b class="mono">STEP 02</b><h3>设计适合的练习</h3><p>若 AI 确实有帮助，再借助即时反馈、针对性讲解、任务拆解和情境模拟进行训练。</p></article>
+      <article class="method-card"><b class="mono">STEP 03</b><h3>独立验证并积累</h3><p>让孩子离开 AI 完成真实任务，记录成功和不足；有效的方法留下来，下次继续使用。</p></article>
     </div>
     <p style="font-size:12px;line-height:1.85;color:#596163;margin:21px 0 0">使用方式：以电脑端操作为主，拟采用 Codex 与 Obsidian 组织学习流程；具体账号、年龄适用条件、家长指导和设备要求以实际教学方案及各平台规则为准。</p>
   </div>
 </section>
+<section class="section" id="needs"><div class="wrap"><div class="sec-head"><div class="sec-num mono">03 / GROWTH</div><div><h2>不只学科成绩。<br><span style="color:var(--blue)">也看孩子如何成长。</span></h2><p>围绕六个方向思考真实需求：如果孩子需要这些支持，我可以在基础学习方法上协助设计适龄、可检验的小任务。它们是可按需定制的拓展，不等于已全部开设的六门固定课。</p></div></div><div class="growth-grid">
+<article class="growth-card"><span class="mono">01 / SUPPORT</span><h3>财商与经济思维</h3><p class="growth-need">预算与消费选择、机会成本与风险辨别</p><p><strong>可提供的支持：</strong>预算比较、独立决策卡与复盘</p></article>
+<article class="growth-card"><span class="mono">02 / SUPPORT</span><h3>人际沟通与合作</h3><p class="growth-need">表达诉求、倾听、协商与建立边界</p><p><strong>可提供的支持：</strong>AI 情境模拟、现实小练习与复盘</p></article>
+<article class="growth-card"><span class="mono">03 / SUPPORT</span><h3>批判性思维</h3><p class="growth-need">识别误导信息、核查 AI 回答</p><p><strong>可提供的支持：</strong>来源核对、证据分析与反方验证</p></article>
+<article class="growth-card"><span class="mono">04 / SUPPORT</span><h3>自我与时间管理</h3><p class="growth-need">小目标执行、计划调整和复盘</p><p><strong>可提供的支持：</strong>一周计划、执行记录与策略修订</p></article>
+<article class="growth-card"><span class="mono">05 / SUPPORT</span><h3>商业与项目实践</h3><p class="growth-need">从创意走向需求、成本与真实反馈</p><p><strong>可提供的支持：</strong>适龄低风险小项目、访谈与复盘</p></article>
+<article class="growth-card"><span class="mono">06 / SUPPORT</span><h3>兴趣与长期发展</h3><p class="growth-need">辨别兴趣、优势与外部期待</p><p><strong>可提供的支持：</strong>主题研究、体验记录与探索建议</p></article>
+</div><div class="growth-foot"><p>您不需要提前判断孩子“缺少哪项能力”。先从一个真实的学习或生活情境出发即可。</p><a class="btn primary" href="../needs/" target="_top">查看家长需求问题与完整支持方案 <span>↗</span></a></div></div></section>
 <section class="section" id="resources">
   <div class="wrap">
-    <div class="sec-head"><div class="sec-num mono">03 / RESOURCES</div><div><h2>免费了解，<br><span style="color:var(--blue)">从这里开始。</span></h2><p>两份 PDF 已公开，可直接在线阅读或保存。十页学生版演示保留原有交互；深度视频链接将在发布后补充。</p></div></div>
+    <div class="sec-head"><div class="sec-num mono">04 / RESOURCES</div><div><h2>免费了解，<br><span style="color:var(--blue)">按自己的需要阅读。</span></h2><p>推荐先用在线需求指南明确一个问题，再了解学习方法、研究资料与讲解视频。内容均可免费阅读，不用先添加微信。当前下方两份 PDF 为已发布的原版，需求优先的新内容以在线指南为准。</p></div></div>
     <div class="asset-grid">
-      <article class="asset"><span class="status">FREE PDF / 15 PAGES</span><h3>AI 时代｜家长教育研究导读</h3><p>梳理公开政策、清华 AIGE 通识教育研究与代表性学校实践，帮助家长形成独立判断。</p><a class="btn primary" href="../resources/ai-parent-research-guide-2026.pdf" target="_blank" rel="noopener noreferrer">在线阅读 PDF <span>↗</span></a><a class="extra" href="../resources/ai-parent-research-guide-2026.pdf" download>下载研究导读 ↓</a></article>
-      <article class="asset"><span class="status">FREE PDF / 11 PAGES</span><h3>《在学中扩展》学生与家长介绍册</h3><p>了解适用人群、学习诊断、首次体验、课程阶段与家长可观察的学习证据。</p><a class="btn primary" href="../resources/personal-ai-study-introduction-2026.pdf" target="_blank" rel="noopener noreferrer">在线阅读 PDF <span>↗</span></a><a class="extra" href="../resources/personal-ai-study-introduction-2026.pdf" download>下载项目介绍册 ↓</a></article>
-      <article class="asset"><span class="status">FREE / DOUYIN</span><h3>《在学中扩展》深度讲解</h3><p>围绕四个学习困境，介绍个性化诊断、交互理解、长期记录与学习闭环。</p><span class="btn disabled" aria-disabled="true">视频直达链接 · 待补充</span><span class="extra">发布平台：抖音　账号：忠心于中心。可先按账号名称查找。</span></article>
-      <article class="asset"><span class="status">OPEN / INTERACTIVE</span><h3>十页学生版系统演示</h3><p>查看 Personal AI Study System 现有设计与动画，进一步了解学习闭环如何组织。</p><a class="btn primary" href="../?view=study" target="_top">打开学生版 <span>↗</span></a><span class="extra">本站内查看，不跳转到其他网站。</span></article>
+      <article class="asset featured"><span class="status">START HERE / NEW ONLINE GUIDE</span><h3>家长需求发现与六大成长支持</h3><p>从学科学习到六大成长方向，具体观察问题、可能的需求、我能提供的支持以及可以检查的成果。支持勾选、复制问题与打印保存。</p><a class="btn primary" href="../needs/" target="_top">在线阅读需求指南 <span>↗</span></a><span class="extra">对应最新 9 页需求方案的核心内容；无需留下个人信息。</span></article>
+      <article class="asset"><span class="status">FREE PDF / 11 PAGES · PREVIOUS EDITION</span><h3>《在学中扩展》学生与家长介绍册</h3><p>了解学习诊断、课程结构、独立验证与家长可观察的证据。此在线 PDF 是此前的 11 页原版。</p><a class="btn primary" href="../resources/personal-ai-study-introduction-2026.pdf" target="_blank" rel="noopener noreferrer">在线阅读 PDF <span>↗</span></a><a class="extra" href="../resources/personal-ai-study-introduction-2026.pdf" download>下载介绍册 ↓</a></article>
+      <article class="asset"><span class="status">FREE PDF / 15 PAGES · PREVIOUS EDITION</span><h3>AI 时代｜家长教育研究导读</h3><p>基于公开教育政策、清华 AI 通识研究与代表性学校实践，帮助家长形成独立判断。此在线 PDF 是此前的 15 页原版。</p><a class="btn primary" href="../resources/ai-parent-research-guide-2026.pdf" target="_blank" rel="noopener noreferrer">在线阅读 PDF <span>↗</span></a><a class="extra" href="../resources/ai-parent-research-guide-2026.pdf" download>下载研究导读 ↓</a></article>
+      <article class="asset"><span class="status">VIDEO / DOUYIN · PUBLISHED</span><h3>AI 时代，教学与学习方式可能怎样被重构？</h3><p>由作者讲解四个常见学习困境、个性化诊断、交互理解、长期学习记忆及课程与个人支持方式。</p><a class="btn primary" href="https://v.douyin.com/rtKle9ly734/" target="_blank" rel="noopener noreferrer">尝试直接打开视频 <span>↗</span></a><button type="button" class="btn outline copy-video" data-copy="2.35 复制打开抖音，看看【忠心于中心的作品】AI时代，教学与学习方式可能怎样被重构？我们怎么做... https://v.douyin.com/rtKle9ly734/ :9pm zGI:/ 07/12 l@p.DU" data-success="已复制口令" data-prompt="请复制下方抖音分享口令：">复制抖音口令 <span>⧉</span></button><span class="extra">无法从微信直接跳转？点击「复制抖音口令」→ 打开抖音 App，通常会识别并提示打开视频；若没有弹窗，可粘贴到抖音搜索框。</span></article>
+      <article class="asset"><span class="status">OPEN / INTERACTIVE · 10 PAGES</span><h3>十页学生版系统演示</h3><p>通过交互、动画与学习实例，了解发现问题、理解、独立验证、长期积累的方法。</p><a class="btn primary" href="../?view=study" target="_top">打开学生版 <span>↗</span></a><span class="extra">本站内浏览，手机和电脑均可使用。</span></article>
     </div>
     <div class="thin-rule"></div>
     <div class="sources">
@@ -106,7 +117,7 @@
   </div>
 </section>
 <section class="wrap contact" id="contact">
-  <div><span class="eyebrow mono">04 / CONTACT</span><h2>联系作者。<br><span style="color:var(--blue)">讨论真实问题。</span></h2><p>欢迎对学习方法、研究资料与系统演示提出反馈。交流时请尽量不提交学生姓名、成绩单或其他敏感信息。</p></div>
+  <div><span class="eyebrow mono">05 / CONTACT</span><h2>联系作者。<br><span style="color:var(--blue)">讨论真实问题。</span></h2><p>如果您发现某个值得改善的学习问题，或希望帮助孩子拓展某种能力，欢迎先从一个真实情境开始交流。我会结合孩子的实际情况讨论支持方案；不需要先决定是否参加课程，也请勿提交学生姓名、学校班级或其他敏感信息。</p></div>
   <div>
     <div class="contact-panel"><div><div class="mono muted" style="margin-bottom:10px">AUTHOR / 作者</div><strong>忠心于中心</strong></div></div>
     <div class="contact-panel"><div><div class="mono muted" style="margin-bottom:10px">WECHAT / 微信</div><strong>18043054632</strong></div><button type="button" data-copy="18043054632" aria-label="复制微信号">复制</button></div>
@@ -117,7 +128,7 @@
 </main>
 <footer class="wrap footer"><span>© 2026 忠心于中心 / PERSONAL AI SYSTEM</span><span>免费研究与独立项目展示 · 非学校官方课程</span><span>在学中扩展 / 在做中扩展</span></footer>
 <script>
-document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',async function(){var v=b.getAttribute('data-copy');try{await navigator.clipboard.writeText(v);var previous=b.textContent;b.textContent='已复制';setTimeout(function(){b.textContent=previous},1800)}catch(e){prompt('复制微信号：',v)}})});
+(function(){function feedback(b,ok){var prev=b.innerHTML;b.textContent=ok?(b.dataset.success||'已复制'):'请手动复制';setTimeout(function(){b.innerHTML=prev},2100)}function fallback(b,v){var el=document.createElement('textarea');el.value=v;el.style.position='fixed';el.style.left='-9999px';document.body.appendChild(el);el.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}el.remove();if(ok)feedback(b,true);else{window.prompt(b.dataset.prompt||'请复制以下内容：',v);feedback(b,false)}}document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var v=b.getAttribute('data-copy');if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(v).then(function(){feedback(b,true)}).catch(function(){fallback(b,v)})}else fallback(b,v)})})})();
 </script>
 </body>
 </html>
