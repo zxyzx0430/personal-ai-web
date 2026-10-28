@@ -94,7 +94,7 @@ export function AboutPage({embedded=false}:{embedded?:boolean}){
   const replace:NonNullable<HTMLReactParserOptions['replace']>=node=>{
     if(!isElement(node))return;
     const a=node.attribs;
-    if(a.class?.split(' ').includes('hero-visual'))return <HeroMorph phase={phase} off={off} paused={d.paused}>{nodeChildren(node,replace)}</HeroMorph>;
+    if(a.class?.split(' ').includes('hero-visual'))return <HeroMorph phase={phase} off={off} paused={d.paused} onManual={()=>d.setPaused(true)}>{nodeChildren(node,replace)}</HeroMorph>;
     if(a['data-acquisition']==='ab-case')return <SupportingReveal kind="aside" className="acq-case-host" phase={phase} off={off}><StudentComparison/></SupportingReveal>;
     if(node.name==='h1'||node.name==='h2')return <NarrativeHeading as={node.name} ready={textReady} off={off} page={d.page} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeHeading>;
     if(a.class?.split(' ').includes('hero-intro')&&node.name==='p'){

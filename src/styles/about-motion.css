@@ -268,3 +268,16 @@
 .motion-about .home-morph-footer.has-stepbar .home-morph-track{width:22%;}
 @media(max-width:600px){.motion-about .home-morph-stepbar{bottom:25px;left:18px;right:18px;height:28px;gap:3px}.motion-about .home-morph-stepbar button{font-size:10px}.motion-about .home-morph-footer.has-stepbar{bottom:8px;font-size:8px}.motion-about .home-morph-nodes{bottom:62px}}
 @media(prefers-reduced-motion:reduce){.motion-about .home-morph-stage{display:none!important}}
+
+/* Stage-spanning click zones: LEFT previous, RIGHT next. Always above content cards but below step bar. */
+.motion-about .home-morph-stage .home-morph-side{position:absolute;top:0;bottom:55px;width:49%;border:0;box-shadow:none;padding:0;margin:0;cursor:pointer;background:transparent;color:#002fa7;z-index:8;touch-action:pan-y;display:flex;align-items:center;transition:background-color .22s;}
+.motion-about .home-morph-stage .home-morph-side-prev{left:0;justify-content:flex-start;padding-left:8px;}
+.motion-about .home-morph-stage .home-morph-side-next{right:0;justify-content:flex-end;padding-right:8px;}
+.motion-about .home-morph-stage .home-morph-side span{display:grid;place-items:center;width:32px;height:50px;background:rgba(255,255,255,.88);border:1px solid #c8d5e9;font:400 31px/1 Arial,sans-serif;box-shadow:0 3px 12px rgba(0,47,167,.07);border-radius:2px;}
+.motion-about .home-morph-stage .home-morph-side:hover:not(:disabled){background:rgba(0,47,167,.025)}
+.motion-about .home-morph-stage .home-morph-side:hover:not(:disabled) span{background:#002fa7;border-color:#002fa7;color:#fff}
+.motion-about .home-morph-stage .home-morph-side:disabled{cursor:default;pointer-events:none;}
+.motion-about .home-morph-stage .home-morph-side:disabled span{opacity:.25;}
+.motion-about .home-morph-stage .home-morph-side:focus-visible{outline:3px solid #002fa7;outline-offset:-4px}
+.motion-about .home-morph-stage .home-morph-stepbar{z-index:15;}
+@media(max-width:600px){.motion-about .home-morph-stage .home-morph-side{bottom:51px}.motion-about .home-morph-stage .home-morph-side-prev{padding-left:1px}.motion-about .home-morph-stage .home-morph-side-next{padding-right:1px}.motion-about .home-morph-stage .home-morph-side span{width:23px;height:36px;font-size:24px}}

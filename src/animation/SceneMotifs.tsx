@@ -21,32 +21,42 @@ const headings = [
 const phases = ['01 / 03 · 看见问题','02 / 03 · 分辨原因','03 / 03 · 建立系统'];
 
 /** Recreates the approved V6.1 visual composition in React; no DOM insertion, timers or WAAPI. */
-export function HeroMorph({phase,off,paused,children}:{
- phase:number;off:boolean;paused?:boolean;children:ReactNode;
+export function HeroMorph({phase,off,paused,onManual,children}:{
+ phase:number;off:boolean;paused?:boolean;onManual?:()=>void;children:ReactNode;
 }){
- const stage=Math.min(2,phase);
+ const [manualStage,setManualStage]=useState<number|null>(null);
+ const stage=manualStage ?? Math.min(2,phase);
  const [activeStep,setActiveStep]=useState(0);
  const [manual,setManual]=useState(false);
- const swipeX=useRef<number|null>(null);
+ const swipeX=useRef<{x:number;y:number}|null>(null);
+ const swallowTouchClick=useRef(false);
  const selectStep=useCallback((next:number)=>{
-   setManual(true);setActiveStep(Math.max(0,Math.min(4,next)));
- },[]);
+   onManual?.();setManual(true);setManualStage(2);setActiveStep(Math.max(0,Math.min(4,next)));
+ },[onManual]);
+ const move=useCallback((delta:-1|1)=>{
+   if(stage===0&&delta<0||stage===2&&delta>0&&activeStep===4)return;
+   onManual?.();setManual(true);
+   if(stage===2){
+     if(delta<0&&activeStep===0){setManualStage(1);return;}
+     setActiveStep(i=>Math.max(0,Math.min(4,i+delta)));
+   }else{setManualStage(Math.max(0,Math.min(2,stage+delta)));if(stage===1&&delta>0)setActiveStep(0);}
+ },[stage,activeStep,onManual]);
  useEffect(()=>{
    if(off||paused||stage!==2||manual||activeStep>=4)return;
    const timer=window.setTimeout(()=>setActiveStep(index=>Math.min(4,index+1)),2900);
    return()=>window.clearTimeout(timer);
  },[stage,off,paused,manual,activeStep]);
  useEffect(()=>{
-   if(stage!==2||off)return;
+   if(off)return;
    const key=(e:KeyboardEvent)=>{
      if(e.altKey||e.ctrlKey||e.metaKey||e.target instanceof HTMLElement&&e.target.closest('input,textarea,select,[contenteditable="true"],dialog'))return;
      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
-       e.preventDefault();selectStep(activeStep+(e.key==='ArrowRight'?1:-1));
+       e.preventDefault();move(e.key==='ArrowRight'?1:-1);
      }
    };
    window.addEventListener('keydown',key);
    return()=>window.removeEventListener('keydown',key);
- },[stage,off,activeStep,selectStep]);
+ },[off,move]);
  const items=stage===0?[['?','学习遇到了困难。','真正的问题在哪里？']]:
   stage===1?causes.map((v,i)=>[String(i+1).padStart(2,'0'),...v]):
   flow.map((v,i)=>[String(i+1).padStart(2,'0'),...v]);
@@ -54,9 +64,13 @@ export function HeroMorph({phase,off,paused,children}:{
    {children}
    <AnimatePresence initial={false}>
     {!off&&<motion.div className="home-morph-stage" data-phase={stage} data-active-step={activeStep+1} data-manual={manual} key="hero-overlay"
-      onTouchStart={e=>{swipeX.current=e.touches[0]?.clientX??null;}}
-      onTouchEnd={e=>{const start=swipeX.current;swipeX.current=null;if(stage!==2||start===null)return;const dx=e.changedTouches[0].clientX-start;if(Math.abs(dx)>48){e.stopPropagation();selectStep(activeStep+(dx<0?1:-1));}}}
+      onTouchStart={e=>{const t=e.touches[0];swipeX.current=t?{x:t.clientX,y:t.clientY}:null;}}
+      onTouchEnd={e=>{const start=swipeX.current;swipeX.current=null;if(!start)return;const t=e.changedTouches[0];const dx=t.clientX-start.x,dy=t.clientY-start.y;if(Math.abs(dx)>48&&Math.abs(dx)>Math.abs(dy)*1.25){swallowTouchClick.current=true;window.setTimeout(()=>{swallowTouchClick.current=false;},500);e.stopPropagation();move(dx<0?1:-1);}}}
       initial={{opacity:1}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:.45}} aria-label="从真实问题到五步学习闭环的因果演示">
+      <button type="button" className="home-morph-side home-morph-side-prev" aria-label="左侧：上一个内容" disabled={stage===0}
+        onClick={()=>{if(swallowTouchClick.current){swallowTouchClick.current=false;return;}move(-1);}}><span aria-hidden="true">‹</span></button>
+      <button type="button" className="home-morph-side home-morph-side-next" aria-label="右侧：下一个内容" disabled={stage===2&&activeStep===4}
+        onClick={()=>{if(swallowTouchClick.current){swallowTouchClick.current=false;return;}move(1);}}><span aria-hidden="true">›</span></button>
       <div className="home-morph-intro">
         <div className="home-morph-kicker">FROM A QUESTION TO A LEARNING SYSTEM</div>
         <motion.h2 key={`heading-${stage}`} className="home-morph-title" initial={{opacity:0,filter:'blur(8px)',y:8}} animate={{opacity:1,filter:'blur(0px)',y:0}} transition={{duration:.55}}>{headings[stage][0]}</motion.h2>

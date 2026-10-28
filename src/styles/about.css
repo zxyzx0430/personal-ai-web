@@ -37,3 +37,12 @@
 @media(max-width:900px){.site-top .top-links a:nth-child(2){display:inline-flex}}
 @media(max-width:620px){.site-top{padding:0 12px}.site-top .mark{font-size:10px;white-space:nowrap;gap:5px}.site-top .top-links{gap:7px}.site-top .top-links a:not(.personal-home-link){display:inline-flex}.site-top .top-links a{font-size:10px;white-space:nowrap}.site-top .top-links .personal-home-link{padding:0;line-height:inherit}.site-top .mark-icon{transform:scale(.82);transform-origin:left center;max-width:19px}}
 @media(max-width:375px){.site-top .mark{font-size:9px}.site-top .top-links{gap:6px}.site-top .top-links a{font-size:9px}}
+
+/* Real tappable navigation on top of the animated page; all links remain keyboard accessible. */
+.motion-about>.site-top{z-index:500!important;pointer-events:auto!important;}
+.motion-about>.site-top .top-links{position:relative;z-index:501;pointer-events:auto;}
+.motion-about>.site-top .top-links a{position:relative;pointer-events:auto!important;min-height:36px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:5px 4px;}
+.motion-about>.site-top .top-links a:focus-visible{outline:2px solid #002fa7;outline-offset:2px;}
+.motion-about>.site-top .top-links .personal-home-link{display:inline-flex;min-height:36px;padding:5px 4px;color:inherit;border:0!important;background:transparent!important;}
+@media(max-width:620px){.motion-about>.site-top .top-links{gap:3px}.motion-about>.site-top .top-links a{padding:5px 2px;font-size:10px}}
+@media(max-width:375px){.motion-about>.site-top .top-links a{font-size:9px;padding:4px 1px}}
