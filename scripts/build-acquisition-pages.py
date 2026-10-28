@@ -24,7 +24,7 @@ def page(n,markup):
 
 # 01. Preserve the original hero illustration and its entire 1→3→5 animation.
 hero=deepcopy(top(1))
-hero.select_one('.eyebrow').string='FOR PARENTS / START WITH A REAL QUESTION'
+hero.select_one('.eyebrow').string='01 / START HERE'
 h1=hero.select_one('h1');h1.clear();h1.append('孩子听懂了，');h1.append(BeautifulSoup('<br/>','html.parser'));h1.append('为什么换一道题');h1.append(BeautifulSoup('<br/>','html.parser'));h1.append(BeautifulSoup('<span class="blue">还是不会？</span>','html.parser'))
 hero.select_one('.hero-intro').string='有时候孩子需要的不是再听一遍答案，而是弄清：他已经会哪一步，真正卡在哪里。先看四种常见困境和一次针对性学习过程，再决定是否需要额外支持。'
 actions=hero.select_one('.actions')
@@ -35,14 +35,14 @@ hero.select_one('.hero-foot').string='不是让 AI 替孩子做题，而是让�
 page(1,str(hero))
 
 # 02. Keep every original four-card problem, but add a clickable drilldown via React.
-problems=deepcopy(top(2));sec=problems.select_one('.sec-head');sec.select_one('h2').clear();sec.select_one('h2').append(BeautifulSoup('同样的学习困难，<br/><span class="blue">原因可能不同。</span>','html.parser'))
+problems=deepcopy(top(2));problems.select_one('.sec-num').string='02 / LEARNING QUESTIONS';sec=problems.select_one('.sec-head');sec.select_one('h2').clear();sec.select_one('h2').append(BeautifulSoup('同样的学习困难，<br/><span class="blue">原因可能不同。</span>','html.parser'))
 sec.select_one('p').string='四种常见的学习困难，背后可能是不同的原因。看看具体的解释、怎样验证，以及如何找到适合孩子的方法。'
 for i,article in enumerate(problems.select('.problem'),1):article['data-insight']=str(i)
 
 page(2,str(problems))
 
 # 03. A/B teaching case, followed by all three original method cards.
-method=deepcopy(top(3));head=method.select_one('.sec-head')
+method=deepcopy(top(3));method.select_one('.sec-num').string='03 / PERSONALIZED LEARNING';head=method.select_one('.sec-head')
 head.select_one('h2').clear();head.select_one('h2').append(BeautifulSoup('同一道题，<br/><span class="blue">为什么需要不同的讲解？</span>','html.parser'))
 head.select_one('p').string='同一道函数题，学生 A 和 B 可能遇到不同的卡点。先弄清楚孩子已经掌握了什么，再决定怎样讲解与练习。'
 for paragraph in method.select('p'):
@@ -54,7 +54,7 @@ method.select_one('.method').insert_before(BeautifulSoup('<p class="acq-mini-lab
 page(3,str(method))
 
 # 04. Real first-session explanation with every original growth direction available intact.
-growth=deepcopy(top(4));head=growth.select_one('.sec-head');head.select_one('h2').clear();head.select_one('h2').append(BeautifulSoup('第一次体验，<br/><span class="blue">家长能看到什么？</span>','html.parser'))
+growth=deepcopy(top(4));growth.select_one('.sec-num').string='04 / FIRST EXPERIENCE';head=growth.select_one('.sec-head');head.select_one('h2').clear();head.select_one('h2').append(BeautifulSoup('第一次体验，<br/><span class="blue">家长能看到什么？</span>','html.parser'))
 head.select_one('p').string='先用一项真实学习任务，看看孩子怎么思考、AI 能否提供针对性的辅助，以及离开提示后能否自己做出来。是否适合使用这套方法，应当由实际过程来判断。'
 original_grid=growth.select_one('.growth-grid').extract();original_foot=growth.select_one('.growth-foot').extract()
 steps=BeautifulSoup('''<div class="acq-experience" aria-label="初次体验的五个环节">
@@ -85,8 +85,8 @@ sec5=BeautifulSoup('''<section class="section wrap acq-verification" id="verific
 <article class="acq-proof"><span class="mono">02 / 验证</span><strong>换题无提示作答</strong><p>离开 AI，再完成相近难度的任务；如果仍不会，继续调整方法。</p></article>
 <article class="acq-proof"><span class="mono">03 / 积累</span><strong>让旧错误参与下一次</strong><p>保存经确认的错因、方法与复测记录，复习时调用并更新。</p></article>
 </div>
-<div class="acq-original-intro"><span class="mono">PERSONAL AI STUDY SYSTEM / 项目原始理念</span><h3>先看见需要。再讨论如何支持成长。</h3><p></p></div>
-<div class="acq-loop-head"><span class="mono">THE ORIGINAL FIVE-STEP LEARNING LOOP</span><strong>学习问题如何转化为长期可以复用的经验？</strong></div>
+<div class="acq-original-intro"><span class="mono">PERSONAL AI SYSTEM / 项目理念</span><h3>先看见需要。再讨论如何支持成长。</h3><p></p></div>
+<div class="acq-loop-head"><span class="mono">FIVE-STEP LEARNING LOOP / 五步学习闭环</span><strong>学习问题如何转化为长期可以复用的经验？</strong></div>
 <div class="acq-learning-loop"></div>
 
 </section>''','html.parser')
@@ -97,7 +97,7 @@ assert len(loop.select('.flow-step'))==5
 page(5,str(sec5))
 
 # 06. Retain the video, student demo, sources and three PDF sets, with a clearer hierarchy.
-more=deepcopy(top(6));resources=deepcopy(top(5))
+more=deepcopy(top(6));more.select_one('.sec-num').string='06 / VIDEO & RESOURCES';resources=deepcopy(top(5))
 more_head=more.select_one('.sec-head');more_head.select_one('h2').clear();more_head.select_one('h2').append(BeautifulSoup('看真实讲解，<br/><span class="blue">再独立判断。</span>','html.parser'))
 more_head.select_one('p').string='看视频理解学习方法，再亲自体验学生版。三份免费 PDF 包含家长需求指南、学习系统介绍与 AI 教育研究。'
 video_grid=more.select_one('.asset-grid')
@@ -125,7 +125,7 @@ for para in more.select('.sources p'):
 page(6,str(more))
 
 # 07. One-question lead-in, no collection of student identifiers.
-contact=deepcopy(top(7));head=contact.select_one(':scope > div:first-child');head.select_one('h2').clear();head.select_one('h2').append(BeautifulSoup('带来一个具体问题，<br/><span class="blue">我们从这里开始。</span>','html.parser'))
+contact=deepcopy(top(7));contact.select_one('.eyebrow').string='07 / CONTACT';head=contact.select_one(':scope > div:first-child');head.select_one('h2').clear();head.select_one('h2').append(BeautifulSoup('带来一个具体问题，<br/><span class="blue">我们从这里开始。</span>','html.parser'))
 head.select_one('p').string='可以从孩子最近的一道难题、一次反复出现的错误开始。先一起分析他卡在哪里，再讨论下一步可以怎样学。'
 header=BeautifulSoup('<div class="acq-contact-prompt"><span class="mono">FIRST MESSAGE / 第一次交流</span><p>第一次交流，只需说说：<b>目前的学段、遇到的学习问题，以及已经尝试过的方法。</b></p><button type="button" class="btn primary" data-copy="您好，我想了解《在学中扩展》是否适合孩子。孩子目前所处学段：____；最困扰的学习问题：____；已经尝试过的方法：____。希望先交流这个问题怎样分析。" data-success="已复制咨询模板">复制一段简短咨询模板 ↗</button></div>','html.parser')
 contact.select_one('.contact-panel').insert_before(header)
