@@ -1,0 +1,62 @@
+[
+  {
+    "page": "home",
+    "width": 1440,
+    "mae": 0.33,
+    "changed_percent": 0.31
+  },
+  {
+    "page": "about",
+    "width": 1440,
+    "mae": 0.22,
+    "changed_percent": 0.23
+  },
+  {
+    "page": "needs",
+    "width": 1440,
+    "mae": 0.0,
+    "changed_percent": 0.0
+  },
+  {
+    "page": "study",
+    "width": 1440,
+    "mae": 0.0,
+    "changed_percent": 0.0
+  },
+  {
+    "page": "adult",
+    "width": 1440,
+    "mae": 0.03,
+    "changed_percent": 0.03
+  },
+  {
+    "page": "home",
+    "width": 390,
+    "mae": 0.71,
+    "changed_percent": 0.59
+  },
+  {
+    "page": "about",
+    "width": 390,
+    "mae": 0.23,
+    "changed_percent": 0.25
+  },
+  {
+    "page": "needs",
+    "width": 390,
+    "mae": 0.0,
+    "changed_percent": 0.0
+  },
+  {
+    "page": "study",
+    "width": 390,
+    "mae": 0.0,
+    "changed_percent": 0.0
+  },
+  {
+    "page": "adult",
+    "width": 390,
+    "mae": 0.07,
+    "changed_percent": 0.07
+  }
+]
