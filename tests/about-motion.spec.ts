@@ -34,6 +34,8 @@ test.describe('scroll and narrative animations',()=>{
   test.use({reducedMotion:'no-preference'});
   test('wait for page to arrive before revealing heading or cards',async({page})=>{
     await page.goto('/about/#page-01');
+    // Wait for the React scene and keyboard handler to hydrate before sending synthetic keys.
+    await expect(page.locator('.motion-panel[data-page="1"]')).toBeAttached();
     await page.keyboard.press('PageDown');
     await page.waitForTimeout(120);
     const early=await page.locator('.motion-panel[data-page="2"]').evaluate(el=>({top:el.getBoundingClientRect().top,heading:Number(getComputedStyle(el.querySelector('h2')!).opacity),card:Number(getComputedStyle(el.querySelector('.problem')!).opacity),phase:el.getAttribute('data-phase')}));
@@ -74,6 +76,7 @@ test.describe('all card entry timings and resource-page boundary',()=>{
     const chapters:[number,string][]=[[2,'.problem'],[3,'.method-card'],[4,'.growth-card'],[5,'.asset'],[6,'.asset'],[7,'.contact-panel']];
     for(const [target,selector] of chapters){
       await page.goto(`/about/#page-${String(target-1).padStart(2,'0')}`);
+      await expect(page.locator(`.motion-panel[data-page="${target-1}"]`)).toBeAttached();
       await page.keyboard.press('PageDown');
       const incoming=page.locator(`.motion-panel[data-page="${target}"]`);
       await expect(incoming).toBeAttached();
