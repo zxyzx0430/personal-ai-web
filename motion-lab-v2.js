@@ -354,14 +354,26 @@
     });
     status.textContent='自动编排 · '+cues.length+' 幕';
   }
+  function foldControls() {
+    lab.classList.add('motion-lab-folded');
+    var button=lab.querySelector('#motion-lab-fold');
+    button.textContent='+';
+    button.setAttribute('aria-expanded','false');
+  }
   lab.querySelectorAll('[data-lab-mode]').forEach(function(b) {
     b.addEventListener('click',function(){
       mode=b.dataset.labMode;
       lab.querySelectorAll('[data-lab-mode]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});
       play(true);
+      // In auto/off modes the controller MUST leave the page unobstructed.
+      // Step stays expanded for sequential presentation; it can be folded manually.
+      if (mode!=='step') foldControls();
     });
   });
-  lab.querySelector('#motion-lab-replay').addEventListener('click',function(){play(true);});
+  lab.querySelector('#motion-lab-replay').addEventListener('click',function(){
+    play(true);
+    if(mode!=='step') foldControls();
+  });
   next.addEventListener('click',nextCue);
   lab.querySelector('#motion-lab-fold').addEventListener('click',function(){
     var closed=lab.classList.toggle('motion-lab-folded');
