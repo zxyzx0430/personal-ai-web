@@ -241,3 +241,15 @@
 .motion-tools-popover{position:absolute;bottom:calc(100% + 5px);left:0;display:flex;align-items:center;gap:6px;white-space:nowrap;background:rgba(250,250,248,.98);border:1px solid #d8dfeb;padding:7px;box-shadow:0 8px 24px rgba(0,47,167,.08)}
 .motion-tools-popover label{font:700 10px var(--mono)}
 @media(max-width:600px){.motion-tools{bottom:46px;left:10px}}
+
+/* The transitioning pages form a single clipped viewport; neither can leave a gap. */
+.motion-about .motion-stage > .motion-panel {background:var(--paper);will-change:transform;backface-visibility:hidden;transform-style:flat;}
+@media(prefers-reduced-motion:reduce){.motion-about .motion-stage > .motion-panel{will-change:auto}}
+
+/* The original HTML controls were explicitly removed. Long pages scroll natively inside their full-height stage. */
+.motion-about .motion-stage>.motion-panel{overflow-y:auto!important;overscroll-behavior-y:contain!important;touch-action:pan-y!important;scrollbar-width:thin;}
+.motion-about .motion-stage>.motion-panel::-webkit-scrollbar{width:4px;}
+.motion-about .motion-stage>.motion-panel::-webkit-scrollbar-thumb{background:#d7deec;}
+.motion-about .motion-stage{touch-action:pan-y;}
+.motion-about .motion-panel [data-text-animation]{will-change:opacity,filter,transform,clip-path;}
+@media(prefers-reduced-motion:reduce){.motion-about .motion-panel [data-text-animation]{will-change:auto;}}

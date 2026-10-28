@@ -21,8 +21,8 @@ const headings = [
 const phases = ['01 / 03 · 看见问题','02 / 03 · 分辨原因','03 / 03 · 建立系统'];
 
 /** Recreates the approved V6.1 visual composition in React; no DOM insertion, timers or WAAPI. */
-export function HeroMorph({phase,off,children,onReplay,onSkip}:{
- phase:number;off:boolean;children:ReactNode;onReplay:()=>void;onSkip:()=>void;
+export function HeroMorph({phase,off,children}:{
+ phase:number;off:boolean;children:ReactNode;
 }){
  const stage=Math.min(2,phase);
  const items=stage===0?[['?','学习遇到了困难。','真正的问题在哪里？']]:
@@ -35,8 +35,8 @@ export function HeroMorph({phase,off,children,onReplay,onSkip}:{
       initial={{opacity:1}} animate={{opacity:1}} exit={{opacity:0}} transition={{duration:.45}} aria-label="从真实问题到五步学习闭环的因果演示">
       <div className="home-morph-intro">
         <div className="home-morph-kicker">FROM A QUESTION TO A LEARNING SYSTEM</div>
-        <h2 className="home-morph-title">{headings[stage][0]}</h2>
-        <p className="home-morph-sub">{headings[stage][1]}</p>
+        <motion.h2 key={`heading-${stage}`} className="home-morph-title" initial={{opacity:0,filter:'blur(8px)',y:8}} animate={{opacity:1,filter:'blur(0px)',y:0}} transition={{duration:.55}}>{headings[stage][0]}</motion.h2>
+        <motion.p key={`sub-${stage}`} className="home-morph-sub" initial={{opacity:0,y:7}} animate={{opacity:1,y:0}} transition={{duration:.55,delay:.17}}>{headings[stage][1]}</motion.p>
       </div>
       <div className="home-morph-nodes">
         {Array.from({length:5},(_,i)=>{
@@ -53,7 +53,6 @@ export function HeroMorph({phase,off,children,onReplay,onSkip}:{
       <div className="home-morph-footer"><span>{phases[stage]}</span><div className="home-morph-track"><span style={{width:`${(stage+1)/3*100}%`}}/></div></div>
     </motion.div>}
    </AnimatePresence>
-   {!off&&<button type="button" className="home-morph-control" onClick={phase>=3?onReplay:onSkip}>{phase>=3?'重播开场 ↺':'跳过开场 ↗'}</button>}
  </div>;
 }
 
