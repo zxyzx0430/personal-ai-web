@@ -42,6 +42,7 @@ export function AboutPage({embedded=false}:{embedded?:boolean}){
   const stageRef=useRef<HTMLElement>(null);
   const activePanel=useRef<HTMLDivElement>(null);
   const onWheel=d.onWheel;
+  const setPaused=d.setPaused;
   useEffect(()=>{
     const stage=stageRef.current;if(!stage)return;
     const handler=(e:WheelEvent)=>onWheel(e);
@@ -49,6 +50,19 @@ export function AboutPage({embedded=false}:{embedded?:boolean}){
     return()=>stage.removeEventListener('wheel',handler);
   },[onWheel]);
   useEffect(()=>{if(activePanel.current)activePanel.current.scrollTop=0},[d.page,d.reading]);
+  // On stacked mobile layouts the hero visualization is below the text fold.
+  // Do not play it before the parent can actually see the right-hand explanation.
+  useEffect(()=>{
+    if(d.page!==0||d.mode==='off'||!matchMedia('(max-width:900px)').matches)return;
+    const panel=activePanel.current;
+    const visual=panel?.querySelector('.hero-visual');
+    if(!panel||!visual)return;
+    setPaused(true);
+    const observer=new IntersectionObserver(([entry])=>setPaused(!entry.isIntersecting),{root:panel,threshold:.55});
+    observer.observe(visual);
+    return()=>observer.disconnect();
+  },[d.page,d.mode,setPaused]);
+
   useEffect(()=>{
     document.title='项目介绍 · '+sections[d.page]+'｜Personal AI System';
     const key=(event:KeyboardEvent)=>{
@@ -80,7 +94,7 @@ export function AboutPage({embedded=false}:{embedded?:boolean}){
   const replace:NonNullable<HTMLReactParserOptions['replace']>=node=>{
     if(!isElement(node))return;
     const a=node.attribs;
-    if(a.class?.split(' ').includes('hero-visual'))return <HeroMorph phase={phase} off={off}>{nodeChildren(node,replace)}</HeroMorph>;
+    if(a.class?.split(' ').includes('hero-visual'))return <HeroMorph phase={phase} off={off} paused={d.paused}>{nodeChildren(node,replace)}</HeroMorph>;
     if(a['data-acquisition']==='ab-case')return <SupportingReveal kind="aside" className="acq-case-host" phase={phase} off={off}><StudentComparison/></SupportingReveal>;
     if(node.name==='h1'||node.name==='h2')return <NarrativeHeading as={node.name} ready={textReady} off={off} page={d.page} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeHeading>;
     if(a.class?.split(' ').includes('hero-intro')&&node.name==='p'){
@@ -118,6 +132,8 @@ export function AboutPage({embedded=false}:{embedded?:boolean}){
     }
     if(a.class?.split(' ').includes('sources'))return <motion.div {...attrs(node)} initial={off?false:{opacity:0}} animate={{opacity:off||phase>=1?1:0}} transition={{duration:.68,delay:.14}}>{nodeChildren(node,replace)}</motion.div>;
     if(node.name==='a'){
+      if(a['data-under-construction']==='true')return <a {...attrs(node)} href="#personal-home" onClick={e=>{e.preventDefault();window.alert('在建设中，暂时无法进入');}}>{nodeChildren(node,replace)}</a>;
+      if(a['data-questionnaire']==='true')return <a {...attrs(node)} href={embedded?'needs/':'../needs/'}>{nodeChildren(node,replace)}</a>;
       const href=a.href||'';
       if(href.startsWith('#'))return <a {...attrs(node)} href={href} onClick={e=>{
         const page=anchorPage[href.slice(1)];if(page===undefined)return;

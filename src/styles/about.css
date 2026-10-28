@@ -30,3 +30,10 @@
 .site-top .top-links .personal-home-link:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 @media(max-width:620px){.site-top .top-links{gap:8px}.site-top .top-links a:not(.personal-home-link){display:none}.site-top .top-links .personal-home-link{padding:5px 7px}.personal-home-main{font-size:11px}.personal-home-status{font-size:9px}}
 @media(max-width:360px){.site-top{padding:0 13px}.site-top .mark{font-size:11px}}
+
+/* The unfinished personal homepage uses the SAME visual weight as other header links. */
+.site-top .top-links .personal-home-link{display:inline-flex;flex-direction:row;align-items:center;gap:0;flex:none;border:0;background:transparent;padding:0;text-decoration:none;color:inherit;line-height:inherit;transition:color .18s;}
+.site-top .top-links .personal-home-link:hover{color:var(--blue);background:transparent;border:0;}
+@media(max-width:900px){.site-top .top-links a:nth-child(2){display:inline-flex}}
+@media(max-width:620px){.site-top{padding:0 12px}.site-top .mark{font-size:10px;white-space:nowrap;gap:5px}.site-top .top-links{gap:7px}.site-top .top-links a:not(.personal-home-link){display:inline-flex}.site-top .top-links a{font-size:10px;white-space:nowrap}.site-top .top-links .personal-home-link{padding:0;line-height:inherit}.site-top .mark-icon{transform:scale(.82);transform-origin:left center;max-width:19px}}
+@media(max-width:375px){.site-top .mark{font-size:9px}.site-top .top-links{gap:6px}.site-top .top-links a{font-size:9px}}

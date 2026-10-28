@@ -21,6 +21,7 @@ export function NeedsPage() {
       return <input {...attrs(node)} checked={selected.some(i=>i.question===question)} onChange={e=>setSelected(p=>e.target.checked?[...p,{topic,question}]:p.filter(i=>i.question!==question))}/>;
     }
     if(node.attribs.id==='chosen')return createElement(node.name,attrs(node),selected.length?`已选择 ${selected.length} 项。建议优先讨论 1—2 个真实情境；复制后可按需删减。`:'尚未选择。可以勾选上方最相关的情境，复制问题清单，仅保存在当前浏览器中，不会自动发送给作者。');
+    if(node.name==='a'&&node.attribs['data-under-construction']==='true')return <a {...attrs(node)} onClick={e=>{e.preventDefault();window.alert('在建设中，暂时无法进入');}}>{nodeChildren(node,replace)}</a>;
     if(node.name==='button') {
       const id=node.attribs.id;
       if(!['copy-summary','copy-wechat','clear'].includes(id)&&!node.attribs.onclick)return;
