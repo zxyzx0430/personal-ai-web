@@ -31,6 +31,7 @@
 .growth-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.growth-card{background:white;border:1px solid var(--line);padding:25px 23px;min-height:215px}.growth-card>.mono{color:var(--blue)}.growth-card h3{font-size:clamp(18px,1.8vw,24px);letter-spacing:-.045em;margin:22px 0 10px;line-height:1.4}.growth-card p{margin:0;font-size:12px;line-height:1.8;color:#586166}.growth-card .growth-need{font-size:13px;color:#1b2429;margin-bottom:13px}.growth-foot{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:24px}.growth-foot p{font-size:13px;color:#586166;max-width:460px}.asset.featured{background:#f1f4fd;border-color:#c7d3ef}.asset .copy-video{margin-top:9px;width:100%;justify-content:space-between}.asset .copy-video span{font-size:16px}.asset .extra{line-height:1.7}@media(max-width:920px){.growth-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.growth-foot{align-items:start;flex-direction:column}}@media(max-width:560px){.growth-grid{grid-template-columns:1fr}.growth-card{min-height:0}.growth-foot .btn{width:100%}.asset .copy-video{min-height:47px}}
 </style>
 <link rel="stylesheet" href="../home-morph.css">
+<link rel="stylesheet" href="../about-pager-v6.css">
 </head>
 <body>
 <header class="site-top">
@@ -132,5 +133,6 @@
 (function(){function feedback(b,ok){var prev=b.innerHTML;b.textContent=ok?(b.dataset.success||'已复制'):'请手动复制';setTimeout(function(){b.innerHTML=prev},2100)}function fallback(b,v){var el=document.createElement('textarea');el.value=v;el.style.position='fixed';el.style.left='-9999px';document.body.appendChild(el);el.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}el.remove();if(ok)feedback(b,true);else{window.prompt(b.dataset.prompt||'请复制以下内容：',v);feedback(b,false)}}document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){var v=b.getAttribute('data-copy');if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(v).then(function(){feedback(b,true)}).catch(function(){fallback(b,v)})}else fallback(b,v)})})})();
 </script>
 <script src="../home-morph.js"></script>
+<script src="../about-pager-v6.js"></script>
 </body>
 </html>

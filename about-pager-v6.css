@@ -1,0 +1,122 @@
+/* Personal AI System — About / 7-page full-frame presentation V6
+   Page transitions happen at exact section bounds. Oversized content scrolls
+   INSIDE its own page so documents, links and research sources remain readable.
+*/
+html:has(body.about-v6),body.about-v6{height:100%;overflow:hidden}
+body.about-v6{height:100dvh;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+body.about-v6>.site-top{flex:0 0 auto;z-index:100}
+body.about-v6>main{position:relative;flex:1 1 auto;min-height:0;height:0;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;overscroll-behavior-y:contain;scroll-behavior:smooth;scrollbar-width:none}
+body.about-v6>main::-webkit-scrollbar{display:none}
+body.about-v6 main>section.v6-page{
+  box-sizing:border-box;height:100%;min-height:100%;max-height:100%;margin:0;
+  overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:contain;
+  scroll-snap-align:start;scroll-snap-stop:always;scrollbar-width:thin;scrollbar-color:#d7deec transparent;
+}
+body.about-v6 main>section.v6-page::-webkit-scrollbar{width:4px}
+body.about-v6 main>section.v6-page::-webkit-scrollbar-thumb{background:#d7deec}
+body.about-v6 main>.hero{min-height:100%;max-height:100%;height:100%;border-bottom:0}
+body.about-v6 main>.hero .hero-copy{padding-top:clamp(22px,6vh,65px);padding-bottom:30px}
+body.about-v6 main>.hero .hero-visual{min-height:0}
+body.about-v6 .section.v6-page{padding:clamp(22px,3.2vh,38px) 0}
+body.about-v6 .sec-head{margin-bottom:clamp(19px,2.2vh,30px)}
+body.about-v6 .sec-head h2{font-size:clamp(29px,3.4vw,51px)}
+body.about-v6 .sec-head p{font-size:13px;margin-top:9px;line-height:1.7}
+body.about-v6 .problem{padding:clamp(15px,2.8vh,25px) 22px;min-height:125px}
+body.about-v6 .problem h3{margin-top:12px;margin-bottom:9px}
+body.about-v6 .method-card{padding:22px;min-height:180px}
+body.about-v6 .method-card h3{margin:19px 0 10px}
+body.about-v6 .growth-card{padding:clamp(12px,2vh,19px);min-height:163px}
+body.about-v6 .growth-card h3{margin:9px 0 7px}
+body.about-v6 .growth-card p{line-height:1.65}
+body.about-v6 .growth-foot{margin-top:16px}
+body.about-v6 .asset{padding:22px;min-height:245px}
+body.about-v6 .asset h3{margin:15px 0 10px}
+body.about-v6 .asset p{line-height:1.6}
+body.about-v6 .more-asset-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+body.about-v6 #explore .sources{margin-top:18px}
+body.about-v6 #contact{min-height:100%;height:100%;max-height:100%;padding:clamp(30px,5vh,50px) clamp(20px,5vw,78px);align-content:start;gap:24px}
+body.about-v6 #contact>.page-footer{grid-column:1/-1;align-self:end;margin-top:15px;padding:15px 0}
+body.about-v6 #contact .contact-panel{padding:12px 0}
+body.about-v6 .v6-stage-relative{position:relative}
+body.about-v6 .v6-seed{
+  position:absolute;inset:16% 19%;z-index:6;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  background:#002fa7;color:white;padding:20px;font-size:clamp(19px,2vw,28px);
+  font-weight:720;line-height:1.35;letter-spacing:-.045em;
+  box-shadow:14px 14px 0 rgba(0,47,167,.11);
+}
+body.about-v6 .v6-causal-track{
+  position:absolute;bottom:0;left:0;right:0;height:4px;
+  background:#002fa7;z-index:3;pointer-events:none;transform-origin:left center;
+}
+/* Fixed, unobtrusive page indicator; does not interfere with the page's links. */
+.v6-pager{position:fixed;z-index:80;right:10px;top:50%;transform:translateY(-50%);
+  width:67px;display:flex;flex-direction:column;gap:7px;align-items:center;
+  background:rgba(255,255,255,.92);border:1px solid #e0e5ef;
+  padding:10px 7px;box-shadow:0 8px 32px rgba(3,33,78,.06);backdrop-filter:blur(8px)}
+.v6-page-list{display:flex;flex-direction:column;gap:5px;width:100%}
+.v6-page-list button{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:100%;border:0;background:transparent;padding:6px 4px;color:#8490a1;cursor:pointer;
+  font:700 11px ui-monospace,Consolas,monospace}
+.v6-page-list button span{font:inherit}
+.v6-page-list button small{font-size:8px;white-space:nowrap;font-weight:500;display:none}
+.v6-page-list button.is-active{color:#002fa7;background:#edf2ff}
+.v6-page-list button:hover,.v6-page-list button:focus-visible{color:#002fa7;outline:1px solid #b5c9f2}
+.v6-page-actions{border-top:1px solid #e4e7ed;padding-top:8px;display:flex;align-items:center;justify-content:space-between;gap:2px;flex-wrap:wrap}
+.v6-page-actions button{border:0;background:transparent;font-size:15px;color:#002fa7;cursor:pointer;padding:3px 4px}
+.v6-page-actions button:disabled{color:#bec7d8;cursor:default}
+.v6-page-state{font:700 8px ui-monospace,Consolas,monospace;color:#002fa7;white-space:nowrap}
+@media(max-width:900px){
+ body.about-v6 main>.hero{display:block}
+ body.about-v6 main>.hero .hero-copy{min-height:0;padding:32px 20px 30px}
+ body.about-v6 main>.hero .hero-visual{min-height:470px}
+ body.about-v6 .sec-head{grid-template-columns:1fr;gap:12px}
+ body.about-v6 .sec-head h2{font-size:clamp(28px,5vw,42px)}
+ body.about-v6 .asset-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ body.about-v6 .growth-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .v6-pager{right:6px;width:51px;padding:8px 5px}
+}
+@media(max-width:600px){
+ body.about-v6 main>section.v6-page{scrollbar-width:none}
+ body.about-v6 main>.hero .hero-copy{padding:18px 20px 28px}
+ body.about-v6 main>.hero .hero-visual{min-height:460px}
+ body.about-v6 main>.hero h1{font-size:clamp(43px,11vw,54px);margin:17px 0}
+ body.about-v6 main>.hero .hero-intro{font-size:14px;line-height:1.72}
+ body.about-v6 main>.hero .actions{margin-top:19px}
+ body.about-v6 .section.v6-page{padding:24px 0 60px}
+ body.about-v6 .sec-head{margin-bottom:20px}
+ body.about-v6 .sec-head h2{font-size:32px}
+ body.about-v6 .problem-grid{grid-template-columns:1fr}
+ body.about-v6 .problem{min-height:110px;padding:15px}
+ body.about-v6 .method,.about-v6 .growth-grid,.about-v6 .asset-grid,.about-v6 .more-asset-grid{grid-template-columns:1fr}
+ body.about-v6 .method-card{min-height:0;padding:19px}
+ body.about-v6 .method-card h3{margin:10px 0}
+ body.about-v6 .growth-card{min-height:0;padding:17px}
+ body.about-v6 .asset{min-height:0}
+ body.about-v6 #contact{display:block;padding:24px 20px 55px}
+ body.about-v6 #contact>.page-footer{margin-top:20px}
+ body.about-v6 .v6-seed{inset:10% 7%;padding:12px;font-size:18px}
+ .v6-pager{top:auto;right:11px;bottom:10px;transform:none;width:auto;min-width:150px;
+  flex-direction:row;padding:5px 7px;gap:3px}
+ .v6-page-list{flex-direction:row;gap:2px;width:auto}
+ .v6-page-list button{width:18px;padding:7px 2px;font-size:8px}
+ .v6-page-actions{border-left:1px solid #e4e7ed;border-top:0;padding:0 0 0 5px;white-space:nowrap}
+ .v6-page-actions button{font-size:13px;padding:2px}
+}
+@media(prefers-reduced-motion:reduce){
+ body.about-v6>main{scroll-behavior:auto}
+ .v6-pager{backdrop-filter:none}
+}
+/* On mobile the default gesture changes page; reading a long page is explicit. */
+.v6-read-btn{position:fixed;z-index:82;bottom:11px;left:10px;background:#fff;border:1px solid #a7bae0;color:#002fa7;padding:10px 11px;font:700 10px ui-monospace,Consolas,monospace;cursor:pointer;box-shadow:0 5px 18px rgba(0,47,167,.07)}
+.v6-read-btn[hidden]{display:none!important}
+.v6-read-btn[aria-pressed="true"]{background:#002fa7;color:#fff}
+@media(min-width:701px){.v6-read-btn{display:none!important}}
+/* This page is now dedicated to exactly three PDFs, all visible together. */
+@media(min-width:1100px){
+ body.about-v6 #resources .asset-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ body.about-v6 #resources .asset{min-height:320px;padding:19px}
+ body.about-v6 #resources .asset h3{font-size:clamp(19px,1.5vw,24px);margin:13px 0 9px;line-height:1.35}
+ body.about-v6 #resources .asset p{font-size:12px;line-height:1.7;margin-bottom:13px}
+ body.about-v6 #resources .asset .extra{margin-top:8px}
+}
