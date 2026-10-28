@@ -14,11 +14,12 @@ import { FanCard, HeroMorph, SupportingReveal } from '../animation/SceneMotifs';
 import { NarrativeHeading, NarrativeLine, TypewriterParagraph } from '../animation/TextMotion';
 import { useAnimationDirector } from '../animation/AnimationDirector';
 import { copyText } from '../utils/clipboard';
+import { ProblemInsightCard, StudentComparison } from '../components/AcquisitionStory';
 
 const pages=[one,two,three,four,five,six,seven];
-const sections=['项目介绍','学习困境','学习方法','成长支持','免费资料','更多探索','联系作者'];
+const sections=['家长真实问题','四种学习困境','两种学习卡点','第一次学习体验','验证与五步闭环','视频与免费资料','交流真实问题'];
 const header=source.slice(0,source.indexOf('</header>')+9);
-const anchorPage:Record<string,number>={problems:1,method:2,needs:3,resources:4,explore:5,contact:6,'hero-title':0};
+const anchorPage:Record<string,number>={problems:1,method:2,needs:3,growth:3,verification:4,loop:4,resources:5,explore:5,contact:6,'hero-title':0};
 const fanClasses=new Set(['problem','method-card','growth-card','asset','contact-panel']);
 
 // A full-page vertical glide: accelerate, cruise briefly, then decelerate gently.
@@ -36,6 +37,8 @@ const pageVariants:Variants={
 export function AboutPage({embedded=false}:{embedded?:boolean}){
   const d=useAnimationDirector();
   const [feedback,setFeedback]=useState<Record<string,string>>({});
+  // Each question starts open and can be closed independently; no single-selection accordion.
+  const [expandedProblems,setExpandedProblems]=useState<Set<number>>(()=>new Set([0,1,2,3]));
   const stageRef=useRef<HTMLElement>(null);
   const activePanel=useRef<HTMLDivElement>(null);
   const onWheel=d.onWheel;
@@ -78,6 +81,7 @@ export function AboutPage({embedded=false}:{embedded?:boolean}){
     if(!isElement(node))return;
     const a=node.attribs;
     if(a.class?.split(' ').includes('hero-visual'))return <HeroMorph phase={phase} off={off}>{nodeChildren(node,replace)}</HeroMorph>;
+    if(a['data-acquisition']==='ab-case')return <SupportingReveal kind="aside" className="acq-case-host" phase={phase} off={off}><StudentComparison/></SupportingReveal>;
     if(node.name==='h1'||node.name==='h2')return <NarrativeHeading as={node.name} ready={textReady} off={off} page={d.page} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeHeading>;
     if(a.class?.split(' ').includes('hero-intro')&&node.name==='p'){
       const text=node.children.map(child=>'data' in child?child.data:'').join('');
@@ -93,6 +97,8 @@ export function AboutPage({embedded=false}:{embedded?:boolean}){
       return <NarrativeLine kind="foot" ready={textReady} off={off} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeLine>;
     // Contact panels and section footnotes used to appear instantly while the narrative was hidden.
     // Preserve their actual DOM semantics and let them reveal only after page arrival.
+    if(a.class?.split(' ').some(c=>['acq-experience','acq-proof-grid','acq-original-intro','acq-learning-loop','acq-contact-prompt'].includes(c)))
+      return <SupportingReveal kind="aside" className={a.class||''} phase={phase} off={off}>{nodeChildren(node,replace)}</SupportingReveal>;
     if(a.class?.split(' ').includes('contact-panel'))
       return <SupportingReveal kind="contact" className={a.class} phase={phase} off={off}>{nodeChildren(node,replace)}</SupportingReveal>;
     if(a.class?.split(' ').includes('growth-foot'))
@@ -103,6 +109,10 @@ export function AboutPage({embedded=false}:{embedded?:boolean}){
       return <SupportingReveal kind="footer" className={a.class} phase={phase} off={off}>{nodeChildren(node,replace)}</SupportingReveal>;
     if(node.name==='p'&&d.page===2&&a.style?.includes('font-size:12px')&&!inside(node,'method-card'))
       return <NarrativeLine kind="intro" ready={phase>=1 || off} off={off} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeLine>;
+    if(node.name==='article'&&a['data-insight']){
+      const index=Math.max(0,Math.min(3,Number(a['data-insight'])-1));
+      return <ProblemInsightCard index={index} phase={phase} off={off} opened={expandedProblems.has(index)} onToggle={()=>setExpandedProblems(prev=>{const next=new Set(prev);if(next.has(index))next.delete(index);else next.add(index);return next;})}>{nodeChildren(node,replace)}</ProblemInsightCard>;
+    }
     if(node.name==='article'&&a.class?.split(' ').some(c=>fanClasses.has(c))){
       return <FanCard {...attrs(node)} page={d.page} index={fanIndex++} phase={phase} off={off} className={a.class||''}>{nodeChildren(node,replace)}</FanCard>;
     }
