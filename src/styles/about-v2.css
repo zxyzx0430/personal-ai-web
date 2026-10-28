@@ -1,0 +1,67 @@
+/* V2 additions only. Original page motion, timing, type hierarchy and card appearance are unchanged. */
+.motion-about .v2-overline{font:700 10px/1.5 var(--mono,monospace);letter-spacing:.12em;color:var(--blue,#0035ba)}
+.motion-about .v2-hero-addendum{max-width:610px;margin-top:12px;display:flex;align-items:flex-start;gap:8px 20px;flex-wrap:wrap}
+.motion-about .v2-hero-addendum p{flex:1 1 290px;font-size:12px;line-height:1.7;color:#5b626f;margin:0}
+.motion-about .v2-hero-addendum a{flex:0 0 auto;color:var(--blue,#0035ba);font-size:12px;font-weight:750;text-underline-offset:3px}
+.motion-about .v2-clickable-card{position:relative;cursor:pointer;transition:border-color .17s ease,background .17s ease}
+.motion-about .v2-clickable-card:hover{background:#f6f8fc;border-right-color:#a8bce4;border-bottom-color:#a8bce4}
+.motion-about .v2-card-hit{position:static;display:block;width:100%;background:transparent;text-align:left;border:0;padding:10px 0 0;color:var(--blue,#0035ba);font-size:12px;font-weight:800;cursor:pointer}
+.motion-about .v2-card-hit:before{content:'';position:absolute;inset:0}
+.motion-about .v2-card-hit:focus-visible{outline:3px solid var(--blue,#0035ba);outline-offset:3px;border-radius:2px}
+.motion-about .v2-pdf-note{font-size:11px;color:#435c8d;border-top:1px solid #e3e9f2;padding-top:10px;margin:10px 0 0!important}
+.motion-about .v2-video-entry{margin-top:12px}
+.motion-about .v2-growth-context{font-size:12px;line-height:1.7;color:#3a527d;border-left:3px solid var(--blue,#0035ba);padding:10px 14px;background:#f0f4fa;margin:0 0 13px}
+.motion-about .v2-method-after{margin:15px 0 14px}
+.motion-about .v2-inline-case{border:1px solid #d8deea;background:#f8fafc;padding:15px 18px}
+.motion-about .v2-inline-case h3{font-size:19px;letter-spacing:-.035em;margin:6px 0 8px}
+.motion-about .v2-inline-case p{font-size:12px;line-height:1.65;color:#536172;margin:10px 0}
+.motion-about .v2-tab-row{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.motion-about .v2-tab-row button,.motion-about .v2-dialog-actions>button{border:1px solid #d5deec;color:#344158;background:#fff;cursor:pointer;padding:9px 14px;font-size:12px;font-weight:720}
+.motion-about .v2-tab-row button.active,.motion-about .v2-tab-row button[aria-pressed=true]{background:var(--blue,#0035ba);color:#fff;border-color:var(--blue,#0035ba)}
+.motion-about .v2-tab-row button:disabled{opacity:.55;cursor:default}
+.motion-about .v2-tab-row button:focus-visible,.motion-about .v2-dialog button:focus-visible{outline:2px solid var(--blue,#0035ba);outline-offset:3px}
+.motion-about .v2-inline-action{border:0;border-bottom:1px solid var(--blue,#0035ba);background:transparent;color:var(--blue,#0035ba);padding:5px 1px;cursor:pointer;font-size:12px;font-weight:800;text-align:left}
+.motion-about .v2-services{border-top:2px solid var(--blue,#0035ba);margin-top:24px;padding-top:17px}
+.motion-about .v2-services h3{font-size:clamp(21px,2vw,30px);letter-spacing:-.045em;margin:8px 0 16px;line-height:1.3}
+.motion-about .v2-services ol{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.motion-about .v2-services li{border-left:2px solid #c9d5ea;padding:2px 0 3px 12px}
+.motion-about .v2-services li b{font-size:13px;line-height:1.5;color:#1a263b}
+.motion-about .v2-services li p{margin:4px 0 0;font-size:12px;line-height:1.65}
+.motion-about .v2-service-result{margin-top:17px;background:#f0f4fa;padding:13px 16px;border:1px solid #d9e0ed}
+.motion-about .v2-service-result strong{font-size:14px}
+.motion-about .v2-service-result p{margin:5px 0 0}
+.motion-about .v2-cta{border:1px solid var(--blue,#0035ba)!important;background:var(--blue,#0035ba)!important;color:#fff!important;font-size:12px;font-weight:800;cursor:pointer;padding:11px 16px}
+.motion-about .v2-service-copy{margin-top:14px}
+.motion-about .v2-muted{font-size:11px!important;line-height:1.65;color:#748092!important}
+/* Dedicated full-screen detail view is mounted outside the original seven-page navigator. */
+.motion-about .v2-overlay{position:absolute;inset:0;z-index:160;background:rgba(12,22,40,.43);display:flex;align-items:center;justify-content:center;padding:20px;overscroll-behavior:contain}
+.motion-about .v2-dialog{position:relative;width:min(1120px,100%);max-height:min(94dvh,900px);background:var(--paper,#fbfaf8);border:1px solid #bec9dc;box-shadow:0 30px 90px rgba(10,20,40,.18);display:flex;flex-direction:column;overflow:hidden;color:#181c22}
+.motion-about .v2-dialog-head{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:15px 24px;border-bottom:1px solid #dbe1eb;flex:none;background:#fff}
+.motion-about .v2-close{background:transparent;border:1px solid #b8c6dc;color:var(--blue,#0035ba);font-size:12px;font-weight:760;padding:9px 13px;cursor:pointer}
+.motion-about .v2-dialog-body{flex:1;min-height:0;overflow-y:auto;display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:28px;padding:24px;overscroll-behavior:contain}
+.motion-about .v2-dialog-intro h2{font-size:clamp(30px,4vw,54px);line-height:1.13;letter-spacing:-.07em;margin:14px 0 19px;color:#15171c}
+.motion-about .v2-dialog-intro h3{font-size:20px;line-height:1.35;color:var(--blue,#0035ba);margin:0 0 14px}
+.motion-about .v2-dialog-intro>p{font-size:14px;line-height:1.75;color:#535c68}
+.motion-about .v2-dialog-steps{display:grid;gap:12px;margin:22px 0}
+.motion-about .v2-dialog-steps>div{border-top:1px solid #d7deec;padding:12px 0 0}
+.motion-about .v2-dialog-steps b{font-size:12px;color:var(--blue,#0035ba)}
+.motion-about .v2-dialog-steps p{font-size:12px;line-height:1.75;margin:6px 0 0;color:#586574}
+.motion-about .v2-demo{border:1px solid #d7deea;background:white;padding:20px;min-width:0}
+.motion-about .v2-demo-top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:11px;color:#6b7584}
+.motion-about .v2-math-problem{font-size:17px;font-weight:750;line-height:1.5;margin:18px 0;padding:17px;background:#f0f3fa}
+.motion-about .v2-demo-copy{font-size:13px;line-height:1.7;color:#455063}
+.motion-about .v2-demo-copy strong{font-size:14px;color:#1e293a;display:block;margin-top:15px}
+.motion-about .v2-demo-copy p{margin:5px 0 10px;line-height:1.65}
+.motion-about .v2-result{background:#eaf1fd;border-left:3px solid var(--blue,#0035ba);color:#244473;padding:12px 14px;margin:10px 0;font-size:13px;line-height:1.75}
+.motion-about .v2-assistant{background:#f0f5fc;padding:11px 12px;border-radius:4px}
+.motion-about .v2-plot{display:block;width:100%;height:auto;max-height:260px;margin:16px 0 12px;border:1px solid #e2e9f4}
+.motion-about .v2-range-label{display:flex;justify-content:space-between;font-size:13px;color:#4c596c}
+.motion-about .v2-range{width:100%;accent-color:var(--blue,#0035ba);cursor:pointer;margin:9px 0 12px}
+.motion-about .v2-disclaimer{font-size:11px;line-height:1.65;color:#758092}
+.motion-about .v2-dialog-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 24px;border-top:1px solid #dbe1eb;flex:none;background:#fff}
+.motion-about .v2-dialog-footer strong{font-size:13px}
+.motion-about .v2-dialog-footer p{font-size:11px;color:#657284;margin:3px 0 0}
+.motion-about .v2-dialog-actions{display:flex;justify-content:flex-end;gap:7px;flex-wrap:wrap}
+@media(max-width:800px){.motion-about .v2-dialog-body{grid-template-columns:1fr;gap:15px}.motion-about .v2-dialog{max-height:95dvh}.motion-about .v2-dialog-footer{flex-direction:column;align-items:stretch}.motion-about .v2-dialog-actions{justify-content:stretch}.motion-about .v2-dialog-actions>button{flex:1}.motion-about .v2-dialog-actions>.v2-cta{flex:1 1 100%}}
+@media(max-width:600px){.motion-about .v2-overlay{padding:0}.motion-about .v2-dialog{width:100%;height:100dvh;max-height:100dvh;border:0}.motion-about .v2-dialog-head{padding:14px 16px;min-height:57px}.motion-about .v2-dialog-body{padding:16px}.motion-about .v2-dialog-intro h2{font-size:32px;margin:8px 0}.motion-about .v2-dialog-intro h3{font-size:17px}.motion-about .v2-dialog-steps{margin:10px 0}.motion-about .v2-dialog-footer{padding:10px 15px}.motion-about .v2-demo{padding:13px}.motion-about .v2-hero-addendum{margin-top:9px}.motion-about .v2-services{margin-top:18px}.motion-about .v2-services ol{gap:8px}}
+@media(prefers-reduced-motion:reduce){.motion-about .v2-overlay{transition:none!important}}
