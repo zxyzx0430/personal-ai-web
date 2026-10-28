@@ -60,7 +60,7 @@ export function useAnimationDirector() {
     if(!arrived||activeMode!=='auto'||paused||phase>=3)return;
     // Fidelity to HTML V6.1: hero holds its 1→3→5 state for 6.25s;
     // inner pages fan out their original content in one decisive motion.
-    const delay=page===0?[1700,2000,2750][phase]:[930,760,10][phase];
+    const delay=page===0?[850,1100,1400][phase]:[35,710,10][phase];
     const timeout=setTimeout(()=>setPhase(p=>Math.min(3,p+1)),delay);
     return()=>clearTimeout(timeout);
   },[activeMode,arrived,paused,phase,page,revision]);

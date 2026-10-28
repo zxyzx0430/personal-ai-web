@@ -13,7 +13,7 @@ export function NarrativeHeading({as='h2',children,ready,off,page=0,props={}}:{
   const Component=as==='h1'?motion.h1:motion.h2;
   return <Component {...props} data-text-animation={wipe?'wipe':'blur-in'}
     initial={off?false:reveal} animate={ready||off?shown:reveal}
-    transition={off?{duration:0}:{duration:as==='h1'?1.05:.84,delay:as==='h1'?.18:.16,ease:smooth}}>
+    transition={off?{duration:0}:{duration:as==='h1'?1.02:.76,delay:as==='h1'?.18:.08,ease:smooth}}>
     {children}
   </Component>;
 }
@@ -34,8 +34,8 @@ export function NarrativeLine({children,ready,off,kind='eyebrow',props={}}:{
 }){
   const base=kind==='intro'?{opacity:0,clipPath:'inset(0 100% 0 0)'}:{opacity:0,y:kind==='actions'?12:6};
   const shown=kind==='intro'?{opacity:1,clipPath:'inset(0 0% 0 0)'}:{opacity:1,y:0};
-  const duration=kind==='intro'?1.1:.55;
-  const delay=kind==='intro'?.44:kind==='actions'?1.8:kind==='foot'?1.15:.12;
+  const duration=kind==='intro'?.66:.5;
+  const delay=kind==='intro'?.13:kind==='actions'?.95:kind==='foot'?.55:.06;
   const Tag=kind==='intro'?motion.p:motion.div;
   return <Tag {...props} data-text-animation={kind==='intro'?'typewriter-reveal':kind}
     initial={off?false:base} animate={ready||off?shown:base}

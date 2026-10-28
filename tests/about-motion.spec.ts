@@ -66,3 +66,31 @@ test('embedded React portal and study/adult/needs intact',async({page})=>{
     await expect(page.locator(selector).first()).toBeAttached();
   }
 });
+
+test.describe('all card entry timings and resource-page boundary',()=>{
+  test.use({reducedMotion:'no-preference'});
+  test('cards and supplementary text reveal promptly only after full-page arrival',async({page})=>{
+    test.setTimeout(60000);
+    const chapters:[number,string][]=[[2,'.problem'],[3,'.method-card'],[4,'.growth-card'],[5,'.asset'],[6,'.asset'],[7,'.contact-panel']];
+    for(const [target,selector] of chapters){
+      await page.goto(`/about/#page-${String(target-1).padStart(2,'0')}`);
+      await page.keyboard.press('PageDown');
+      const incoming=page.locator(`.motion-panel[data-page="${target}"]`);
+      await expect(incoming).toBeAttached();
+      await expect.poll(()=>incoming.evaluate(el=>Math.abs(el.getBoundingClientRect().top-63)),{timeout:1800}).toBeLessThan(2);
+      await expect.poll(()=>incoming.locator(selector).first().evaluate(el=>Number(getComputedStyle(el).opacity)),{timeout:2400}).toBeGreaterThan(.96);
+    }
+  });
+  test('page 5 resources are scrollable and lead to exactly one page 6',async({page})=>{
+    await page.goto('/about/#page-05');
+    const panel=page.locator('.motion-panel[data-page="5"]');
+    await panel.evaluate(el=>{el.scrollTop=el.scrollHeight});
+    await page.mouse.move(500,400);
+    await page.mouse.wheel(0,100);
+    await expect(page.locator('.motion-panel[data-page="6"]')).toBeAttached();
+    await expect(page.locator('.motion-panel')).toHaveCount(1,{timeout:2200});
+    await expect(page.locator('.motion-panel[data-page="6"] .asset')).toHaveCount(2);
+    const scrollTop=await page.locator('.motion-panel[data-page="6"]').evaluate(el=>el.scrollTop);
+    expect(scrollTop).toBe(0);
+  });
+});

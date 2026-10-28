@@ -69,6 +69,22 @@ export function FanCard({page,index,phase,off,children,className,...rest}:{
  return <motion.article {...rest} className={className}
    initial={off?false:{opacity:0,x,y,scale:.76}}
    animate={off||phase>=1?{opacity:1,x:0,y:0,scale:1}:{opacity:0,x,y,scale:.76}}
-   transition={off||phase>=3?{duration:0}:{duration:.76,delay:index*.075,ease:[.18,.78,.23,1]}}
+   transition={off||phase>=3?{duration:0}:{duration:.65,delay:index*.038,ease:[.18,.78,.23,1]}}
  >{children}</motion.article>;
+}
+
+/** Extra sections use their original semantic tags, all hidden until the chapter has arrived. */
+export function SupportingReveal({phase,off,children,className='',kind='aside',style}:{
+ phase:number;off:boolean;children:ReactNode;className?:string;kind?:'aside'|'contact'|'divider'|'footer';style?:React.CSSProperties;
+}){
+ const delay=kind==='contact'?.045:kind==='footer'?.16:kind==='divider'?.075:.06;
+ const hide={opacity:0,y:kind==='divider'?0:10,clipPath:kind==='aside'?'inset(0 100% 0 0)':'inset(0 0 0 0)'};
+ const show={opacity:1,y:0,clipPath:'inset(0 0 0 0)'};
+ const props={className,style,'data-support-motion':kind,initial:off?false:hide,
+   animate:off||phase>=1?show:hide,
+   transition:off?{duration:0}:{duration:kind==='contact'?.57:.54,delay,ease:[.22,1,.36,1] as const}};
+ if(kind==='footer')return <motion.footer {...props}>{children}</motion.footer>;
+ if(kind==='contact')return <motion.div {...props}>{children}</motion.div>;
+ if(kind==='divider')return <motion.div {...props}>{children}</motion.div>;
+ return <motion.div {...props}>{children}</motion.div>;
 }

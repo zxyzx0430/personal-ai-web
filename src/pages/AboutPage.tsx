@@ -10,7 +10,7 @@ import five from '../content/about-pages/05.html?raw';
 import six from '../content/about-pages/06.html?raw';
 import seven from '../content/about-pages/07.html?raw';
 import { attrs, htmlMarkup, isElement, nodeChildren } from '../components/markup';
-import { FanCard, HeroMorph } from '../animation/SceneMotifs';
+import { FanCard, HeroMorph, SupportingReveal } from '../animation/SceneMotifs';
 import { NarrativeHeading, NarrativeLine, TypewriterParagraph } from '../animation/TextMotion';
 import { useAnimationDirector } from '../animation/AnimationDirector';
 import { copyText } from '../utils/clipboard';
@@ -91,10 +91,22 @@ export function AboutPage({embedded=false}:{embedded?:boolean}){
       return <NarrativeLine kind="actions" ready={textReady} off={off} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeLine>;
     if(a.class?.split(' ').includes('hero-foot'))
       return <NarrativeLine kind="foot" ready={textReady} off={off} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeLine>;
+    // Contact panels and section footnotes used to appear instantly while the narrative was hidden.
+    // Preserve their actual DOM semantics and let them reveal only after page arrival.
+    if(a.class?.split(' ').includes('contact-panel'))
+      return <SupportingReveal kind="contact" className={a.class} phase={phase} off={off}>{nodeChildren(node,replace)}</SupportingReveal>;
+    if(a.class?.split(' ').includes('growth-foot'))
+      return <SupportingReveal className={a.class} phase={phase} off={off}>{nodeChildren(node,replace)}</SupportingReveal>;
+    if(a.class?.split(' ').includes('thin-rule'))
+      return <SupportingReveal kind="divider" className={a.class} phase={phase} off={off}>{nodeChildren(node,replace)}</SupportingReveal>;
+    if(node.name==='footer'&&a.class?.split(' ').includes('page-footer'))
+      return <SupportingReveal kind="footer" className={a.class} phase={phase} off={off}>{nodeChildren(node,replace)}</SupportingReveal>;
+    if(node.name==='p'&&d.page===2&&a.style?.includes('font-size:12px')&&!inside(node,'method-card'))
+      return <NarrativeLine kind="intro" ready={phase>=1 || off} off={off} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeLine>;
     if(node.name==='article'&&a.class?.split(' ').some(c=>fanClasses.has(c))){
       return <FanCard {...attrs(node)} page={d.page} index={fanIndex++} phase={phase} off={off} className={a.class||''}>{nodeChildren(node,replace)}</FanCard>;
     }
-    if(a.class?.split(' ').includes('sources'))return <motion.div {...attrs(node)} initial={off?false:{opacity:0}} animate={{opacity:off||phase>=1?1:0}} transition={{duration:.85,delay:.65}}>{nodeChildren(node,replace)}</motion.div>;
+    if(a.class?.split(' ').includes('sources'))return <motion.div {...attrs(node)} initial={off?false:{opacity:0}} animate={{opacity:off||phase>=1?1:0}} transition={{duration:.68,delay:.14}}>{nodeChildren(node,replace)}</motion.div>;
     if(node.name==='a'){
       const href=a.href||'';
       if(href.startsWith('#'))return <a {...attrs(node)} href={href} onClick={e=>{
