@@ -1413,5 +1413,3 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-off
   .bottom-bar #next-page::before{content:"下一页";font:600 12px var(--sans-zh)}
   .bottom-bar #prev-page:disabled,.bottom-bar #next-page:disabled{opacity:.35}
 }
-
-#deck{position:static}:host,:host{overflow:auto}.slide,:host.canvas-mode .slide{display:block;position:relative;height:auto}.slide .canvas-card{height:auto;min-height:700px}.bottom-bar{display:none}.masthead{position:sticky}section[hidden]{display:block!important}

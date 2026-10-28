@@ -11,7 +11,8 @@
     "preview": "vite preview --host 127.0.0.1",
     "lint": "eslint src",
     "build:pages": "DEPLOY_BASE=/personal-ai-web/ npm run build",
-    "audit:parity": "python3 scripts/audit-legacy-parity.py && node scripts/check-dynamic-parity.cjs"
+    "audit:parity": "python3 scripts/audit-legacy-parity.py && node scripts/check-dynamic-parity.cjs",
+    "test:public": "node scripts/final-web-check.mjs"
   },
   "repository": {
     "type": "git",

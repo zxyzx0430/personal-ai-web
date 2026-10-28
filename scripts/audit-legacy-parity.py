@@ -51,7 +51,7 @@ def run():
             text=REPL.sub(insert,text)
         a,b=inspect(body(old)),inspect(text)
         checks={'text':a.tokens==b.tokens,'tags':a.tags==b.tags,'ids':a.ids==b.ids,'links':a.hrefs==b.hrefs,'questions':a.inputs==b.inputs,'data_attributes':a.data_attrs==b.data_attrs}
-        orig_css='\n'.join(re.findall(r'<style[^>]*>(.*?)</style>',old,re.I|re.S))
+        orig_css='\n'.join(re.findall(r'<style[^>]*>(.*?)</style>',re.sub(r'<noscript\b[^>]*>.*?</noscript>','',old,flags=re.I|re.S),re.I|re.S))
         checks['css']=orig_css==(ROOT/f'src/styles/{page}.css').read_text()
         results.append((page,checks,len(a.tokens),len(a.tags),len(a.hrefs),len(a.ids)))
         if not all(checks.values()):
