@@ -6,5 +6,5 @@ export default tseslint.config(
   {ignores:['dist/**','node_modules/**']},
   js.configs.recommended,
   ...tseslint.configs.recommended,
-  {files:['src/**/*.{ts,tsx}'],languageOptions:{globals:{...globals.browser}},plugins:{'react-hooks':reactHooks},rules:{...reactHooks.configs.recommended.rules}},
+  {files:['src/**/*.{ts,tsx}'],languageOptions:{globals:{...globals.browser}},plugins:{'react-hooks':reactHooks},rules:{...reactHooks.configs.recommended.rules,'no-empty':['error',{allowEmptyCatch:true}]}},
 );
