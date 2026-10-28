@@ -47,6 +47,12 @@ host.innerHTML='<div class="motion-lab-top"><span>● MOTION LAB <small>HTML 实
 '<div class="motion-lab-actions"><button id="motion-lab-replay">↺ 重播</button><button id="motion-lab-next" disabled>下一拍 →</button></div>'+
 '<div class="motion-lab-status" role="status" aria-live="polite">动画准备就绪</div><a href="/motion-spec.html" target="_blank" rel="noopener">查看动画设计规范 ↗</a></div>';
 document.body.appendChild(host);
+// On phones, start with only a compact handle so the lab panel does not obstruct slides.
+if (matchMedia('(max-width:700px)').matches) {
+ host.classList.add('motion-lab-folded');
+ var foldButton=host.querySelector('#motion-lab-fold');
+ foldButton.textContent='+'; foldButton.setAttribute('aria-expanded','false');
+}
 var mode='auto',key='',groups=[],step=-1,active=[],timers=[],hidden=[],original=new Map(),frame=0;
 var reduced=matchMedia('(prefers-reduced-motion: reduce)');
 var next=host.querySelector('#motion-lab-next'), status=host.querySelector('.motion-lab-status');
