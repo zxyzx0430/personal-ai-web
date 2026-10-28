@@ -7,6 +7,7 @@ import {AboutPage} from './AboutPage';
 import {StudyPage} from './StudyPage';
 import {AdultPage} from './AdultPage';
 import aboutStyle from '../styles/embedded/about.css.txt?raw';
+import aboutMotionStyle from '../styles/about-motion.css?raw';
 import studyStyle from '../styles/embedded/study.css.txt?raw';
 import adultStyle from '../styles/embedded/adult.css.txt?raw';
 
@@ -21,7 +22,7 @@ function initialMode():Mode {const direct=currentUrlMode();if(direct)return dire
 function InnerPresentation({mode,shadow}: {mode:Mode;shadow:ShadowRoot|null}){
   if(!shadow)return null;
   const element:ReactNode=mode==='about'?<AboutPage embedded/>:mode==='study'?<StudyPage/>:<AdultPage/>;
-  return createPortal(<><style>{modes[mode].style}</style>{element}</>,shadow);
+  return createPortal(<><style>{modes[mode].style}</style>{mode==='about'&&<style>{aboutMotionStyle}</style>}{element}</>,shadow);
 }
 export function HomePage(){
   const [mode,setMode]=useState<Mode>(initialMode);
