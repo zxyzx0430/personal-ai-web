@@ -1,0 +1,137 @@
+/* PERSONAL AI SYSTEM / MOTION LAB V4
+ * Macro transformations: work compression, idea-to-app, network expansion.
+ * Restrained editorial visual style. No lasers, no micro-hover storms.
+ */
+#v4-console{position:fixed;right:15px;top:78px;z-index:9800;width:252px;color:#101827;font:12px/1.45 Inter,"PingFang SC","Microsoft YaHei",sans-serif;pointer-events:none}
+#v4-console *{box-sizing:border-box}
+#v4-console button{cursor:pointer;font:inherit}
+#v4-console .v4-toggle{margin-left:auto;display:block;pointer-events:auto;border:1px solid #c4cede;background:#fdfdfc;padding:9px 12px;font:700 10px ui-monospace,monospace;letter-spacing:.09em;color:#002fa7}
+#v4-console .v4-toggle b{font-size:14px;margin-left:8px}
+#v4-console .v4-console-inner{pointer-events:auto;background:#fafafa;border:1px solid #d4dbe6;border-top:0;padding:15px;box-shadow:0 12px 30px rgba(0,35,78,.1)}
+#v4-console .v4-console-inner[hidden]{display:none!important}
+#v4-console .v4-console-title{font-weight:650;line-height:1.45;padding-bottom:9px}
+#v4-console .v4-modes,#v4-console .v4-commands{display:flex;gap:5px;margin:7px 0}
+#v4-console .v4-modes button,#v4-console .v4-commands button{flex:1;padding:8px 4px;background:white;border:1px solid #d5dbe4;color:#39465b}
+#v4-console .v4-modes [aria-pressed=true]{background:#002fa7;color:white;border-color:#002fa7}
+#v4-console button:disabled{opacity:.4;cursor:default}
+#v4-console .v4-counter{font-size:11px;color:#57677e;line-height:1.6;margin-top:12px}
+#v4-console button:focus-visible{outline:2px solid #002fa7;outline-offset:2px}
+
+/* Stage 1: a whole work process changes its organization. */
+.v4-workflow-stage{width:100%;min-height:325px;background:#fff;border-top:1px solid #dde2eb;position:relative;display:flex;flex-direction:column;color:#101820;overflow:hidden}
+.v4-stage-top{display:flex;align-items:center;justify-content:space-between;padding:13px 0;font:700 10px ui-monospace,monospace;color:#687584;letter-spacing:.09em}
+.v4-stage-top b{color:#002fa7}
+.v4-stage-content{position:relative;flex:1;min-height:268px;overflow:hidden}
+.v4-composition{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;min-height:260px;will-change:transform,opacity}
+.v4-stage-bottom{border-top:1px solid #e1e5ea;display:flex;align-items:center;justify-content:space-between;gap:8px;color:#002fa7;font-size:12px;line-height:1.5;font-weight:600;padding:13px 0}
+.v4-stage-arrow{font-size:23px;line-height:1}
+.v4-single-stream{width:100%;display:grid;grid-template-columns:120px 1fr;gap:20px;align-items:center}
+.v4-big-label{font:600 82px/.9 Inter,sans-serif;letter-spacing:-.08em;color:#002fa7}
+.v4-big-label span{display:block;margin-top:15px;font:700 13px/1.4 ui-monospace,monospace;letter-spacing:0;color:#616a76}
+.v4-stream-items{display:grid;grid-template-columns:1fr;gap:6px}
+.v4-task{min-height:38px;display:flex;align-items:center;gap:14px;padding:6px 12px;border:1px solid #e0e5ee;background:#fff;color:#212832}
+.v4-task span{color:#002fa7;font:700 10px ui-monospace,monospace;flex:0 0 23px}
+.v4-task b{font-size:14px;line-height:1.35;font-weight:550;letter-spacing:-.02em}
+.v4-duplicate{width:100%;display:grid;grid-template-columns:minmax(0,1fr) 36px minmax(0,1fr);gap:9px;align-items:center}
+.v4-mini-stream{border:1px solid #d8dfeb;padding:11px 9px;min-width:0;display:grid;gap:7px;background:#fafbfd}
+.v4-mini-stream:last-child{background:#f0f3fa}
+.v4-mini-title{display:flex;justify-content:space-between;gap:6px;color:#002fa7;font-size:12px;font-weight:700;margin-bottom:6px}
+.v4-mini-title b{font-weight:400;color:#677180}
+.v4-mini-stream .v4-task{min-height:33px;padding:6px 7px;gap:7px}
+.v4-mini-stream .v4-task span{font-size:9px;flex-basis:15px}
+.v4-mini-stream .v4-task b{font-size:11px;white-space:normal}
+.v4-repeat-glyph{font-size:32px;font-weight:300;line-height:1;color:#002fa7;text-align:center}
+.v4-condensed{width:100%;display:grid;grid-template-columns:minmax(0,1.1fr) 30px minmax(0,.9fr);gap:6px;align-items:center}
+.v4-reuse-file{background:#002fa7;padding:16px 14px 18px;color:white;min-width:0;box-shadow:9px 9px 0 #e3eafc}
+.v4-file-header{display:flex;flex-direction:column;gap:4px;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:12px;margin-bottom:12px}
+.v4-file-header span{font:700 9px ui-monospace,monospace;letter-spacing:.12em;color:#a8c0ff}
+.v4-file-header strong{font-size:18px;font-weight:650;letter-spacing:-.05em}
+.v4-reusable-items{display:grid;gap:6px}
+.v4-reuse-file .v4-task{border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.13);color:white;min-height:32px;padding:6px 8px}
+.v4-reuse-file .v4-task span{color:#cdd9fc;flex-basis:16px}
+.v4-reuse-file .v4-task b{font-size:11px;font-weight:500}
+.v4-large-connector{align-self:center;color:#002fa7;font-size:27px;text-align:center}
+.v4-new-task{background:#eaf0ff;border:1px solid #8ba5e3;padding:20px 13px;display:flex;flex-direction:column;gap:11px;min-height:172px;justify-content:center}
+.v4-new-task small{color:#002fa7;font:700 9px ui-monospace,monospace;letter-spacing:.08em}
+.v4-new-task strong{font-size:18px;line-height:1.25;letter-spacing:-.05em}
+.v4-new-task p{font-size:12px;line-height:1.5;color:#47536a}
+
+/* Stage 2: a natural-language request becomes a blueprint, then a real UI preview. */
+body.v4-scene-prototype .slide.active .idea-room{transition:grid-template-columns .85s cubic-bezier(.18,.75,.2,1)}
+.v4-proto-stage{position:absolute;top:40px;right:0;bottom:0;left:0;padding:30px;display:flex;align-items:stretch;background:#fff;z-index:4}
+body.v4-scene-prototype .slide.active .idea-window{position:relative;overflow:hidden}
+.v4-proto-scene{width:100%;position:relative;min-height:100%;display:flex;align-items:stretch;justify-content:center}
+.v4-proto-composition{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.v4-large-prompt{width:100%;display:flex;flex-direction:column;justify-content:space-between;gap:15px;min-height:100%;padding:11px 5px}
+.v4-label{color:#002fa7;font:700 10px ui-monospace,monospace;letter-spacing:.12em}
+.v4-prompt-copy{font-size:clamp(17px,2vw,31px);font-weight:550;line-height:1.55;letter-spacing:-.06em;max-width:92%}
+.v4-prompt-target{display:flex;align-items:center;gap:18px;color:#002fa7;border-top:1px solid #d8e2f3;padding-top:19px}
+.v4-prompt-target span{font-size:42px;line-height:1}
+.v4-prompt-target b{font-size:20px;font-weight:650;letter-spacing:-.05em}
+.v4-plan{width:100%;display:flex;flex-direction:column;justify-content:space-between;gap:14px;padding:6px 0 14px}
+.v4-plan-nodes{display:grid;grid-template-columns:1fr 24px 1fr 24px 1fr;gap:4px;align-items:center}
+.v4-plan-nodes>span{font-size:26px;color:#002fa7;text-align:center}
+.v4-plan-nodes>div{display:flex;flex-direction:column;gap:11px;justify-content:center;align-items:start;border:1px solid #a5b7db;background:#eef3ff;padding:20px 12px;min-height:150px}
+.v4-plan-nodes>div:nth-of-type(2){background:#002fa7;color:white;border-color:#002fa7}
+.v4-plan-nodes small{color:#5678c0;font:700 10px ui-monospace,monospace}
+.v4-plan-nodes>div:nth-of-type(2) small{color:#b4c9ff}
+.v4-plan-nodes strong{font-size:27px;letter-spacing:-.06em;line-height:1}
+.v4-plan-nodes em{font-style:normal;font-size:11px;line-height:1.5;white-space:normal}
+.v4-plan p{font-size:14px;font-weight:600;color:#4c576a}
+
+/* Stage 3: network grows from a large core instead of micro-toggling labels. */
+body.v4-scene-graph .slide.is-active .network{isolation:isolate}
+.v4-halo{position:absolute;left:50%;top:50%;width:min(240px,43%);aspect-ratio:1;z-index:0;pointer-events:none;border-radius:50%;border:1px solid rgba(0,47,167,.18);background:radial-gradient(circle,rgba(0,47,167,.095),rgba(0,47,167,.012) 65%,transparent 72%);transform:translate(-50%,-50%) scale(1)}
+.v4-halo>div{border:1px solid rgba(0,47,167,.12);border-radius:50%;position:absolute;inset:17%}
+body.v4-scene-graph .slide.is-active .network .knowledge-node{z-index:3}
+body.v4-scene-graph .slide.is-active .network svg{z-index:1}
+body.v4-scene-graph .slide.is-active .network .graph-links .strong-link{stroke:#002fa7;stroke-width:2.0}
+body.v4-scene-graph .slide.is-active .network .graph-links .mesh{stroke:#6e90d1;stroke-width:1.15}
+@media(max-width:900px){
+ .v4-workflow-stage{min-height:290px}.v4-stage-content{min-height:220px}.v4-composition{min-height:210px}
+ .v4-big-label{font-size:58px}
+ .v4-task b{font-size:12px}
+ .v4-proto-stage{padding:22px 14px}
+ .v4-plan-nodes strong{font-size:22px}
+}
+@media(max-width:700px){
+ #v4-console{top:auto;bottom:72px;right:8px;width:min(250px,calc(100vw - 16px))}
+ #v4-console .v4-toggle{padding:7px 9px}
+ .v4-workflow-stage{min-height:280px}
+ .v4-stage-content,.v4-composition{min-height:215px}
+ .v4-stage-top{font-size:9px}
+ .v4-single-stream{grid-template-columns:78px 1fr;gap:8px}
+ .v4-big-label{font-size:48px}
+ .v4-big-label span{font-size:10px}
+ .v4-task{gap:4px;min-height:32px;padding:4px 6px}
+ .v4-task b{font-size:11px}
+ .v4-mini-stream .v4-task b{font-size:9px}
+ .v4-mini-stream .v4-task span{display:none}
+ .v4-repeat-glyph{font-size:24px}
+ .v4-duplicate{grid-template-columns:1fr 18px 1fr;gap:2px}
+ .v4-condensed{grid-template-columns:1fr 20px 1fr;gap:2px}
+ .v4-reuse-file{padding:9px 7px}
+ .v4-file-header strong{font-size:14px}
+ .v4-reuse-file .v4-task b{font-size:9px}
+ .v4-new-task{padding:11px 6px;min-height:150px}
+ .v4-new-task strong{font-size:14px}
+ .v4-new-task p{font-size:10px}
+ body.v4-scene-prototype .slide.active .idea-room{grid-template-columns:1fr!important}
+ .v4-proto-stage{top:32px;padding:14px 10px}
+ .v4-plan-nodes>div{padding:14px 7px;min-height:112px}
+ .v4-plan-nodes strong{font-size:20px}
+ .v4-plan-nodes em{font-size:9px}
+ .v4-prompt-copy{font-size:20px}
+}
+@media(prefers-reduced-motion:reduce){
+ .v4-workflow-stage,.v4-proto-stage,.v4-halo{display:none!important}
+ body.v4-scene-prototype .slide.active .idea-room{transition:none}
+}
+/* Step mode uses a compact exposed Next control. The expanded debugger no longer sits over native demo buttons during presentation. */
+#v4-console .v4-compact-next{pointer-events:auto!important;float:right;margin-top:5px;border:1px solid #002fa7!important;background:#002fa7!important;color:white!important;font:700 11px ui-monospace,monospace!important;padding:9px 12px;min-width:125px}
+#v4-console .v4-compact-next[hidden]{display:none!important}
+.v4-idea-figure{background:#eef3ff;border-left:4px solid #002fa7;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:27px 32px;min-height:190px}
+.v4-idea-figure>span{font-size:60px;color:#002fa7;line-height:.7}
+.v4-idea-figure strong{font-size:clamp(23px,2.6vw,38px);font-weight:600;letter-spacing:-.055em}
+.v4-idea-figure p{font-size:13px;color:#5b6882}
+@media(max-width:700px){.v4-idea-figure{padding:20px 15px;min-height:160px}.v4-idea-figure strong{font-size:24px}}
