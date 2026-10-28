@@ -1,0 +1,19 @@
+/* Personal AI System HTML motion study · never used in production */
+#motion-lab-ui{position:fixed;z-index:9998;right:14px;top:76px;width:min(278px,calc(100vw - 28px));background:rgba(250,250,248,.975);color:#16212c;border:1px solid #c8cfdd;box-shadow:0 12px 35px rgba(0,20,55,.14);font:12px/1.5 Inter,system-ui,sans-serif;border-radius:5px;overflow:hidden;backdrop-filter:blur(10px)}
+#motion-lab-ui *{box-sizing:border-box}#motion-lab-ui button{cursor:pointer;font:inherit}
+#motion-lab-ui .motion-lab-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px;background:#edf1fa;border-bottom:1px solid #d6ddeb;font-size:11px;font-weight:750;letter-spacing:.07em;color:#002fa7}
+#motion-lab-ui .motion-lab-top small{display:block;color:#768195;font-size:10px;letter-spacing:0;font-weight:500}
+#motion-lab-ui #motion-lab-fold{border:0;background:transparent;font-size:18px;color:#002fa7;line-height:1}
+#motion-lab-ui .motion-lab-content{padding:11px;display:grid;gap:9px}
+#motion-lab-ui .motion-lab-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+#motion-lab-ui .motion-lab-modes button{border:1px solid #d9dde5;background:white;padding:7px 0}
+#motion-lab-ui .motion-lab-modes button[aria-pressed=true]{background:#002fa7;border-color:#002fa7;color:white}
+#motion-lab-ui .motion-lab-actions{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+#motion-lab-ui .motion-lab-actions button{background:transparent;border:1px solid #adb8d0;color:#002fa7;padding:7px}
+#motion-lab-ui button:disabled{opacity:.3;cursor:default}
+#motion-lab-ui .motion-lab-status{font-size:10px;min-height:22px;color:#606a7b}
+#motion-lab-ui a{font-size:10px;color:#002fa7;text-decoration:none}
+#motion-lab-ui button:focus-visible,#motion-lab-ui a:focus-visible{outline:2px solid #002fa7;outline-offset:2px}
+#motion-lab-ui.motion-lab-folded{width:170px}#motion-lab-ui.motion-lab-folded .motion-lab-content{display:none}
+@media(max-width:700px){#motion-lab-ui{top:auto;bottom:70px;right:8px;width:min(250px,calc(100vw - 16px))}#motion-lab-ui .motion-lab-top{padding:8px 10px}#motion-lab-ui .motion-lab-content{padding:8px;gap:6px}}
+@media(prefers-reduced-motion:reduce){#motion-lab-ui{backdrop-filter:none}}

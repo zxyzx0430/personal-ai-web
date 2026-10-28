@@ -46,6 +46,7 @@ dialog{border:1px solid var(--line);padding:0;box-shadow:0 28px 110px rgba(10,30
 @media(min-width:721px) and (max-height:810px){.sheet{padding-top:16px;padding-bottom:14px}.cover-shell{min-height:470px}.cover-text{padding-top:1.5vh;padding-bottom:1vh}.cover-hero{margin-top:2vh}.cover-sub{margin-top:16px;margin-bottom:15px}.cover-bottom{padding-top:8px}.cover-diagram{padding-top:17px}.cover-stack{inset:15% 10% 7%;gap:8px}.workflow-fragment{min-height:76px}.flow-tracer{height:12px}.repeat-area,.memory-wrap,.idea-head,.cycle-layout,.cap-layout{margin-top:2vh}.idea-room{min-height:300px;margin-top:17px}.idea-left{padding:20px}.idea-request{margin:15px 0;font-size:27px}.preview-inner{padding:18px}.system-intro{margin-top:1.5vh}.system-flow{margin-top:16px}.sys-step{min-height:75px;padding:10px}.system-demo{min-height:160px}.sys-actor,.sys-result{padding:18px}.ending-layout{min-height:465px}.ending-copy h2{margin:2vh 0}.ending-cta{padding-top:2vh;gap:12px}.ending-cta .question-card{padding:16px}.question-card textarea{min-height:82px;margin:10px 0}.cap-item{padding:10px 0}.delivery-strip{margin-top:12px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition-duration:0ms!important}}
 </style>
+<link rel="stylesheet" href="../motion-lab.css">
 </head>
 <body>
 <a href="#main" class="skip">跳到正文</a>
@@ -171,5 +172,6 @@ try{let stored=Number(sessionStorage.getItem('personal-ai-persona'));if(Number.i
 fillIndex();renderAll();let h=Number((location.hash||'').slice(1));go(h>=1&&h<=11?h-1:0);
 
 </script>
+<script src="../motion-lab.js"></script>
 </body>
 </html>
