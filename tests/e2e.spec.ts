@@ -20,7 +20,7 @@ test('home: in-page React presentation, mode switch, browser back and side drawe
 
 test('about: original resources and working copy feedback',async({page,context})=>{
  await context.grantPermissions(['clipboard-read','clipboard-write']);
- await page.goto('/about/#page-05');
+ await page.goto('/about/#page-06');
  await expect(page.locator('a[href*="resources/"]')).toHaveCount(6);
  await page.goto('/about/#page-07');
  const button=page.locator('button[data-copy]').first();await button.click();

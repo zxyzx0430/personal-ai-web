@@ -2,19 +2,22 @@ import { test, expect } from '@playwright/test';
 
 test('seven-page content and requested UI simplification',async({page})=>{
   await page.goto('/about/#page-01');
+  await expect(page.locator('.motion-panel')).toHaveCount(1);
   await expect(page.locator('.motion-pagination,.motion-read-btn,.motion-tools,.home-morph-control')).toHaveCount(0);
   await expect(page.locator('.hero h1')).toHaveAttribute('data-text-animation','blur-in');
   await expect(page.locator('.hero-intro')).toHaveAttribute('data-text-animation','typewriter');
   await expect(page.locator('.flow-step')).toHaveCount(5);
   for(let i=2;i<=7;i++){
+    await page.waitForTimeout(100);
     await page.keyboard.press('PageDown');
     await expect(page.locator(`.motion-panel[data-page="${i}"]`)).toBeAttached();
+    await expect(page.locator('.motion-panel')).toHaveCount(1,{timeout:2000});
   }
   await expect(page.locator('#contact .page-footer')).toHaveCount(1);
   await page.keyboard.press('Home');
   await page.keyboard.press('End');
   await expect(page.locator('.contact-panel')).toHaveCount(4);
-  await page.goto('/about/#page-05');
+  await page.goto('/about/#page-06');
   await expect(page.locator('a[href$=".pdf"]')).toHaveCount(6);
 });
 
@@ -22,6 +25,7 @@ test('reduced motion is immediate, readable and long chapters can scroll',async(
   await page.goto('/about/#page-04');
   await expect(page.locator('.motion-panel')).toHaveAttribute('data-phase','3');
   await expect(page.locator('.growth-card')).toHaveCount(6);
+  await page.locator('.acq-growth-library > summary').click();
   await expect(page.locator('.growth-card').first()).toBeVisible();
   const heading=await page.locator('h2').first().evaluate(el=>getComputedStyle(el).opacity);
   expect(heading).toBe('1');
@@ -34,6 +38,8 @@ test.describe('scroll and narrative animations',()=>{
   test.use({reducedMotion:'no-preference'});
   test('wait for page to arrive before revealing heading or cards',async({page})=>{
     await page.goto('/about/#page-01');
+    await expect(page.locator('.motion-panel')).toHaveCount(1);
+    await page.waitForTimeout(100);
     await page.keyboard.press('PageDown');
     await page.waitForTimeout(120);
     const early=await page.locator('.motion-panel[data-page="2"]').evaluate(el=>({top:el.getBoundingClientRect().top,heading:Number(getComputedStyle(el.querySelector('h2')!).opacity),card:Number(getComputedStyle(el.querySelector('.problem')!).opacity),phase:el.getAttribute('data-phase')}));
@@ -71,7 +77,7 @@ test.describe('all card entry timings and resource-page boundary',()=>{
   test.use({reducedMotion:'no-preference'});
   test('cards and supplementary text reveal promptly only after full-page arrival',async({page})=>{
     test.setTimeout(60000);
-    const chapters:[number,string][]=[[2,'.problem'],[3,'.method-card'],[4,'.growth-card'],[5,'.asset'],[6,'.asset'],[7,'.contact-panel']];
+    const chapters:[number,string][]=[[2,'.problem'],[3,'.method-card'],[6,'.asset'],[7,'.contact-panel']];
     for(const [target,selector] of chapters){
       await page.goto(`/about/#page-${String(target-1).padStart(2,'0')}`);
       await page.keyboard.press('PageDown');
@@ -81,7 +87,7 @@ test.describe('all card entry timings and resource-page boundary',()=>{
       await expect.poll(()=>incoming.locator(selector).first().evaluate(el=>Number(getComputedStyle(el).opacity)),{timeout:2400}).toBeGreaterThan(.96);
     }
   });
-  test('page 5 resources are scrollable and lead to exactly one page 6',async({page})=>{
+  test('page 5 learning proof leads exactly one page 6 resources',async({page})=>{
     await page.goto('/about/#page-05');
     const panel=page.locator('.motion-panel[data-page="5"]');
     await panel.evaluate(el=>{el.scrollTop=el.scrollHeight});
@@ -89,7 +95,7 @@ test.describe('all card entry timings and resource-page boundary',()=>{
     await page.mouse.wheel(0,100);
     await expect(page.locator('.motion-panel[data-page="6"]')).toBeAttached();
     await expect(page.locator('.motion-panel')).toHaveCount(1,{timeout:2200});
-    await expect(page.locator('.motion-panel[data-page="6"] .asset')).toHaveCount(2);
+    await expect(page.locator('.motion-panel[data-page="6"] .asset')).toHaveCount(5);
     const scrollTop=await page.locator('.motion-panel[data-page="6"]').evaluate(el=>el.scrollTop);
     expect(scrollTop).toBe(0);
   });
