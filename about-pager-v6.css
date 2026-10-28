@@ -120,3 +120,46 @@ body.about-v6 .v6-causal-track{
  body.about-v6 #resources .asset p{font-size:12px;line-height:1.7;margin-bottom:13px}
  body.about-v6 #resources .asset .extra{margin-top:8px}
 }
+
+/* Anti-flash: keep cards out of view before the scene animation actually starts.
+   Visibility does not alter layout, so FLIP positions remain measurable.
+   Removed synchronously after Web Animations with fill:both are installed. */
+body.about-v6 .v6-page.v6-entry-pending .problem,
+body.about-v6 .v6-page.v6-entry-pending .method-card,
+body.about-v6 .v6-page.v6-entry-pending .growth-card,
+body.about-v6 .v6-page.v6-entry-pending .asset,
+body.about-v6 .v6-page.v6-entry-pending .sources,
+body.about-v6 .v6-page.v6-entry-pending .contact-panel,
+body.about-v6 .v6-page.v6-entry-pending .contact > div:first-child{visibility:hidden}
+@media(prefers-reduced-motion:reduce){
+ body.about-v6 .v6-page.v6-entry-pending .problem,
+ body.about-v6 .v6-page.v6-entry-pending .method-card,
+ body.about-v6 .v6-page.v6-entry-pending .growth-card,
+ body.about-v6 .v6-page.v6-entry-pending .asset,
+ body.about-v6 .v6-page.v6-entry-pending .sources,
+ body.about-v6 .v6-page.v6-entry-pending .contact-panel,
+ body.about-v6 .v6-page.v6-entry-pending .contact > div:first-child{visibility:visible}
+}
+
+/* Prevent first-paint flash while HTML and the deferred animation bundle initialize.
+   The guard is removed immediately after the correct initial scene has been armed. */
+html.v6-boot-pending .hero-visual > .flow-step,
+html.v6-boot-pending #problems .problem,
+html.v6-boot-pending #method .method-card,
+html.v6-boot-pending #needs .growth-card,
+html.v6-boot-pending #resources .asset,
+html.v6-boot-pending #explore .asset,
+html.v6-boot-pending #explore .sources,
+html.v6-boot-pending #contact .contact-panel,
+html.v6-boot-pending #contact > div:first-child{visibility:hidden}
+@media(prefers-reduced-motion:reduce){
+ html.v6-boot-pending .hero-visual > .flow-step,
+ html.v6-boot-pending #problems .problem,
+ html.v6-boot-pending #method .method-card,
+ html.v6-boot-pending #needs .growth-card,
+ html.v6-boot-pending #resources .asset,
+ html.v6-boot-pending #explore .asset,
+ html.v6-boot-pending #explore .sources,
+ html.v6-boot-pending #contact .contact-panel,
+ html.v6-boot-pending #contact > div:first-child{visibility:visible}
+}

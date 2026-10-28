@@ -46,6 +46,14 @@ function cancelScene(){
  sceneEpoch++;sceneTimers.forEach(clearTimeout);sceneTimers=[];
  sceneAnimations.forEach(a=>{try{a.cancel();}catch(e){}});sceneAnimations=[];
  seeds.forEach(el=>el.remove());seeds=[];
+ // A canceled transition must never leave a page's content hidden.
+ slides.forEach(s=>s.classList.remove('v6-entry-pending'));
+}
+function armScene(i){
+ if(!reduced.matches&&i>0)slides[i].classList.add('v6-entry-pending');
+}
+function releaseScene(i){
+ slides[i].classList.remove('v6-entry-pending');
 }
 function delay(fn,ms){const v=sceneEpoch;sceneTimers.push(setTimeout(()=>{if(v===sceneEpoch)fn();},ms));}
 function animate(el,frames,duration=850,delayMs=0){
@@ -79,8 +87,12 @@ function drawPath(region,nodes){
 function runScene(i){
  cancelScene();
  if(reduced.matches)return;
+ // Start Web Animations while the original cards are still hidden.
+ // The class is removed only AFTER animations with fill:both have been created.
+ // This prevents the normal layout appearing for ~510ms before animation.
+ armScene(i);
  const section=slides[i];
- switch(i){
+ try{switch(i){
  case 0:{
   // The first page's full 1→3→5 narrative is owned by home-morph.js.
   const b=$('.home-morph-control',section);
@@ -112,6 +124,9 @@ function runScene(i){
   if(panels.length){const parent=panels[0].parentElement;fanOut(panels,parent,'从真实问题开始交流',{duration:750,stagger:90});}
   break;
  }
+ }}finally{
+  // CSS hiding preserves card geometry. WAAPI now controls opacity/position.
+  releaseScene(i);
  }
 }
 function updateNav(i){
@@ -124,7 +139,7 @@ function yOf(i){return slides[i].getBoundingClientRect().top-main.getBoundingCli
 function pageTo(index,source='program'){
  const i=Math.min(slides.length-1,Math.max(0,index));
  if(source!=='force'&&i===current)return;
- current=i;readMode=false;slides[i].scrollTop=0;updateNav(i);updateReading();cancelScene();
+ current=i;readMode=false;slides[i].scrollTop=0;updateNav(i);updateReading();cancelScene();armScene(i);
  const top=yOf(i);
  main.scrollTo({top,behavior:reduced.matches?'instant':'smooth'});
  clearTimeout(timer);
@@ -191,6 +206,8 @@ main.addEventListener('scroll',()=>{requestAnimationFrame(alignFromScroll);},{pa
 window.addEventListener('resize',()=>{clearTimeout(timer);main.scrollTop=yOf(current);updateReading();},{passive:true});
 reduced.addEventListener('change',()=>{cancelScene();main.scrollTop=yOf(current);});
 let initial=slides.findIndex(s=>s.id===location.hash.slice(1));if(initial<0)initial=0;
-current=initial;updateNav(initial);main.scrollTop=yOf(initial);updateReading();
+current=initial;updateNav(initial);armScene(initial);main.scrollTop=yOf(initial);updateReading();
+// The first visible state is now armed; release the early head-level paint guard.
+document.documentElement.classList.remove('v6-boot-pending');
 delay(()=>runScene(initial),240);
 })();

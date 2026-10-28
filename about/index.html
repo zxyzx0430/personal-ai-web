@@ -6,6 +6,16 @@
 <meta name="theme-color" content="#fafaf8">
 <meta name="description" content="Personal AI System｜在学中扩展：从真实问题出发，让学生借助 AI 理解、验证并积累自己的学习经验。项目作者：忠心于中心。">
 <title>项目介绍｜Personal AI System · 在学中扩展</title>
+<script>
+// Hide motion targets before the first paint, including when loading a direct #section URL.
+// Fail open after 4s if the animation script fails to initialize.
+if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+ document.documentElement.classList.add('v6-boot-pending');
+ window.addEventListener('load',function(){
+  setTimeout(function(){document.documentElement.classList.remove('v6-boot-pending');},4000);
+ },{once:true});
+}
+</script>
 <style>
 :root{--paper:#fafaf8;--paper2:#f0f1ef;--ink:#0a0a0a;--blue:#002fa7;--muted:#727779;--line:#dcdfde;--sans:Inter,"Helvetica Neue",Arial,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;--mono:"IBM Plex Mono",Consolas,monospace}
 *,*:before,*:after{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit}button{font:inherit;cursor:pointer}a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px}::selection{background:var(--blue);color:#fff}
