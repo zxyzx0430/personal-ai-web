@@ -42,18 +42,18 @@ export function ProblemInsightCard({index,phase,off,children,opened,onToggle}:{
  return <FanCard page={1} index={index} phase={phase} off={off} className={`problem acq-problem ${opened?'is-expanded':''}`}>
    {children}
    <button type="button" className="acq-problem-toggle" aria-expanded={opened} onClick={onToggle}>
-     {opened?'收起原因与实例':'拆开看看原因与实例'} <span aria-hidden="true">{opened?'−':'+'}</span>
+     {opened?'收起讲解':'查看原因与例子'} <span aria-hidden="true">{opened?'−':'+'}</span>
    </button>
    <AnimatePresence initial={false}>
    {opened&&<motion.div className="acq-problem-detail" key="detail" initial={{opacity:0,height:0}} animate={{opacity:1,height:'auto'}} exit={{opacity:0,height:0}} transition={{duration:.42,ease:[.22,1,.36,1]}}>
      <div className="acq-detail-inner">
        <div className="acq-detail-item"><span>可能的原因</span><p>{item.inference}</p></div>
-       <div className="acq-detail-item"><span>来自已有讲解</span><p>{item.story}</p></div>
-       <div className="acq-detail-item"><span>可以怎样验证</span><p>{item.action}</p></div>
+       <div className="acq-detail-item"><span>举个例子</span><p>{item.story}</p></div>
+       <div className="acq-detail-item"><span>怎样进一步学习</span><p>{item.action}</p></div>
        <a className="acq-video-link" href={TALK_URL} target="_blank" rel="noopener noreferrer" onClick={e=>e.stopPropagation()}>
-         看作者完整讲解（参考 {item.time}） ↗
+         观看视频讲解 · {item.time} ↗
        </a>
-       <small className="acq-reference-note">时间为完整视频中的参考位置，打开后可能需要手动定位。讲解中的案例是概念示意，不代表已验证的学员成效。</small>
+
      </div>
    </motion.div>}
    </AnimatePresence>
@@ -80,6 +80,6 @@ export function StudentComparison(){
        <div className="acq-case-line is-check"><span>独立验证</span><p>{e.check}</p></div>
      </motion.div>
    </AnimatePresence>
-   <div className="acq-case-foot"><span>不是学生 A/B 谁更优秀，而是两个人的学习路线不应该完全相同。</span><a href={TALK_URL} target="_blank" rel="noopener noreferrer">观看讲解中的 A/B 分析（约 05:05–06:10） ↗</a></div>
+   <div className="acq-case-foot"><span>同一道题，不同卡点，对应不同的学习方法。</span><a href={TALK_URL} target="_blank" rel="noopener noreferrer">观看讲解中的 A/B 分析（约 05:05–06:10） ↗</a></div>
  </div>;
 }

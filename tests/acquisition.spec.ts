@@ -3,12 +3,16 @@ import {expect,test} from '@playwright/test';
 test('four expandable real-problem interpretations with real video links',async({page})=>{
  await page.goto('/about/#page-02');
  await expect(page.locator('.acq-problem-toggle')).toHaveCount(4);
+ await expect(page.locator('.acq-problem-detail')).toHaveCount(4);
+ await expect(page.locator('.acq-problem-toggle[aria-expanded="true"]')).toHaveCount(4);
+ await expect(page.locator('.acq-problem-detail').first()).toContainText('举个例子');
+ await expect(page.locator('.acq-video-link')).toHaveCount(4);
  await page.locator('.acq-problem-toggle').first().click();
- await expect(page.locator('.acq-problem-detail')).toContainText('来自已有讲解');
- await expect(page.locator('.acq-video-link')).toHaveAttribute('href',/v.douyin.com/);
- await page.locator('.acq-problem-toggle').nth(1).click();
- await expect(page.locator('.acq-problem-detail')).toHaveCount(1,{timeout:2000});
- await expect(page.locator('.acq-problem-detail')).toContainText('二次函数');
+ await expect(page.locator('.acq-problem-detail')).toHaveCount(3,{timeout:2000});
+ await expect(page.locator('.acq-problem-toggle[aria-expanded="true"]')).toHaveCount(3);
+ await page.locator('.acq-problem-toggle').first().click();
+ await expect(page.locator('.acq-problem-detail')).toHaveCount(4,{timeout:2000});
+ await expect(page.locator('.acq-problem-detail').nth(1)).toContainText('二次函数');
 });
 
 test('interactive A/B example and original method guidance',async({page})=>{
@@ -22,8 +26,10 @@ test('interactive A/B example and original method guidance',async({page})=>{
 test('six original growth supports retained and initial experience explained',async({page})=>{
  await page.goto('/about/#page-04');
  await expect(page.locator('.acq-experience-step')).toHaveCount(5);
- await page.locator('.acq-growth-library > summary').click();
+ await expect(page.locator('.acq-growth-library > h3')).toHaveText('6 个成长方向');
+ await expect(page.locator('.acq-growth-library > summary')).toHaveCount(0);
  await expect(page.locator('.growth-card')).toHaveCount(6);
+ await expect(page.locator('.growth-card').first()).toBeVisible();
  await expect(page.locator('.acq-growth-library')).toContainText('兴趣与长期发展');
 });
 

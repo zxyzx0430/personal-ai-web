@@ -37,7 +37,8 @@ const pageVariants:Variants={
 export function AboutPage({embedded=false}:{embedded?:boolean}){
   const d=useAnimationDirector();
   const [feedback,setFeedback]=useState<Record<string,string>>({});
-  const [expandedProblem,setExpandedProblem]=useState<number|null>(null);
+  // Each question starts open and can be closed independently; no single-selection accordion.
+  const [expandedProblems,setExpandedProblems]=useState<Set<number>>(()=>new Set([0,1,2,3]));
   const stageRef=useRef<HTMLElement>(null);
   const activePanel=useRef<HTMLDivElement>(null);
   const onWheel=d.onWheel;
@@ -110,7 +111,7 @@ export function AboutPage({embedded=false}:{embedded?:boolean}){
       return <NarrativeLine kind="intro" ready={phase>=1 || off} off={off} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeLine>;
     if(node.name==='article'&&a['data-insight']){
       const index=Math.max(0,Math.min(3,Number(a['data-insight'])-1));
-      return <ProblemInsightCard index={index} phase={phase} off={off} opened={expandedProblem===index} onToggle={()=>setExpandedProblem(prev=>prev===index?null:index)}>{nodeChildren(node,replace)}</ProblemInsightCard>;
+      return <ProblemInsightCard index={index} phase={phase} off={off} opened={expandedProblems.has(index)} onToggle={()=>setExpandedProblems(prev=>{const next=new Set(prev);if(next.has(index))next.delete(index);else next.add(index);return next;})}>{nodeChildren(node,replace)}</ProblemInsightCard>;
     }
     if(node.name==='article'&&a.class?.split(' ').some(c=>fanClasses.has(c))){
       return <FanCard {...attrs(node)} page={d.page} index={fanIndex++} phase={phase} off={off} className={a.class||''}>{nodeChildren(node,replace)}</FanCard>;

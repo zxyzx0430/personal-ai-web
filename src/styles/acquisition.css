@@ -81,3 +81,10 @@
 @media(max-width:600px){
  .motion-about .motion-stage > .motion-panel > section.section.wrap{padding:24px 20px 70px!important}
 }
+
+/* Visible by default: six growth cards must not be collapsed into a details control. */
+.motion-about .acq-growth-library {padding:18px 16px 4px;}
+.motion-about .acq-growth-library>h3{margin:0 0 18px;font-size:clamp(20px,2vw,30px);font-weight:830;letter-spacing:-.05em;color:var(--ink);}
+.motion-about .acq-growth-content{display:block;}
+.motion-about .acq-growth-library .growth-card{min-height:165px;}
+@media(max-width:600px){.motion-about .acq-growth-library{padding:15px 12px 4px}.motion-about .acq-growth-library>h3{font-size:23px}.motion-about .acq-growth-library .growth-card{min-height:0}}

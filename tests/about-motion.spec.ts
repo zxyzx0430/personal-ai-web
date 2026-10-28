@@ -25,7 +25,7 @@ test('reduced motion is immediate, readable and long chapters can scroll',async(
   await page.goto('/about/#page-04');
   await expect(page.locator('.motion-panel')).toHaveAttribute('data-phase','3');
   await expect(page.locator('.growth-card')).toHaveCount(6);
-  await page.locator('.acq-growth-library > summary').click();
+  await expect(page.locator('.acq-growth-library > summary')).toHaveCount(0);
   await expect(page.locator('.growth-card').first()).toBeVisible();
   const heading=await page.locator('h2').first().evaluate(el=>getComputedStyle(el).opacity);
   expect(heading).toBe('1');

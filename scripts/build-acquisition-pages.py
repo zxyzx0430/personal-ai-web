@@ -36,18 +36,21 @@ page(1,str(hero))
 
 # 02. Keep every original four-card problem, but add a clickable drilldown via React.
 problems=deepcopy(top(2));sec=problems.select_one('.sec-head');sec.select_one('h2').clear();sec.select_one('h2').append(BeautifulSoup('同样的学习困难，<br/><span class="blue">原因可能不同。</span>','html.parser'))
-sec.select_one('p').string='先选出最像孩子真实情况的一项。点开卡片，看看问题可能出在哪个环节、怎样验证，再按需观看相应的视频讲解。'
+sec.select_one('p').string='四种常见的学习困难，背后可能是不同的原因。看看具体的解释、怎样验证，以及如何找到适合孩子的方法。'
 for i,article in enumerate(problems.select('.problem'),1):article['data-insight']=str(i)
-problems.append(BeautifulSoup('<p class="acq-disclaimer mono">案例用于解释诊断思路，并非对真实学生结果的展示。实际判断应以孩子自己的题目与无提示作答为依据。</p>','html.parser'))
+
 page(2,str(problems))
 
 # 03. A/B teaching case, followed by all three original method cards.
 method=deepcopy(top(3));head=method.select_one('.sec-head')
 head.select_one('h2').clear();head.select_one('h2').append(BeautifulSoup('同一道题，<br/><span class="blue">为什么需要不同的讲解？</span>','html.parser'))
-head.select_one('p').string='你的讲解视频中有一个函数学习的对比例子：学生 A 与 B 可能犯相似的错误，却需要完全不同的辅助。先把问题定位到具体环节，再谈个性化学习。'
+head.select_one('p').string='同一道函数题，学生 A 和 B 可能遇到不同的卡点。先弄清楚孩子已经掌握了什么，再决定怎样讲解与练习。'
+for paragraph in method.select('p'):
+    if paragraph.get_text(strip=True).startswith('使用方式：'):
+        paragraph.string='学习过程中，可以结合 Codex 与 Obsidian，把讲解、练习、错因与复习连接起来。'
 method.select_one('.method').insert_before(BeautifulSoup('<div class="acq-case-host" data-acquisition="ab-case"></div>','html.parser'))
-method.select_one('.method').insert_before(BeautifulSoup('<p class="acq-mini-label mono">从个体差异走向实际学习方法 / HOW WE SUPPORT</p>','html.parser'))
-method.append(BeautifulSoup('<p class="acq-disclaimer mono">上方 A/B 为已有演讲中的概念示例，不是已验证的学员档案。具体方法以真实错因和独立复测决定。</p>','html.parser'))
+method.select_one('.method').insert_before(BeautifulSoup('<p class="acq-mini-label mono">怎样把针对性讲解变成长期有效的学习方法？</p>','html.parser'))
+
 page(3,str(method))
 
 # 04. Real first-session explanation with every original growth direction available intact.
@@ -62,8 +65,12 @@ steps=BeautifulSoup('''<div class="acq-experience" aria-label="初次体验的�
   <article class="acq-experience-step"><span>05</span><strong>留下学习记录</strong><p>把经过确认的错因与方法记录下来，供后续复习验证。</p></article>
 </div>''','html.parser')
 growth.append(steps)
-growth.append(BeautifulSoup('<div class="acq-experience-footer"><strong>第一次体验真正要得到的：</strong>一份真实问题的分析、一次独立检测的记录，以及下一步重点。<a href="../?view=study">查看完整十页演示 ↗</a></div>','html.parser'))
-detail=BeautifulSoup('<details class="acq-growth-library" id="growth"><summary><span>六个成长支持方向 · 完整保留</span><small>学科以外的长期成长，按实际需要选择，不是六门固定课程</small></summary><div class="acq-growth-content"><p class="acq-growth-intro">学科学习之外，也可结合具体情境探索财商、沟通、批判性思维、自我管理、项目实践与兴趣发展。以下保留原有六个方向的完整介绍。</p></div></details>','html.parser')
+for step in growth.select('.acq-experience-step'):
+    if '确认它不是 AI 代写作业' in step.get_text(' ',strip=True):
+        step.select_one('p').string='家长与孩子共同了解学习流程，认识各个环节的作用。'
+
+growth.append(BeautifulSoup('<div class="acq-experience-footer"><strong>完成体验后：</strong>看清问题所在，留下独立检验的结果和下一步学习重点。<a href="../?view=study">查看十页学习演示 ↗</a></div>','html.parser'))
+detail=BeautifulSoup('<div class="acq-growth-library" id="growth"><h3>6 个成长方向</h3><div class="acq-growth-content"></div></div>','html.parser')
 content=detail.select_one('.acq-growth-content');content.append(original_grid);content.append(original_foot)
 growth.append(detail)
 page(4,str(growth))
@@ -81,7 +88,7 @@ sec5=BeautifulSoup('''<section class="section wrap acq-verification" id="verific
 <div class="acq-original-intro"><span class="mono">PERSONAL AI STUDY SYSTEM / 项目原始理念</span><h3>先看见需要。再讨论如何支持成长。</h3><p></p></div>
 <div class="acq-loop-head"><span class="mono">THE ORIGINAL FIVE-STEP LEARNING LOOP</span><strong>学习问题如何转化为长期可以复用的经验？</strong></div>
 <div class="acq-learning-loop"></div>
-<p class="acq-disclaimer">这是一套正在实践验证的学习支持方案。目标是培养独立理解和解决问题的能力，不承诺特定成绩提升。</p>
+
 </section>''','html.parser')
 sec5.select_one('.acq-original-intro p').string=source_introduction
 loop=sec5.select_one('.acq-learning-loop')
@@ -92,22 +99,35 @@ page(5,str(sec5))
 # 06. Retain the video, student demo, sources and three PDF sets, with a clearer hierarchy.
 more=deepcopy(top(6));resources=deepcopy(top(5))
 more_head=more.select_one('.sec-head');more_head.select_one('h2').clear();more_head.select_one('h2').append(BeautifulSoup('看真实讲解，<br/><span class="blue">再独立判断。</span>','html.parser'))
-more_head.select_one('p').string='先用视频理解为什么不同学习问题需要不同支持，再亲自体验学生版。研究资料与 PDF 免费公开，供家长根据自己的兴趣进一步核查。'
+more_head.select_one('p').string='看视频理解学习方法，再亲自体验学生版。三份免费 PDF 包含家长需求指南、学习系统介绍与 AI 教育研究。'
 video_grid=more.select_one('.asset-grid')
-video_grid.insert_before(BeautifulSoup('<div class="acq-resources-head"><strong>第一步｜观看解释与体验</strong><span>讲解视频中约 01:40–02:50 是四个困境，05:05–06:10 是学生 A/B 的示意分析。</span></div>','html.parser'))
-pdf_head=BeautifulSoup('<div class="acq-resources-head"><strong>第二步｜按需要领取免费资料</strong><span>三份 PDF 均可直接阅读与下载，不需要先添加微信或登记学生信息。</span></div>','html.parser')
+video_grid.insert_before(BeautifulSoup('<div class="acq-resources-head"><strong>第一步｜观看解释与体验</strong><span>四个学习困境、个性化讲解与学习方法，都可以在视频中找到。</span></div>','html.parser'))
+pdf_head=BeautifulSoup('<div class="acq-resources-head"><strong>第二步｜按需要领取免费资料</strong><span>家长需求指南、学习系统介绍和 AI 教育研究。</span></div>','html.parser')
 old_grid=resources.select_one('.asset-grid').extract()
+for asset in old_grid.select('.asset'):
+    for para in asset.select('p'):
+        text=para.get_text(' ',strip=True)
+        if '六个成长方向属于按需设计' in text:
+            para.string='从孩子当前的学习和成长需要出发，了解可以重点支持的方向。'
+        elif '长期能力复利是训练目标' in text:
+            para.string='了解从学习诊断、针对性理解、独立验证到长期学习记录和复习的具体方法。'
 old_grid['class']=old_grid.get('class',[])+['acq-pdf-grid']
 more.select_one('.thin-rule').insert_before(pdf_head)
 more.select_one('.thin-rule').insert_before(old_grid)
-# Original wording retained in note, not hidden from users.
-more.select_one('.sources').insert_before(BeautifulSoup('<p class="acq-disclaimer">原先的项目介绍与五步学习闭环已移至第 5 页，完整六个成长支持方向位于第 4 页的可展开区域。</p>','html.parser'))
+# Store editorial context only in internal docs, not customer-facing copy.
+
+for para in more.select('.sources p'):
+    content=para.get_text(' ',strip=True)
+    if '并非学校授权课程' in content:
+        para.string='项目的学习方法与页面演示由作者独立设计。下列资料是相关教育研究与公开指南。'
+    elif '不承诺特定分数' in content:
+        para.string='研究文献与相关指南可在下方查看，完整学习流程见学生与家长介绍册。'
 page(6,str(more))
 
 # 07. One-question lead-in, no collection of student identifiers.
 contact=deepcopy(top(7));head=contact.select_one(':scope > div:first-child');head.select_one('h2').clear();head.select_one('h2').append(BeautifulSoup('带来一个具体问题，<br/><span class="blue">我们从这里开始。</span>','html.parser'))
-head.select_one('p').string='无需事先判断孩子缺什么能力，也不需要先决定是否参加课程。可以只描述一次真实的学习困难，以及孩子已经尝试过什么；我们先讨论问题适不适合这种方法。'
-header=BeautifulSoup('<div class="acq-contact-prompt"><span class="mono">FIRST MESSAGE / 第一次交流</span><p>第一次只需说清楚三件事：<b>哪个学段、哪一类学习问题、孩子已经尝试了什么。</b>不必提交姓名、学校、班级或完整作业照片。</p><button type="button" class="btn primary" data-copy="您好，我想了解《在学中扩展》是否适合孩子。孩子目前所处学段：____；最困扰的学习问题：____；已经尝试过的方法：____。希望先交流这个问题怎样分析。" data-success="已复制咨询模板">复制一段简短咨询模板 ↗</button></div>','html.parser')
+head.select_one('p').string='可以从孩子最近的一道难题、一次反复出现的错误开始。先一起分析他卡在哪里，再讨论下一步可以怎样学。'
+header=BeautifulSoup('<div class="acq-contact-prompt"><span class="mono">FIRST MESSAGE / 第一次交流</span><p>第一次交流，只需说说：<b>目前的学段、遇到的学习问题，以及已经尝试过的方法。</b></p><button type="button" class="btn primary" data-copy="您好，我想了解《在学中扩展》是否适合孩子。孩子目前所处学段：____；最困扰的学习问题：____；已经尝试过的方法：____。希望先交流这个问题怎样分析。" data-success="已复制咨询模板">复制一段简短咨询模板 ↗</button></div>','html.parser')
 contact.select_one('.contact-panel').insert_before(header)
 page(7,str(contact))
 
