@@ -78,6 +78,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
 }
 @media (prefers-reduced-motion:reduce){#switchDrawer[open],#switchDrawer.closing,#switchDrawer::backdrop,#switchDrawer.closing::backdrop{animation:none}.side-tab,.mode-option{transition:none}}
 </style>
+<link rel="stylesheet" href="./home-route.css">
 </head>
 <body>
 <iframe id="presentation" title="项目介绍｜个人 AI 系统" src="./about/" allow="fullscreen" allowfullscreen></iframe>
@@ -269,5 +270,6 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--blue);outline-offse
   setMode(modes[fromUrl]?fromUrl:(modes[remembered]?remembered:'about'),false);
 })();
 </script>
+<script src="./home-route.js"></script>
 </body>
 </html>

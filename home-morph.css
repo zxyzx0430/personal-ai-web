@@ -1,0 +1,71 @@
+/* Home V5: one real question expands into causes, then a five-step pathway. */
+.hero-visual{isolation:isolate}
+.hero.home-morph-running .hero-visual>.flow-step{opacity:0!important}
+.home-morph-stage{position:absolute;inset:0;z-index:5;overflow:hidden;pointer-events:none;background:radial-gradient(#cfd5de 1px,transparent 1px) 0 0/21px 21px,#fafbf9;transition:opacity .45s ease}
+.home-morph-stage[hidden]{display:none!important}
+.home-morph-stage.home-morph-done{opacity:0}
+.home-morph-intro{position:absolute;top:83px;left:clamp(24px,3vw,48px);right:clamp(24px,3vw,48px)}
+.home-morph-kicker{font:700 10px/1.5 ui-monospace,Consolas,monospace;letter-spacing:.11em;color:#002fa7}
+.home-morph-title{font-size:clamp(23px,2.7vw,40px)!important;font-weight:780!important;letter-spacing:-.068em!important;line-height:1.26!important;margin:13px 0 8px!important;color:#161d28!important}
+.home-morph-sub{color:#596477;font-size:13px;line-height:1.6;max-width:430px}
+.home-morph-nodes{position:absolute;top:195px;bottom:77px;left:clamp(24px,3vw,48px);right:clamp(24px,3vw,48px)}
+.home-morph-node{position:absolute;display:flex;gap:14px;align-items:center;left:4%;top:35%;width:92%;height:27%;background:#fff;border:1px solid #c9d1df;box-shadow:8px 8px 0 rgba(0,47,167,.075);padding:20px 23px;color:#101a2b;opacity:1;transform-origin:top left;will-change:transform,opacity}
+.home-morph-node>b{font:800 15px/1 ui-monospace,monospace;color:#002fa7;min-width:36px}
+.home-morph-node>div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.home-morph-node strong{font-size:clamp(19px,2vw,27px);font-weight:750;letter-spacing:-.06em;line-height:1.28}
+.home-morph-node small{font-size:12px;color:#627083;line-height:1.45}
+.home-morph-index{margin-left:auto;color:#002fa7;font-size:20px}
+.home-morph-node.home-morph-empty{opacity:0;pointer-events:none}
+.home-morph-stage[data-phase="0"] .home-morph-node{top:27%;left:5%;width:90%;height:52%}
+.home-morph-stage[data-phase="0"] .home-morph-node[data-index="0"]{background:#002fa7;border-color:#002fa7;color:#fff;box-shadow:10px 10px 0 rgba(0,47,167,.16)}
+.home-morph-stage[data-phase="0"] .home-morph-node[data-index="0"]>b{font-size:90px;font-weight:300;color:rgba(255,255,255,.32);min-width:90px}
+.home-morph-stage[data-phase="0"] .home-morph-node[data-index="0"] strong{color:#fff;font-size:clamp(25px,2.8vw,40px)}
+.home-morph-stage[data-phase="0"] .home-morph-node[data-index="0"] small{color:#cbd8ff;font-size:15px}
+.home-morph-stage[data-phase="0"] .home-morph-node[data-index="0"] .home-morph-index{display:none}
+.home-morph-stage[data-phase="1"] .home-morph-node{height:27%;left:0;width:100%}
+.home-morph-stage[data-phase="1"] .home-morph-node[data-index="0"]{top:4%;width:91%;left:0}
+.home-morph-stage[data-phase="1"] .home-morph-node[data-index="1"]{top:36%;width:91%;left:7%}
+.home-morph-stage[data-phase="1"] .home-morph-node[data-index="2"]{top:68%;width:91%;left:2%}
+.home-morph-stage[data-phase="2"] .home-morph-node{height:17%;width:96%;left:0;padding:10px 17px;gap:12px}
+.home-morph-stage[data-phase="2"] .home-morph-node[data-index="0"]{top:0%;left:4%}
+.home-morph-stage[data-phase="2"] .home-morph-node[data-index="1"]{top:20%;left:0}
+.home-morph-stage[data-phase="2"] .home-morph-node[data-index="2"]{top:40%;left:5%}
+.home-morph-stage[data-phase="2"] .home-morph-node[data-index="3"]{top:60%;left:1%}
+.home-morph-stage[data-phase="2"] .home-morph-node[data-index="4"]{top:80%;left:3%}
+.home-morph-stage[data-phase="2"] .home-morph-node>b{font-size:12px;min-width:33px}
+.home-morph-stage[data-phase="2"] .home-morph-node strong{font-size:clamp(16px,1.6vw,22px)}
+.home-morph-stage[data-phase="2"] .home-morph-node small{font-size:11px}
+.home-morph-footer{position:absolute;bottom:31px;left:clamp(24px,3vw,48px);right:clamp(24px,3vw,48px);display:flex;align-items:center;justify-content:space-between;gap:12px;color:#002fa7;font:700 10px ui-monospace,Consolas,monospace}
+.home-morph-track{height:3px;background:#d6dff0;width:35%;overflow:hidden}
+.home-morph-track span{display:block;width:33%;height:100%;background:#002fa7;transition:width .85s cubic-bezier(.2,.7,.2,1)}
+.home-morph-control{position:absolute!important;top:22px;right:20px;z-index:9;border:1px solid #c1cce0;background:#fff;color:#002fa7;padding:8px 10px;font:700 10px ui-monospace,Consolas,monospace;cursor:pointer}
+.home-morph-control:hover{background:#002fa7;color:#fff}
+.home-morph-control:focus-visible{outline:2px solid #002fa7;outline-offset:3px}
+@media(max-width:700px){
+ .home-morph-intro{top:51px;left:18px;right:18px}
+ .home-morph-title{font-size:22px!important;margin:9px 0 5px!important}
+ .home-morph-sub{font-size:11px}
+ .home-morph-kicker{font-size:8px}
+ .home-morph-nodes{left:20px;right:20px;top:146px;bottom:53px}
+ .home-morph-node{padding:10px 12px;gap:9px;box-shadow:4px 4px 0 rgba(0,47,167,.07)}
+ .home-morph-node>b{font-size:11px;min-width:23px}
+ .home-morph-node strong{font-size:16px}
+ .home-morph-node small{font-size:10px}
+ .home-morph-stage[data-phase="0"] .home-morph-node[data-index="0"]>b{font-size:62px;min-width:56px}
+ .home-morph-stage[data-phase="0"] .home-morph-node[data-index="0"] strong{font-size:22px}
+ .home-morph-stage[data-phase="0"] .home-morph-node[data-index="0"] small{font-size:11px}
+ .home-morph-stage[data-phase="1"] .home-morph-node{padding:8px 12px}
+ .home-morph-stage[data-phase="1"] .home-morph-node strong{font-size:17px}
+ .home-morph-stage[data-phase="1"] .home-morph-node small{font-size:10px}
+ .home-morph-stage[data-phase="2"] .home-morph-node{padding:6px 10px;gap:6px}
+ .home-morph-stage[data-phase="2"] .home-morph-node>b{min-width:18px;font-size:10px}
+ .home-morph-stage[data-phase="2"] .home-morph-node strong{font-size:13px}
+ .home-morph-stage[data-phase="2"] .home-morph-node small{display:none}
+ .home-morph-stage[data-phase="2"] .home-morph-index{font-size:14px}
+ .home-morph-footer{left:20px;right:20px;bottom:22px;font-size:9px}
+ .home-morph-control{top:15px;right:14px;font-size:9px;padding:5px 8px}
+}
+@media(prefers-reduced-motion:reduce){
+ .home-morph-stage{display:none!important}
+ .hero.home-morph-running .hero-visual>.flow-step{opacity:1!important}
+}
