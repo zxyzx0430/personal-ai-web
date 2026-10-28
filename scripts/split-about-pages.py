@@ -21,7 +21,7 @@ first['id']='resources'
 for card in last.select('.asset-grid > .asset')[:3]:card.decompose()
 head=last.select_one('.sec-head')
 head.select_one('.sec-num').string='05 / EXPLORE'
-h2=head.select_one('h2');h2.clear();h2.append('继续探索。自主判断。')
+h2=head.select_one('h2');h2.clear();h2.append('继续探索。');h2.append(soup.new_tag('br'));h2.append('自主判断。')
 paragraph=head.select_one('p');paragraph.clear();paragraph.append('进一步观看内容讲解、交互学习演示，并查看原始资料与引用说明。')
 last['id']='explore';last.select_one('.asset-grid')['class']=['asset-grid','more-asset-grid']
 (out/'06.html').write_text(str(last),encoding='utf-8')

@@ -91,10 +91,10 @@ export function AboutPage({embedded=false}:{embedded?:boolean}){
       <div className="motion-page-actions"><button aria-label="上一页" disabled={d.page===0} onClick={()=>d.navigate(d.page-1)}>↑</button><span className="mono">{String(d.page+1).padStart(2,'0')} / 07</span><button aria-label="下一页" disabled={d.page===6} onClick={()=>d.navigate(d.page+1)}>↓</button></div>
     </nav>
     <button className="motion-read-btn" aria-pressed={d.reading} onClick={()=>d.setReading(!d.reading)}>{d.reading?'结束本页阅读 ✓':'阅读本页完整内容 ↓'}</button>
-    <div className="motion-tools" aria-label="动画控制"><label htmlFor="motion-mode">动画</label><select id="motion-mode" value={d.mode} disabled={d.reduced} onChange={e=>d.setPreference(e.target.value as 'auto'|'step'|'off')}><option value="auto">自动</option><option value="step">逐步</option><option value="off">静态</option></select>
+    <details className="motion-tools"><summary aria-label="打开动画控制">动画设置</summary><div className="motion-tools-popover" aria-label="动画控制"><label htmlFor="motion-mode">动画</label><select id="motion-mode" value={d.mode} disabled={d.reduced} onChange={e=>d.setPreference(e.target.value as 'auto'|'step'|'off')}><option value="auto">自动</option><option value="step">逐步</option><option value="off">静态</option></select>
       {d.mode==='auto'&&<button onClick={()=>d.setPaused(!d.paused)}>{d.paused?'继续':'暂停'}</button>}
       {d.mode==='step'&&<button onClick={d.step} disabled={phase>=3}>下一幕</button>}
-      <button onClick={d.replay} disabled={d.reduced}>重播</button>
-    </div>
+      <button onClick={d.replay} disabled={d.reduced}>重播</button></div>
+    </details>
   </div>;
 }
