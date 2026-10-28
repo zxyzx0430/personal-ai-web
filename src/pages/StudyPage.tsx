@@ -5,6 +5,9 @@ import categories from '../data/study-categories.json';
 import { attrs, htmlMarkup, isElement, nodeChildren } from '../components/markup';
 import { copyText } from '../utils/clipboard';
 
+// Resolve from the hashed JS bundle: works on the official root domain and GitHub Pages project subpath.
+const mediaBase = import.meta.env.DEV ? '/media/' : new URL('../media/', import.meta.url).pathname;
+
 const slideSources=import.meta.glob('../content/study/slide-*.html',{query:'?raw',import:'default',eager:true}) as Record<string,string>;
 const slideHTML=Object.entries(slideSources).sort(([a],[b])=>a.localeCompare(b)).map(([,v])=>v);
 const titles=slideHTML.map(s=>s.match(/data-title="([^"]+)"/)?.[1]||'');
@@ -148,9 +151,9 @@ export function StudyPage(){
     if(id==='progress-fill')return <div {...attrs(node)} style={{transform:`scaleX(${(page+1)/10})`}}/>;
     if(id==='toast')return <div {...attrs(node)} className={`toast ${toast?'show':''}`}>{toast}</div>;
     if(id==='video-status')return createElement(node.name,attrs(node),videoStatus||nodeChildren(node,replace));
-    if(id==='learning-demo')return <video {...attrs(node)} poster={`${import.meta.env.BASE_URL}media/study-embedded-1.jpg`} ref={videoRef} onTimeUpdate={e=>setVideoChapter(e.currentTarget.currentTime>=11?2:e.currentTarget.currentTime>=3.2?1:0)} onPlay={()=>setVideoStatus('正在播放真实录屏。')} onPause={e=>setVideoStatus(e.currentTarget.ended?'录屏结束，可选择步骤重看。':'已暂停，可继续播放或选择步骤。')} onEnded={()=>setVideoStatus('录屏结束，可选择步骤重看。')} onError={()=>setVideoStatus('录屏暂时无法播放，请使用支持 MP4 的浏览器打开。')}>{nodeChildren(node,replace)}</video>;
-    if(node.name==='source'&&a.src?.includes('media/'))return <source {...attrs(node)} src={`${import.meta.env.BASE_URL}media/${a.src.split('media/').pop()}`}/>;
-    if(node.name==='img'&&a.src?.includes('media/'))return <img {...attrs(node)} src={`${import.meta.env.BASE_URL}media/${a.src.split('media/').pop()}`}/>;
+    if(id==='learning-demo')return <video {...attrs(node)} poster={`${mediaBase}study-embedded-1.jpg`} ref={videoRef} onTimeUpdate={e=>setVideoChapter(e.currentTarget.currentTime>=11?2:e.currentTarget.currentTime>=3.2?1:0)} onPlay={()=>setVideoStatus('正在播放真实录屏。')} onPause={e=>setVideoStatus(e.currentTarget.ended?'录屏结束，可选择步骤重看。':'已暂停，可继续播放或选择步骤。')} onEnded={()=>setVideoStatus('录屏结束，可选择步骤重看。')} onError={()=>setVideoStatus('录屏暂时无法播放，请使用支持 MP4 的浏览器打开。')}>{nodeChildren(node,replace)}</video>;
+    if(node.name==='source'&&a.src?.includes('media/'))return <source {...attrs(node)} src={`${mediaBase}${a.src.split('media/').pop()}`}/>;
+    if(node.name==='img'&&a.src?.includes('media/'))return <img {...attrs(node)} src={`${mediaBase}${a.src.split('media/').pop()}`}/>;
     if(node.name==='button'&&a['data-video-time']){const time=Number(a['data-video-time']);return <button {...attrs(node)} aria-current={[0,3.2,11][videoChapter]===time?'step':undefined} onClick={()=>void jumpVideo(time)}>{nodeChildren(node,replace)}</button>}
     if(node.name==='button'&&a['data-go'])return <button {...attrs(node)} onClick={()=>go(Number(a['data-go'])-1,true)}>{nodeChildren(node,replace)}</button>;
     if(id==='motion-mode')return <button {...attrs(node)} aria-pressed={staticMode} title={staticMode?'B：恢复动画':'B：切换静态模式'} onClick={toggleStatic}><span className="key">B</span><span className="mode-label">{staticMode?'动效':'静态'}</span></button>;

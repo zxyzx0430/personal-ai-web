@@ -12,7 +12,9 @@
     "lint": "eslint src",
     "build:pages": "DEPLOY_BASE=/personal-ai-web/ npm run build",
     "audit:parity": "python3 scripts/audit-legacy-parity.py && node scripts/check-dynamic-parity.cjs",
-    "test:public": "node scripts/final-web-check.mjs"
+    "test:public": "node scripts/final-web-check.mjs",
+    "build:publish": "DEPLOY_BASE=./ npm run build",
+    "check:publish": "node scripts/check-publish-assets.mjs"
   },
   "repository": {
     "type": "git",

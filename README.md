@@ -1,41 +1,38 @@
-# Personal AI System — React website
+# Personal AI System — React 网站源码
 
-公共站点，含学生版和成人版两条产品线。现已在独立分支 `refactor/react-rebuild` 迁移至 React + TypeScript + Vite。
+此仓库维护「在学中扩展 / Personal AI System」官网的 React + TypeScript + Vite 源码，包括项目介绍七页动画、学生版、成人版和家长需求指南。
 
-## 页面
+## 入口
 
-- `/`：项目入口、学生/成人/项目介绍切换，可用 `?view=about|study|adult`
-- `/about/`：项目介绍与资源
-- `/needs/`：家长需求指南（52 项可选择问题）
-- `/study/`：在学中扩展（10 页）
-- `/adult/`：在做中扩展（11 页）
-- `/resources/`：三份公开 PDF
+- 正式网站：<https://ai.zxyzx.me/>（由 `personal-ai-study-site` 的 GitHub Pages Workflow 发布）
+- 源码仓库 GitHub Pages：<https://zxyzx0430.github.io/personal-ai-web/>
+- `/`, `/about/`, `/needs/`, `/study/`, `/adult/`；公开资源在 `/resources/`，媒体在 `/media/`。
 
-## 开发、构建和验收
+## 本地开发及验证
 
-```bash
+```sh
 npm ci
 npm run dev
 npm run typecheck
 npm run lint
 npm run audit:parity
-npm run build
+npm run build:publish
+npm run check:publish
 npm run test
 ```
 
-在现有公开预览站运行浏览器冒烟测试：`SITE=https://ai-preview.67.215.236.125.sslip.io npm run test:public`。
+`npm run build:publish` 输出 `dist/`，使用相对路径构建，使根域名与 GitHub Pages 子目录均可加载 Vite 的脚本、CSS、PDF 和视频。发布时**不可直接把 Vite 源码 `index.html` 作为静态网页**；部署的必须是 `dist/`。
 
-部署到 GitHub Pages `/personal-ai-web/` 子路径：`npm run build:pages`。默认 `npm run build` 产物支持根目录部署。
+## 发布结构与回退
 
-## 审阅与设计保留
+- `personal-ai-web/main` 为唯一源码分支；本仓库的 `.github/workflows/pages.yml` 从源码构建并部署 GitHub Pages 项目网址。
+- `personal-ai-study-site/main` 的工作流也检出此仓库的 `main`，重新构建并将完整 `dist/` 发布到 `ai.zxyzx.me`。如果源码升级，需要运行该部署工作流，以立即刷新正式站；此外每日会检查并重新发布。
+- 两个仓库均保留 `backup/pre-react-motion-20261028` 作为上线前回退点。
+- 内部 Obsidian 笔记、学员资料和私人项目计划不在公开仓库内。
 
-- [架构说明](docs/react-architecture.md)
+## 技术记录
+
+- [React 架构](docs/react-architecture.md)
+- [原版内容与交互审计](docs/legacy-feature-audit.md)
+- [React 动画系统](docs/REACT-MOTION-ARCHITECTURE.md)
 - [重构报告](docs/REACT-REBUILD-REPORT.md)
-- [完整旧版功能审计](docs/legacy-feature-audit.md)
-- [新旧截图对照](docs/visual-review/README.md)
-
-重构后的公开预览：https://ai-preview.67.215.236.125.sslip.io/
-
-**生产保护**：此分支不得未经批准合并 `main`，不得用试验构建覆盖正式域名 `ai.zxyzx.me`。
-
-私人 Obsidian 知识库、学生记录和内部项目计划不在此公开仓库中。
