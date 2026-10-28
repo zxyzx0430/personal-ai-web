@@ -7,8 +7,8 @@ React + TypeScript + Vite 的全站重构已经完成、并经用户验收。若
 - GitHub 仓库：https://github.com/zxyzx0430/personal-ai-web
 - 动画 HTML 研究分支：design/animation-lab-html
 - 实验网站：https://motion-lab.67.215.236.125.sslip.io/motion-spec.html
-- 详细设计文档：该分支根目录的 MOTION_SPEC.md（V2 叙事动效规范）
-- 参考实现：该分支根目录的 motion-lab-v2.js / motion-lab-v2.css（HTML 概念验证，禁止直接复制进 React；旧版 motion-lab.js / motion-lab.css 保留作 V1 参照）
+- 详细设计文档：该分支根目录的 MOTION_SPEC.md（V3 精简叙事设计规范）
+- 参考实现：该分支根目录的 motion-lab-v3.js / motion-lab-v3.css（仅 HTML 概念验证，禁止直接复制进 React；V1/V2 仍用于对比）
 
 ## 核心任务
 在已经完成的 React 全站架构上引入统一的内容叙事动画系统，保留目前已验收的版式、文字、交互与功能。以动画实验站确认的页面、时序和拍点为视觉基准，并按用户反馈调整节奏。
@@ -18,7 +18,7 @@ React + TypeScript + Vite 的全站重构已经完成、并经用户验收。若
 2. 原 HTML 仅用于参考，不能将其 DOM 修改脚本直接照搬 React。
 3. 使用 Motion for React 管理进场/出场、交错、遮罩、路径绘制、状态聚焦与状态过渡；Remotion 仅用于复杂时间轴及可导出视频的场景。
 4. 建立统一动画控制接口，支持 auto / step / off / replay / pause，兼容原学生版动画模式，避免控制冲突。
-5. 每一场景按照 MOTION_SPEC.md 中定义的语义拍点，先提交四个代表性场景：学习闭环、四个学习困境、知识网络生长、成人问题诊断、重复工作复用、AI 输入与原型生成。
+5. 每一场景按照 MOTION_SPEC.md 中定义的语义拍点，先提交四个代表性场景：项目五步闭环、学生四困境、知识网络生长、成人五步诊断、重复工作复用、知识库信息检索、AI 输入与原型生成。
 6. 保留所有原有导航、翻页、演讲稿、知识网络互动、PDF 资源、表单与分享 URL。
 7. 支持返回任意页面可恢复初始状态、重复进入不残留旧动画、减少动态效果、移动端适配。
 8. 建立 Playwright 桌面与手机回归测试、视觉对照和动画交互测试。
@@ -34,3 +34,6 @@ React + TypeScript + Vite 的全站重构已经完成、并经用户验收。若
 - 首批场景完成后，先让用户实测评估再逐步扩展到所有页面。
 - 自动/逐步/关闭/重播、键盘/触屏与 reduced-motion 均通过回归。
 - 独立预览验证，不擅自合并或发布主站。
+
+## V3 质量门槛
+不允许将 V2 的全站扫描、翻转、模糊、遮罩特效复制回 React。只优先实现 V3 七个有实际因果关系的场景，其余页面在未做独立设计之前保持原有效果。先让用户实测判断视觉是否准确，再开发更多效果。
