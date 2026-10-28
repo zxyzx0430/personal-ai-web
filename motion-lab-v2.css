@@ -1,0 +1,16 @@
+/* Independent motion lexicon — visual experiment only, not production CSS. */
+#motion-lab-ui .motion-lab-family{font:600 10px/1.5 ui-monospace,Consolas,monospace;color:#002fa7;background:#edf1fb;padding:7px 8px;word-break:break-word}
+#motion-lab-ui .motion-lab-progress{height:3px;width:100%;background:#dce2ed;position:relative}
+#motion-lab-ui .motion-lab-progress i{display:block;width:0;height:100%;background:#002fa7;transition:width .2s linear}
+#motion-lab-ui .motion-lab-status{min-height:28px}
+.lab-scanner{position:absolute!important;left:0!important;top:0!important;bottom:0!important;z-index:99!important;width:17%!important;max-width:none!important;pointer-events:none!important;display:block!important;background:linear-gradient(90deg,transparent,rgba(0,47,167,.18),rgba(0,47,167,.28),transparent)!important;mix-blend-mode:multiply!important;transform:translateX(-120%);opacity:0}
+.lab-flow-bar{position:absolute!important;left:0!important;top:0!important;z-index:99!important;height:0;width:3px!important;background:#002fa7!important;box-shadow:0 0 12px rgba(0,47,167,.2)!important;pointer-events:none!important;display:block!important}
+.lab-shutter-stripe{position:absolute!important;left:0!important;right:0!important;top:0;width:100%!important;height:3px!important;display:block!important;background:linear-gradient(90deg,transparent,#002fa7,transparent)!important;pointer-events:none!important;z-index:99!important;opacity:.8}
+.lab-underline{position:absolute!important;left:0!important;bottom:0!important;display:block!important;width:100%!important;height:3px!important;background:#002fa7!important;transform-origin:left!important;z-index:99!important;pointer-events:none!important}
+.lab-frame{position:absolute!important;inset:0!important;display:block!important;border:2px solid rgba(0,47,167,.5)!important;background:transparent!important;z-index:99!important;pointer-events:none!important}
+.lab-type-caret{pointer-events:none!important;display:inline-block!important;width:2px!important;height:1em!important;background:#002fa7!important;vertical-align:baseline!important;margin-left:2px!important}
+.lab-progress-sweep{position:absolute!important;bottom:0!important;left:0!important;display:block!important;width:100%!important;height:3px!important;background:linear-gradient(90deg,#002fa7,#6387d8,rgba(0,47,167,.05))!important;z-index:99!important;pointer-events:none!important;transform-origin:left center!important}
+@media (max-width:700px){#motion-lab-ui.motion-lab-folded{width:155px}#motion-lab-ui .motion-lab-family{font-size:9px}}
+@media (prefers-reduced-motion:reduce){#motion-lab-ui .motion-lab-progress i{transition:none}}
+/* A line drawn through already reused work — triggered only when original application marks rows .done. */
+.lab-crossout{position:absolute!important;left:12px!important;right:12px!important;top:52%!important;height:2px!important;background:rgba(0,47,167,.7)!important;transform-origin:left center!important;display:block!important;z-index:88!important;pointer-events:none!important}
