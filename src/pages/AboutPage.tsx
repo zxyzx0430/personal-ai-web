@@ -13,6 +13,7 @@ import { attrs, htmlMarkup, isElement, nodeChildren } from '../components/markup
 import { FanCard, HeroMorph, SupportingReveal } from '../animation/SceneMotifs';
 import { NarrativeHeading, NarrativeLine, TypewriterParagraph } from '../animation/TextMotion';
 import { useAnimationDirector } from '../animation/AnimationDirector';
+import { readHeroProgress } from '../animation/heroProgress';
 import { copyText } from '../utils/clipboard';
 import { ProblemInsightCard, StudentComparison } from '../components/AcquisitionStory';
 
@@ -80,6 +81,8 @@ export function AboutPage({embedded=false}:{embedded?:boolean}){
     addEventListener('keydown',key);return()=>removeEventListener('keydown',key);
   },[d]);
   const off=d.mode==='off';
+  const heroRestored=d.page===0&&Boolean(readHeroProgress()?.completed);
+  const noReplay=off||heroRestored;
   const phase=off?3:d.phase;
   let fanIndex=0;
   const inside=(node:ParserElement,name:string):boolean=>{
@@ -94,21 +97,21 @@ export function AboutPage({embedded=false}:{embedded?:boolean}){
   const replace:NonNullable<HTMLReactParserOptions['replace']>=node=>{
     if(!isElement(node))return;
     const a=node.attribs;
-    if(a.class?.split(' ').includes('hero-visual'))return <HeroMorph phase={phase} off={off} paused={d.paused} onManual={()=>d.setPaused(true)}>{nodeChildren(node,replace)}</HeroMorph>;
+    if(a.class?.split(' ').includes('hero-visual'))return <HeroMorph phase={phase} off={off} paused={d.paused} active={d.page===0} onManual={()=>d.setPaused(true)}>{nodeChildren(node,replace)}</HeroMorph>;
     if(a['data-acquisition']==='ab-case')return <SupportingReveal kind="aside" className="acq-case-host" phase={phase} off={off}><StudentComparison/></SupportingReveal>;
-    if(node.name==='h1'||node.name==='h2')return <NarrativeHeading as={node.name} ready={textReady} off={off} page={d.page} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeHeading>;
+    if(node.name==='h1'||node.name==='h2')return <NarrativeHeading as={node.name} ready={textReady} off={noReplay} page={d.page} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeHeading>;
     if(a.class?.split(' ').includes('hero-intro')&&node.name==='p'){
       const text=node.children.map(child=>'data' in child?child.data:'').join('');
-      return <TypewriterParagraph text={text} ready={textReady} off={off} className={a.class}/>;
+      return <TypewriterParagraph text={text} ready={textReady} off={noReplay} className={a.class}/>;
     }
     if(node.name==='p' && (inside(node,'sec-head')||inside(node,'contact')&&!inside(node,'contact-panel')))
-      return <NarrativeLine kind="intro" ready={textReady} off={off} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeLine>;
+      return <NarrativeLine kind="intro" ready={textReady} off={noReplay} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeLine>;
     if(a.class?.split(' ').includes('eyebrow')||a.class?.split(' ').includes('sec-num'))
-      return <NarrativeLine ready={textReady} off={off} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeLine>;
+      return <NarrativeLine ready={textReady} off={noReplay} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeLine>;
     if(a.class?.split(' ').includes('actions'))
-      return <NarrativeLine kind="actions" ready={textReady} off={off} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeLine>;
+      return <NarrativeLine kind="actions" ready={textReady} off={noReplay} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeLine>;
     if(a.class?.split(' ').includes('hero-foot'))
-      return <NarrativeLine kind="foot" ready={textReady} off={off} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeLine>;
+      return <NarrativeLine kind="foot" ready={textReady} off={noReplay} props={attrs(node)}>{nodeChildren(node,replace)}</NarrativeLine>;
     // Contact panels and section footnotes used to appear instantly while the narrative was hidden.
     // Preserve their actual DOM semantics and let them reveal only after page arrival.
     if(a.class?.split(' ').some(c=>['acq-experience','acq-proof-grid','acq-original-intro','acq-learning-loop','acq-contact-prompt'].includes(c)))

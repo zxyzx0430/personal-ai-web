@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
+import { readHeroProgress, saveHeroProgress } from './heroProgress';
 
 const flow = [
  ['发现真实问题','学生先留下自己的思考与卡点'],
@@ -21,13 +22,19 @@ const headings = [
 const phases = ['01 / 03 · 看见问题','02 / 03 · 分辨原因','03 / 03 · 建立系统'];
 
 /** Recreates the approved V6.1 visual composition in React; no DOM insertion, timers or WAAPI. */
-export function HeroMorph({phase,off,paused,onManual,children}:{
- phase:number;off:boolean;paused?:boolean;onManual?:()=>void;children:ReactNode;
+export function HeroMorph({phase,off,paused,onManual,active,children}:{
+ phase:number;off:boolean;paused?:boolean;onManual?:()=>void;active?:boolean;children:ReactNode;
 }){
- const [manualStage,setManualStage]=useState<number|null>(null);
+ const [stored]=useState(readHeroProgress);
+ const restored=Boolean(stored&&(stored.stage>0||stored.manual||stored.completed));
+ const [manualStage,setManualStage]=useState<number|null>(stored?.manual?stored.stage:null);
  const stage=manualStage ?? Math.min(2,phase);
- const [activeStep,setActiveStep]=useState(0);
- const [manual,setManual]=useState(false);
+ const [activeStep,setActiveStep]=useState(stored?.step??0);
+ const [manual,setManual]=useState(Boolean(stored?.manual));
+ useEffect(()=>{
+   if(active===false||off)return;
+   saveHeroProgress({stage:stage as 0|1|2,step:activeStep,manual});
+ },[stage,activeStep,manual,active,off]);
  const swipeX=useRef<{x:number;y:number}|null>(null);
  const swallowTouchClick=useRef(false);
  const selectStep=useCallback((next:number)=>{
@@ -73,8 +80,8 @@ export function HeroMorph({phase,off,paused,onManual,children}:{
         onClick={()=>{if(swallowTouchClick.current){swallowTouchClick.current=false;return;}move(1);}}><span aria-hidden="true">›</span></button>
       <div className="home-morph-intro">
         <div className="home-morph-kicker">FROM A QUESTION TO A LEARNING SYSTEM</div>
-        <motion.h2 key={`heading-${stage}`} className="home-morph-title" initial={{opacity:0,filter:'blur(8px)',y:8}} animate={{opacity:1,filter:'blur(0px)',y:0}} transition={{duration:.55}}>{headings[stage][0]}</motion.h2>
-        <motion.p key={`sub-${stage}`} className="home-morph-sub" initial={{opacity:0,y:7}} animate={{opacity:1,y:0}} transition={{duration:.55,delay:.17}}>{headings[stage][1]}</motion.p>
+        <motion.h2 key={`heading-${stage}`} className="home-morph-title" initial={restored?false:{opacity:0,filter:'blur(8px)',y:8}} animate={{opacity:1,filter:'blur(0px)',y:0}} transition={{duration:.55}}>{headings[stage][0]}</motion.h2>
+        <motion.p key={`sub-${stage}`} className="home-morph-sub" initial={restored?false:{opacity:0,y:7}} animate={{opacity:1,y:0}} transition={{duration:.55,delay:.17}}>{headings[stage][1]}</motion.p>
       </div>
       <div className="home-morph-nodes">
         {Array.from({length:5},(_,i)=>{

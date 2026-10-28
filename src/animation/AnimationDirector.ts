@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { readHeroProgress, clearHeroProgress } from './heroProgress';
 
 export type MotionMode = 'auto' | 'step' | 'off';
 const pageFromHash = ():number => {
@@ -22,9 +23,9 @@ export function useAnimationDirector() {
   const [arrived,setArrived] = useState(true);
   const [mode,setMode] = useState<MotionMode>(initialMode);
   const [reduced,setReduced] = useState(initialReduced);
-  const [paused,setPaused] = useState(false);
+  const [paused,setPaused] = useState(()=>pageFromHash()===0&&Boolean(readHeroProgress()?.manual||readHeroProgress()?.completed));
   const [reading,setReading] = useState(false);
-  const [phase,setPhase] = useState(()=>initialReduced()||initialMode()==='off'?3:0);
+  const [phase,setPhase] = useState(()=>initialReduced()||initialMode()==='off'?3:pageFromHash()===0?(readHeroProgress()?.stage??0):0);
   const [revision,setRevision] = useState(0);
   const wheel = useRef({sum:0,locked:false,unlockAt:0,idle:0 as ReturnType<typeof setTimeout>|0});
   const touchUnlockAt = useRef(0);
@@ -43,7 +44,10 @@ export function useAnimationDirector() {
     setPage(next);
     // The new panel must settle at y:0 before any of its narrative animation begins.
     setArrived(activeMode==='off');
-    setPhase(activeMode==='off'?3:0);setPaused(false);setReading(false);
+    const hero=next===0?readHeroProgress():null;
+    setPhase(activeMode==='off'?3:hero?.stage??0);
+    setPaused(Boolean(hero&&(hero.manual||hero.completed)));
+    setReading(false);
     if(push){
       const url=new URL(location.href);
       url.hash='page-'+String(next+1).padStart(2,'0');
@@ -75,6 +79,7 @@ export function useAnimationDirector() {
   const replay=useCallback(()=>{
     if(reduced)return;
     if(mode==='off')setPreference('auto');
+    if(pageRef.current===0)clearHeroProgress();
     setPhase(0);setPaused(false);setRevision(r=>r+1);
   },[reduced,mode,setPreference]);
   const onWheel=useCallback((event:WheelEvent)=>{
