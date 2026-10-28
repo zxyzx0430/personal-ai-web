@@ -21,3 +21,12 @@
 @media(max-width:560px){.asset-grid{grid-template-columns:1fr}}
 
 .growth-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.growth-card{background:white;border:1px solid var(--line);padding:25px 23px;min-height:215px}.growth-card>.mono{color:var(--blue)}.growth-card h3{font-size:clamp(18px,1.8vw,24px);letter-spacing:-.045em;margin:22px 0 10px;line-height:1.4}.growth-card p{margin:0;font-size:12px;line-height:1.8;color:#586166}.growth-card .growth-need{font-size:13px;color:#1b2429;margin-bottom:13px}.growth-foot{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:24px}.growth-foot p{font-size:13px;color:#586166;max-width:460px}.asset.featured{background:#f1f4fd;border-color:#c7d3ef}.asset .copy-video{margin-top:9px;width:100%;justify-content:space-between}.asset .copy-video span{font-size:16px}.asset .extra{line-height:1.7}@media(max-width:920px){.growth-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.growth-foot{align-items:start;flex-direction:column}}@media(max-width:560px){.growth-grid{grid-template-columns:1fr}.growth-card{min-height:0}.growth-foot .btn{width:100%}.asset .copy-video{min-height:47px}}
+
+/* Personal site is an external author page, not part of this education product. */
+.site-top .top-links .personal-home-link{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;flex:none;border:1px solid #c5d0e5;background:#f2f5fb;padding:6px 10px;text-decoration:none;color:var(--blue);line-height:1.2;transition:border-color .18s ease,background .18s ease}
+.site-top .top-links .personal-home-link:hover{border-color:var(--blue);background:#eaf0fc}
+.personal-home-main{font-size:12px;font-weight:760;white-space:nowrap}
+.personal-home-status{font-size:10px;font-weight:500;color:#666f7e;white-space:nowrap}
+.site-top .top-links .personal-home-link:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media(max-width:620px){.site-top .top-links{gap:8px}.site-top .top-links a:not(.personal-home-link){display:none}.site-top .top-links .personal-home-link{padding:5px 7px}.personal-home-main{font-size:11px}.personal-home-status{font-size:9px}}
+@media(max-width:360px){.site-top{padding:0 13px}.site-top .mark{font-size:11px}}

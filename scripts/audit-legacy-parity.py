@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only source parity check. Compare React content fragments to main's originals.
+"""Read-only source parity check against the pre-React frozen legacy commit.
 
 Only static fidelity is covered: dynamic behavior requires separate browser tests.
 """
@@ -8,6 +8,14 @@ from html.parser import HTMLParser
 from pathlib import Path
 import base64, hashlib, re, subprocess, sys
 ROOT=Path(__file__).resolve().parents[1]
+LEGACY_COMMIT='051fa4ceec125fd30832c6fd6495a96839f0c6a4'
+# The one intentional new cross-site link is tested independently in the browser.
+PERSONAL_LINK=re.compile(r'<a class="personal-home-link" href="https://zxyzx\.me/"[^>]*>.*?</a>', re.S)
+CSS_EXTENSION={
+    'about': '\n/* Personal site is an external author page, not part of this education product. */',
+    'needs': "\n/* Author's personal website; the status stays visible until it is finished. */",
+}
+
 PAGES={'home':'index.html','about':'about/index.html','needs':'needs/index.html','study':'study/index.html','adult':'adult/index.html'}
 SLIDES={'study':10,'adult':11}
 REPL=re.compile(r'<div data-slide-placeholder="(\d+)"></div>')
@@ -44,15 +52,26 @@ def body(source):
 def run():
     results=[];failed=[]
     for page,original in PAGES.items():
-        old=subprocess.check_output(['git','show','main:'+original],cwd=ROOT).decode('utf-8')
+        old=subprocess.check_output(['git','show',LEGACY_COMMIT+':'+original],cwd=ROOT).decode('utf-8')
         text=(ROOT/'src/content'/f'{page}.html').read_text()
+        if page in CSS_EXTENSION:
+            # Confirm precisely one intended nav insertion, then compare all older content unchanged.
+            if len(PERSONAL_LINK.findall(text))!=1:
+                raise AssertionError(f'{page}: expected exactly one personal site link')
+            text=PERSONAL_LINK.sub('',text)
         if page in SLIDES:
             def insert(m):return (ROOT/f'src/content/{page}/slide-{int(m.group(1)):02d}.html').read_text()
             text=REPL.sub(insert,text)
         a,b=inspect(body(old)),inspect(text)
         checks={'text':a.tokens==b.tokens,'tags':a.tags==b.tags,'ids':a.ids==b.ids,'links':a.hrefs==b.hrefs,'questions':a.inputs==b.inputs,'data_attributes':a.data_attrs==b.data_attrs}
         orig_css='\n'.join(re.findall(r'<style[^>]*>(.*?)</style>',re.sub(r'<noscript\b[^>]*>.*?</noscript>','',old,flags=re.I|re.S),re.I|re.S))
-        checks['css']=orig_css==(ROOT/f'src/styles/{page}.css').read_text()
+        current_css=(ROOT/f'src/styles/{page}.css').read_text()
+        if page in CSS_EXTENSION:
+            marker=CSS_EXTENSION[page]
+            if current_css.count(marker)!=1:
+                raise AssertionError(f'{page}: missing intentional personal homepage CSS section')
+            current_css=current_css.split(marker,1)[0]
+        checks['css']=orig_css==current_css
         results.append((page,checks,len(a.tokens),len(a.tags),len(a.hrefs),len(a.ids)))
         if not all(checks.values()):
             failed.append(page)
@@ -70,7 +89,7 @@ def run():
         ok=target.is_file() and hashlib.sha256(f.read_bytes()).digest()==hashlib.sha256(target.read_bytes()).digest()
         print('PDF',f.name,'PASS' if ok else 'FAIL')
         if not ok:failed.append(f.name)
-    old=subprocess.check_output(['git','show','main:study/index.html'],cwd=ROOT).decode('utf8')
+    old=subprocess.check_output(['git','show',LEGACY_COMMIT+':study/index.html'],cwd=ROOT).decode('utf8')
     media=re.findall(r'data:(image|video|audio)/([\w+.-]+);base64,([A-Za-z0-9+/=]+)',old)
     for i,(_,typ,b64) in enumerate(media,1):
         ext=typ.replace('svg+xml','svg').replace('jpeg','jpg');f=ROOT/'public/media'/f'study-embedded-{i}.{ext}'
