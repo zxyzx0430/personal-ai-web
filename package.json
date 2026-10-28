@@ -1,0 +1,47 @@
+{
+  "name": "personal-ai-react",
+  "version": "0.1.0",
+  "description": "This repository contains only the public static presentation site.",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -p tsconfig.json && vite build",
+    "typecheck": "tsc -b",
+    "preview": "vite preview --host 127.0.0.1",
+    "lint": "eslint src",
+    "build:pages": "DEPLOY_BASE=/personal-ai-web/ npm run build",
+    "audit:parity": "python3 scripts/audit-legacy-parity.py && node scripts/check-dynamic-parity.cjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zxyzx0430/personal-ai-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zxyzx0430/personal-ai-web/issues"
+  },
+  "homepage": "https://github.com/zxyzx0430/personal-ai-web#readme",
+  "type": "module",
+  "dependencies": {
+    "html-react-parser": "^6.1.9",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "eslint": "^9.39.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.13.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "vite": "^8.3.5"
+  }
+}

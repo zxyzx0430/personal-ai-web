@@ -1,0 +1,37 @@
+
+<iframe id="presentation" title="项目介绍｜个人 AI 系统" src="./about/" allow="fullscreen" allowfullscreen></iframe>
+<div class="mobile-hint" id="mobileHint" role="note" hidden><span>用电脑浏览，体验更佳</span><button type="button" id="dismissMobileHint" aria-label="关闭电脑浏览提示">×</button></div>
+<button type="button" class="side-tab is-tucked" id="openSwitch" aria-label="展开版本切换侧栏" aria-haspopup="dialog" aria-controls="switchDrawer" aria-expanded="false" title="切换项目介绍 / 学生版 / 成人版">
+  <span class="symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="vertical" aria-hidden="true">切换版本</span>
+  <span class="tiny" id="tabNumber" aria-hidden="true">00</span>
+</button>
+<dialog id="switchDrawer" aria-labelledby="drawerTitle" aria-modal="true">
+  <div class="drawer-inner">
+    <div class="drawer-header">
+      <span class="drawer-overline">PERSONAL AI SYSTEM<br>ONE SYSTEM / TWO PATHS</span>
+      <button class="drawer-close" id="closeSwitch" type="button" aria-label="折叠侧栏">×</button>
+    </div>
+    <h1 class="drawer-title" id="drawerTitle">选择内容。</h1>
+    <p class="drawer-subtitle">项目介绍、学生版与成人版。<br>选中后自动收起，不遮挡正文。</p>
+    <div class="options" role="group" aria-label="页面选项">
+      <button class="mode-option selected" type="button" data-view="about" aria-pressed="true">
+        <span><span class="option-meta">00 / PROJECT · OVERVIEW</span><strong class="option-name">项目介绍</strong><span class="option-desc">免费资源 · 学习方法 · 作者与联系方式</span></span>
+        <span class="option-arrow" aria-hidden="true">↗</span>
+      </button>
+      <button class="mode-option" type="button" data-view="study" aria-pressed="false">
+        <span><span class="option-meta">01 / STUDY · 10 PAGES</span><strong class="option-name">在学中扩展</strong><span class="option-desc">学生版 · 让每次学习成为下次进步的起点</span></span>
+        <span class="option-arrow" aria-hidden="true">✓</span>
+      </button>
+      <button class="mode-option" type="button" data-view="adult" aria-pressed="false">
+        <span><span class="option-meta">02 / WORK · 11 PAGES</span><strong class="option-name">在做中扩展</strong><span class="option-desc">成人版 · 从真实任务到长期经验复用</span></span>
+        <span class="option-arrow" aria-hidden="true">↗</span>
+      </button>
+    </div>
+    <div class="drawer-bottom">
+      <p>CODEX × OBSIDIAN<br>FROM PRACTICE TO REUSE</p>
+      <a class="open-standalone" id="openStandalone" href="./about/" target="_blank" rel="noopener">独立打开当前版本 ↗</a>
+    </div>
+  </div>
+</dialog>
+
